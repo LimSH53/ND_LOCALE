@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.2.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<!-- #8.1 암호화 처리 bean 등록  -->
+	<beans:bean 
+		id="bcryptPasswordEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"></beans:bean>
+	
+	<!-- 로그인 성공 후 커스텀을 위한 빈 생성 -->
+	<beans:bean 
+		id="loginSuccessHandler"
+		class="com.naedam.admin.member.LoginSuccessHandler"></beans:bean>
+	 
+	 <!-- 로그아웃 성공 후 커스텀을 위한 빈 생성 -->
+	<beans:bean 
+		id="logoutSuccessHandler"
+		class="com.naedam.admin.member.LogoutSuccessHandler"></beans:bean>
+	 
+	<!-- #8.3 인증/권한 검사 설정 -->
+	<!-- security에 의한 인증/권한 검사에서 제외 -->
+	<!-- img, css를 인증/권한 검사에서 제외 -->
+	<http security="none" pattern="/resources/**"/>
+	
+	<!-- 위에서부터 아래로 처리하기때문에 특수한 설정 -> 일반적 설정 순으로 정리해야한다. -->
+	<http auto-config="true" use-expressions="true">
+		
+		<!-- 
+			remember-me : session-timeout 시간이상으로 사용자 정보를 관리
+			token-validity-seconds : remember-me 토큰 유효시간 60 * 60 * 24 * 14 (초단위)
+		 -->
+		<remember-me
+			data-source-ref="dataSource"
+			token-validity-seconds="1209600"/>
+	
+		<headers>
+			<frame-options policy="SAMEORIGIN"/>
+		</headers>
+		<!-- 인덱스 페이지에 대한 접근권한을 모두에게 준다. -->
+		<intercept-url pattern="/user/**" access="permitAll"/>
+		<!-- 포워딩되는 인덱스 페이지에 대한 접근권한을 모두에게 준다. -->
+		<intercept-url pattern="/admin/index.jsp" access="permitAll"/>
+
+		<!-- 관리자 권한만 조회할 수 있도록 권한을 준다. -->
+		<intercept-url pattern="/dashBoard" access="hasRole('ROLE_ADMIN')"/>
+		<intercept-url pattern="/dashBoard.jsp" access="hasRole('ROLE_ADMIN')"/>
+		<!-- <intercept-url pattern="/member/**" access="hasRole('ROLE_ADMIN)"/> -->
+		
+		<!-- 회원가입 페이지에 대한 접근권한을 모두에게 준다. -->
+		<intercept-url pattern="/common/**" access="permitAll"/>
+		<intercept-url pattern="/member/memberLogin.do" access="permitAll"/>
+		<!-- 모든 페이지에서 로그인한 사람만 권한을 부여받는다. -->
+		<intercept-url pattern="/admin/index.jsp" access="isAuthenticated()"/>
+		
+		
+		<!-- 커스텀로그인 설정 -->
+		<!-- 직접 만든 로그인 폼 사용 -->
+		<!-- login-page : 커스텀 로그인폼페이지. 핸들러작성 필요. -->
+		<!-- login-processing-url : security가 인증을 처리할 주소. loginForm이 제출(POST)될 주소. 핸들러 작성 불필요. -->
+		<form-login
+			login-page="/admin" 
+			login-processing-url="/admin/member/memberLogin.do"			
+			username-parameter="id"
+			password-parameter="password"
+			default-target-url="/admin/dashBoard"
+			authentication-success-handler-ref="loginSuccessHandler"
+			/>
+			
+		<!-- logout-url : 핸들러 작성 불필요 -->
+		<!-- logout-success-url : 로그아웃 이후 리다이렉트 url(기본값 : /login?logout)-->
+		<!-- logout-success-url과 success-handler-ref은 같이 쓸 수 없다. -->
+		<logout 
+			logout-url="/admin/member/memberLogout.do"
+			success-handler-ref="logoutSuccessHandler"
+			/>
+		
+		<!-- csrf 공격대비 기능 -->
+		<!-- 
+			Cross-site Request Forgery 
+			특정 권한이 있는 사용자로 하여금 해커가 유도한 행동을 함으로써 보안을 취약하게 하거나,
+			개인정보를 탈취하는 기법-->
+		<!-- <csrf disabled="false"/> : 기본값이라 쓰지 않아도 된다. -->
+	</http>
+		
+	<authentication-manager>
+		<authentication-provider user-service-ref="securityService">
+			<password-encoder ref="bcryptPasswordEncoder"/>
+		</authentication-provider>
+	</authentication-manager>
+	
+	<context:component-scan base-package="com.naedam.admin.security"/>
+	
+</beans:beans>

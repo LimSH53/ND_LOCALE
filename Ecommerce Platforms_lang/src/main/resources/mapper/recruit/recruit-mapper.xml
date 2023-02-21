@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="recruit">
+
+	<resultMap type="com.naedam.admin.recruit.model.vo.recruitContentsDTO" id="contentsResultMap">
+		<id column="RECRUIT_CON_NO" property="recruitConNo"></id>
+		<result column="RECRUIT_SUB_TITLE" property="recruitSubTitle"/>
+		<result column="RECRUIT_CONTENTS" property="recruitContents"/>
+		<association property="recruitNo" resultMap="recruitResultMap"/>
+	</resultMap>
+
+	<resultMap type="com.naedam.admin.recruit.model.vo.recruitDTO" id="recruitResultMap">
+		<id column="RECRUIT_NO" property="recruitNo"/>
+		<result column="RECRUIT_TITLE" property="recruitTitle"/>
+		<result column="RECRUIT_VIEWCOUNT" property="recruitViewcount"/>
+		<result column="RECRUIT_START" property="recruitStart"/>
+		<result column="RECRUIT_END" property="recruitEnd" />
+		<result column="RECRUIT_DATE" property="recruitDate"/>
+		<result column="CAREER" property="career"/>
+		<result column="RECRUIT_DLE_STATUS" property="recruitDelStatus"/>
+		<result column="RECRUIT_FILE_NAME_ORG" property="orgFileName"/>
+		<result column="RECRUIT_FILE_NAME" property="fileName"/>
+		<result column="RECRUIT_FILE_PATH" property="filePath"/>
+		<result column="JOB_TITLE" property="jobTitle"/>
+		<result column="RECRUIT_TYPE" property="recruitType"/>
+		<result column="RECRUIT_PLACE" property="recruitPlace"/>
+		<result column="JOB_INTRO" property="jobIntro"/>
+		<result column="QUALIFICATION" property="qualification"/>
+		<result column="CONTENTS_STATUS" property="contentsStatus"/>
+		<result column="RECRUIT_MANAGER" property="recruitManager"/>
+		<result column="ROWNUM" property="rownum"/>
+	</resultMap>
+
+	<select id="getRecruitList" resultMap="recruitResultMap" parameterType="hashmap">
+		SELECT R.*
+		  FROM (SELECT @ROWNUM := @ROWNUM +1 AS ROWNUM,
+		      			R.RECRUIT_NO,
+		      			R.RECRUIT_TITLE,
+		      			R.RECRUIT_VIEWCOUNT,
+		      			date_format(R.RECRUIT_START, '%Y-%m-%d')as RECRUIT_START,
+		      			date_format(R.RECRUIT_END, '%Y-%m-%d')as RECRUIT_END,
+		      			date_format(R.RECRUIT_DATE, '%Y-%m-%d')as RECRUIT_DATE,
+		      			R.CAREER,
+		      			R.CONTENTS_STATUS
+		 		   FROM recruit R,(SELECT @ROWNUM := 0) TMP
+				  WHERE RECRUIT_DLE_STATUS = 'N'
+						<if test="search != null">
+						AND R.RECRUIT_TITLE like concat ('%',#{search},'%')
+						</if>
+			   ORDER BY CASE WHEN CONTENTS_STATUS IN ('Y', 'R') THEN 0 ELSE 1 END, RECRUIT_NO DESC) R
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+
+
+	<select id="getTotalCount" parameterType="String"
+		resultType="int">
+		SELECT COUNT(*)
+		FROM (SELECT RECRUIT_NO,
+		RECRUIT_TITLE,
+		RECRUIT_VIEWCOUNT,
+		RECRUIT_START,
+		RECRUIT_END,
+		RECRUIT_DATE,
+		CAREER
+		FROM recruit
+		<where>
+			<if test="value != null">
+				RECRUIT_TITLE like concat ('%',#{value},'%')
+			</if>
+			AND RECRUIT_DLE_STATUS = 'N'
+		</where>
+		ORDER BY CONTENTS_STATUS, RECRUIT_NO DESC)countTable
+	</select>
+
+	<update id="deleteRecruit">
+		UPDATE recruit
+		SET RECRUIT_DLE_STATUS = 'Y'
+		WHERE RECRUIT_NO = #{recruitNum}
+	</update>
+
+	<insert id="insertRecruit" parameterType="com.naedam.admin.recruit.model.vo.recruitDTO">
+		INSERT INTO recruit
+		(
+		RECRUIT_TITLE,
+		RECRUIT_VIEWCOUNT,
+		RECRUIT_START,
+		RECRUIT_END,
+		RECRUIT_DATE,
+		CAREER,
+		JOB_TITLE,
+		RECRUIT_TYPE,
+		RECRUIT_PLACE,
+		JOB_INTRO,
+		QUALIFICATION,
+		CONTENTS_STATUS,
+		RECRUIT_MANAGER
+		)
+		VALUES
+		(
+		#{recruitTitle},
+		0,
+		<choose>
+			<when test='contentsStatus == "R"'>
+			null,
+			null,
+			</when>
+			<otherwise>
+			#{recruitStart},
+			#{recruitEnd},
+			</otherwise>
+		</choose>
+		SYSDATE(),
+		#{career}, 
+		#{jobTitle},
+		#{recruitType},
+		#{recruitPlace},
+		#{jobIntro},
+		#{qualification},
+		<choose>
+			<when test='contentsStatus == "R"'>
+			"R",
+			</when>
+			<otherwise>
+			"Y",
+			</otherwise>
+		</choose>
+		#{recruitManager}
+		)
+		
+		<selectKey keyProperty="recruitNo" order="AFTER" resultType="int">
+			SELECT MAX(RECRUIT_NO) from recruit
+		</selectKey>
+		
+	</insert>
+	
+	<update id="insertFile">
+	UPDATE recruit
+	   SET 
+<!-- 		   RECRUIT_FILE_NAME_ORG = #{orgFileName}, 
+		   RECRUIT_FILE_NAME = #{fileName}, 
+		   RECRUIT_FILE_PATH = #{filePath} -->
+	 	<if test="orgFileName != null">
+			RECRUIT_FILE_NAME_ORG = #{orgFileName}, 
+			RECRUIT_FILE_NAME = #{fileName}, 
+			RECRUIT_FILE_PATH = #{filePath}
+		</if>
+		<if test="orgFileName == null">
+			RECRUIT_FILE_NAME_ORG = null, 
+			RECRUIT_FILE_NAME = null, 
+			RECRUIT_FILE_PATH = null
+		</if>
+		WHERE RECRUIT_NO = #{recruitNo}
+	</update>
+
+	<insert id="insertRecruitContents" parameterType="com.naedam.admin.recruit.model.vo.recruitContentsDTO">
+		INSERT INTO recruit_contents(RECRUIT_NO, RECRUIT_SUB_TITLE, RECRUIT_CONTENTS)
+		VALUES
+		(#{recruitNo.recruitNo}, #{recruitSubTitle}, #{recruitContents}) 
+	</insert>
+	
+	<select id="getRecruitData" resultMap="recruitResultMap">
+		SELECT *
+		  FROM recruit
+		 WHERE RECRUIT_NO = #{recruitNo}
+	</select>
+	
+	<select id="getContentsData" resultMap="contentsResultMap">
+		SELECT *
+		  FROM recruit_contents RC
+		  JOIN recruit R ON(RC.RECRUIT_NO = R.RECRUIT_NO)
+		 WHERE RC.RECRUIT_NO = #{recruitNo}
+	</select>
+	
+	<update id="updateRecruit">
+		UPDATE recruit
+		SET 
+		RECRUIT_TITLE = #{recruitTitle},
+		<choose>
+			<when test='contentsStatus == "R"'>
+			RECRUIT_START = null,
+			RECRUIT_END = null,
+			</when>
+			<otherwise>
+			RECRUIT_START = #{recruitStart},
+			RECRUIT_END = #{recruitEnd},
+			</otherwise>
+		</choose>
+		CAREER = #{career},
+		JOB_TITLE = #{jobTitle},
+		RECRUIT_TYPE = #{recruitType},
+		RECRUIT_PLACE = #{recruitPlace},
+		JOB_INTRO = #{jobIntro},
+		QUALIFICATION = #{qualification},
+		<choose>
+			<when test='contentsStatus == "R"'>
+			CONTENTS_STATUS = 'R',
+			</when>
+			<otherwise>
+			CONTENTS_STATUS = 'Y',
+			</otherwise>
+		</choose>
+		RECRUIT_MANAGER = #{recruitManager}
+		WHERE RECRUIT_NO = #{recruitNo}
+	</update>
+	
+	<delete id="deleteRecruitContents">
+		DELETE 
+		  FROM recruit_contents 
+		 WHERE RECRUIT_NO = #{curRecruitNo} 
+	</delete>
+	
+	<select id="selectRecruitList" resultMap="recruitResultMap">
+		SELECT @ROWNUM := @ROWNUM +1 AS ROWNUM,
+		R.RECRUIT_NO,
+		R.RECRUIT_TITLE,
+		date_format(R.RECRUIT_END, '%Y-%m-%d')as RECRUIT_END,
+		R.CAREER,
+		R.CONTENTS_STATUS
+		FROM recruit R,(SELECT @ROWNUM := 0) TMP
+		<where>
+			<if test="search != null">
+				(R.RECRUIT_TITLE like concat ('%',#{search},'%')
+			 OR	R.CAREER like concat ('%',#{search},'%'))
+			</if>
+			AND RECRUIT_DLE_STATUS = 'N'
+			AND CONTENTS_STATUS != 'N'
+		</where>
+		ORDER BY RECRUIT_NO DESC
+		LIMIT #{limit} OFFSET #{offset}	
+	</select>
+	
+	<select id="getUserTotalCount" parameterType="hashmap" resultType="int">
+		SELECT COUNT(*)
+		FROM (SELECT RECRUIT_NO,
+		RECRUIT_TITLE,
+		CAREER
+		FROM recruit
+		<where>
+			<if test="search != null">
+				(RECRUIT_TITLE like concat ('%',#{search},'%')
+			 OR	CAREER like concat ('%',#{search},'%'))
+			</if>
+			AND RECRUIT_DLE_STATUS = 'N'
+			AND CONTENTS_STATUS != 'N'
+		</where>
+		ORDER BY RECRUIT_NO DESC)countTable
+	</select>
+	
+	
+	<select id="getFileInfo" resultMap="recruitResultMap">
+		SELECT 
+			   RECRUIT_FILE_PATH,
+			   RECRUIT_FILE_NAME,
+			   RECRUIT_FILE_NAME_ORG
+		  FROM recruit
+		 WHERE RECRUIT_NO = #{recruitNo}
+	</select>
+	
+	<update id="updateContentsStatus">
+		UPDATE recruit
+		SET CONTENTS_STATUS = 'N'
+		WHERE SYSDATE() > RECRUIT_END
+	</update>
+	
+	<update id="deleteFile">
+	UPDATE recruit
+	   SET 
+			RECRUIT_FILE_NAME_ORG = null, 
+			RECRUIT_FILE_NAME = null, 
+			RECRUIT_FILE_PATH = null
+	  WHERE RECRUIT_NO = #{curRecruitNo}
+	</update>
+
+</mapper>
+
+
+
+
+

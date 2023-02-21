@@ -1,0 +1,357 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="menu">
+ 
+	<resultMap id="MenuSelectMap" type="menu">
+		<result property="code"					column="CODE"				jdbcType="NUMERIC"></result>
+		<result property="category_code"		column="CATEGORY_CODE"		jdbcType="NUMERIC"></result>
+		<result property="revision_code"		column="REVISION_CODE"		jdbcType="NUMERIC"></result>
+		<result property="title"				column="TITLE"				jdbcType="VARCHAR"></result>
+		<result property="content"				column="CONTENT"			jdbcType="VARCHAR"></result>
+		<result property="url"					column="URL"				jdbcType="VARCHAR"></result>
+		<result property="status"				column="STATUS"				jdbcType="VARCHAR"></result>
+		<result property="menuDate"				column="MENU_DATE"			jdbcType="VARCHAR"></result>
+		<result property="originNo"				column="ORIGIN_NO"			jdbcType="NUMERIC"></result>
+		<result property="ord"					column="ORD"				jdbcType="NUMERIC"></result>
+		<result property="menuAsc"				column="MENU_ASC"			jdbcType="NUMERIC"></result>		
+	</resultMap>
+	
+	<resultMap id="HeadSelectMap" type="head">
+		<result property="headNo"				column="HEAD_NO"			jdbcType="NUMERIC"></result>
+		<result property="title"				column="TITLE"				jdbcType="VARCHAR"></result>
+		<result property="status"				column="STATUS"				jdbcType="VARCHAR"></result>
+		<result property="content"				column="CONTENT"			jdbcType="VARCHAR"></result>
+		<result property="headImage"			column="HEAD_IMAGE"			jdbcType="VARCHAR"></result>
+		<result property="headUrl"				column="HEAD_URL"			jdbcType="VARCHAR"></result>
+		<result property="headAsc"				column="HEAD_ASC"			jdbcType="NUMERIC"></result>
+	</resultMap>
+	
+	<resultMap id="BottomSelectMap" type="bottom">
+		<result property="bottomNo"				column="BOTTOM_NO"			jdbcType="NUMERIC"></result>
+		<result property="content"				column="CONTENT"			jdbcType="VARCHAR"></result>
+	</resultMap>	
+
+	<insert id="addMenu" parameterType="menu">
+		INSERT
+		INTO menu(CATEGORY_CODE,
+				  REVISION_CODE,
+				  TITLE,
+				  CONTENT,
+				  URL,
+				  STATUS,
+				  MENU_DATE,
+				  ORIGIN_NO,
+				  ORD,
+				  MENU_ASC)
+		VALUES(#{category_code},
+			   0,
+			   #{title : VARCHAR},
+			   #{content : VARCHAR},
+			   #{url : VARCHAR},
+			   #{status : VARCHAR},
+			   now(),
+			   0,
+			   0,
+			   0)
+	</insert>
+	
+	<insert id="addHead" parameterType="head">
+		INSERT INTO head
+		(
+		TITLE, 
+		STATUS, 
+		CONTENT, 
+		HEAD_IMAGE, 
+		HEAD_URL
+		)
+		VALUES(
+			   #{title : VARCHAR},
+			   #{status : VARCHAR},
+			   #{content : VARCHAR},
+			   #{headImage : VARCHAR},
+			   #{headUrl : VARCHAR}
+		)
+	</insert>
+	
+	<insert id="addRevision" parameterType="menu">
+		INSERT
+		INTO menu(CATEGORY_CODE,
+				  REVISION_CODE,
+				  TITLE,
+				  CONTENT,
+				  URL,
+				  STATUS,
+				  MENU_DATE,
+				  ORIGIN_NO,
+				  ORD,
+				  MENU_ASC)
+		VALUES(#{category_code},
+			   1,
+			   #{title : VARCHAR},
+			   #{content : VARCHAR},
+			   #{url : VARCHAR},
+			   #{status : VARCHAR},
+			   NOW(),
+			   #{originNo},
+			   #{ord},
+			   0)
+	</insert>	
+	
+	<select id="getMenu" parameterType="int" resultMap="MenuSelectMap">
+		SELECT *
+		FROM menu
+		WHERE code = #{value}
+	</select>
+	
+	<select id="getHead" parameterType="int" resultMap="HeadSelectMap">
+		SELECT *
+		FROM head
+		WHERE head_No = #{value}
+	</select>
+	
+	<select id="getBottom" resultMap="BottomSelectMap">
+		SELECT *
+		FROM bottom
+		WHERE bottom_no = 1
+	</select>
+	
+	<select id="getRevision" parameterType="menu" resultMap="MenuSelectMap">
+		SELECT *
+		FROM menu
+		WHERE code = #{code}
+		AND	revision_code = #{revision_code}
+	</select>	
+	
+	<select id="getMenuList" resultType="hashmap" resultMap="MenuSelectMap">
+		SELECT *
+		FROM menu
+		WHERE revision_code = 0
+		AND	  ORD = 0
+		ORDER BY MENU_ASC ASC, CODE ASC
+	</select>
+	
+	<select id="getMenuList2" resultType="hashmap" resultMap="MenuSelectMap">
+		SELECT *
+		FROM menu
+		WHERE revision_code = 0
+		AND   origin_no = #{menu.code}
+		AND   code != 1
+		AND   ORD = #{menu.ord}
+		ORDER BY MENU_ASC ASC, CODE ASC
+	</select>	
+	
+	
+	<select id="getMenuList3" resultType="hashmap" resultMap="MenuSelectMap">
+		SELECT *
+		FROM menu
+		WHERE revision_code = 0
+		AND   origin_no = #{menu.originNo}
+		AND   code != 1
+		AND   ORD = 3
+		ORDER BY MENU_ASC ASC, CODE ASC
+	</select>
+	
+	<select id="getRevisionList" resultType="hashmap" resultMap="MenuSelectMap">
+		SELECT
+		code,
+		category_code,
+		revision_code,
+		title,
+		content,
+		url,
+		status,
+		DATE_FORMAT(menu_date, '%Y-%m-%d %H:%i') menu_date,
+		origin_no,
+		ord
+		FROM menu
+		WHERE revision_code = 1
+		AND	  origin_no = #{menu.originNo}
+		AND   ord = #{menu.ord}
+		ORDER BY menu_date ASC
+	</select>
+	
+	<select id="deleteRevisionList" resultType="hashmap" resultMap="MenuSelectMap">
+		SELECT
+		code,
+		category_code,
+		revision_code,
+		title,
+		content,
+		url,
+		status,
+		DATE_FORMAT(menu_date, '%Y-%m-%d %H:%i') menu_date,
+		origin_no,
+		ord
+		FROM menu
+		WHERE revision_code = 2
+		ORDER BY menu_date ASC
+	</select>
+	
+	<select id="getHeadList" resultType="hashmap" resultMap="HeadSelectMap">
+		SELECT *
+		FROM head
+		ORDER BY HEAD_ASC ASC
+	</select>
+	
+	<select id="getUserHeadList" resultType="hashmap" resultMap="HeadSelectMap">
+		SELECT *
+		FROM head
+		WHERE status = 'y'
+		ORDER BY HEAD_ASC ASC
+	</select>	
+	
+	<select id="getMenuCategoryList" resultType="hashmap" resultMap="MenuSelectMap">
+		SELECT *
+		FROM menu
+		WHERE ord = 0
+		AND revision_code = 0
+		ORDER BY menu_asc ASC, code ASC
+	</select>
+	
+	<select id="getMenuCategoryList2" resultType="hashmap" resultMap="MenuSelectMap">
+		SELECT *
+		FROM menu
+		WHERE ord = 1
+		AND revision_code = 0
+		ORDER BY menu_asc ASC, code ASC
+	</select>
+		 
+	<update id="updateMenu" parameterType="menu">
+		UPDATE menu
+		<set>
+			CATEGORY_CODE = #{category_code},
+			REVISION_CODE = #{revision_code},
+			TITLE = #{title : VARCHAR},
+			CONTENT = #{content : VARCHAR},
+			URL =#{url : VARCHAR},
+			STATUS = #{status : VARCHAR},
+		</set>
+		WHERE CODE = #{code:NUMERIC}	
+	</update>
+	
+	<update id="updateAfMenu" parameterType="menu">
+		UPDATE menu
+		<set>
+			ORIGIN_NO =<if test="originNo == 0">
+					   	#{code:NUMERIC},
+					   </if>
+					   <if test="originNo != 0">
+					   	#{originNo},
+					   </if>
+			ORD = <if test="ord == null or ord == 0">
+						   	0,
+						</if>
+						<if test="ord != null and ord != '' ">
+						  #{ord},						
+						</if>
+			MENU_ASC = #{code:NUMERIC}
+		</set>
+		WHERE CODE = #{code:NUMERIC}	
+	</update>	
+	
+	<update id="updateHead" parameterType="head">
+		UPDATE head
+		<set>
+			TITLE = #{title : VARCHAR},
+			STATUS = #{status : VARCHAR},
+			CONTENT = #{content : VARCHAR},
+			HEAD_IMAGE = #{headImage : VARCHAR},
+			HEAD_URL = #{headUrl : VARCHAR}
+		</set>
+		WHERE HEAD_NO = #{headNo : NUMERIC}
+	</update>
+	
+	<update id="updateBottom" parameterType="bottom">
+		UPDATE bottom
+		<set>
+			CONTENT = #{content : VARCHAR}
+		</set>
+		WHERE BOTTOM_NO = 1
+	</update>
+	
+	<update id="updateRevision" parameterType="int">
+		UPDATE menu
+		<set>
+			REVISION_CODE = 0
+		</set>
+		WHERE code = #{value}
+	</update>
+	
+	<update id="updateChoiceMenu">
+		UPDATE menu
+		<set>
+			REVISION_CODE = 2
+		</set>
+		WHERE <foreach collection="list" item="menuNo" open="(" close=")" separator="or">
+				code = #{menuNo}
+			  </foreach>		
+	</update>
+	
+	<update id="updateUpAsc" parameterType="map">
+		UPDATE menu
+		<set>
+			MENU_ASC = #{menuUpAsc}
+		</set>
+		WHERE ORIGIN_NO = #{upMenuNo}
+	</update>	
+	
+	<update id="updateDownAsc" parameterType="map">
+		UPDATE menu
+		<set>
+			MENU_ASC = #{menuDownAsc}
+		</set>
+		WHERE ORIGIN_NO = #{downMenuNo}
+	</update>
+	
+	<update id="updateHeadUpAsc" parameterType="map">
+		UPDATE head
+		<set>
+			HEAD_ASC = #{headUpAsc}
+		</set>
+		WHERE HEAD_NO = #{upHeadNo}
+	</update>	
+	
+	<update id="updateHeadDownAsc" parameterType="map">
+		UPDATE head
+		<set>
+			HEAD_ASC = #{headDownAsc}
+		</set>
+		WHERE HEAD_NO = #{downHeadNo}
+	</update>		
+	
+	<delete id="deleteChoiceHead">
+		DELETE
+		FROM head
+		WHERE <foreach collection="list" item="headNo" open="(" close=")" separator="or">
+				head_no = #{headNo}
+			  </foreach>		
+	</delete>
+	
+	<delete id="deleteMenu" parameterType="int">
+		DELETE
+		FROM menu
+		WHERE code = #{value}
+	</delete>
+	 
+</mapper>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  

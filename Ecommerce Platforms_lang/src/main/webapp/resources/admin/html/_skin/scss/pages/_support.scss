@@ -1,0 +1,16 @@
+.inquiry-tit {
+  margin-bottom: 2em;
+  text-align: center;
+  font-size: $font-size-h5;
+  font-weight: $font-weight-normal;
+  line-height: 1.5;
+  color: #333;
+}
+
+.inc-form {
+  .btn-cancel--fc {
+    &[data-dismiss="modal"] {
+      display: none;
+    }
+  }
+}

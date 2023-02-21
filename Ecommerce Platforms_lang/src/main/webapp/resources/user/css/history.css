@@ -1,0 +1,49 @@
+@charset "UTF-8";
+.regist_thumbnail{
+	max-width:243px;
+    border-style: none;
+    vertical-align: top;
+    background-color: white;
+}
+.history .award_sec {
+  padding: 0px 0 0 !important
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    word-break: keep-all;
+}
+img{
+	overflow-clip-margin: content-box;
+    overflow: clip;
+}
+.history .award_sec .tab-cont ol li dl dd {
+    font-size: 16px;
+    line-height: 1.63;
+    letter-spacing: -0.3px;
+    width: 291px;
+    height: 326px;
+    margin: auto 0 40px 40px;
+/*     padding: 27px 10px 30px; */
+    border-radius: 18px;
+    background-color: #f7f7f7;
+    box-sizing: border-box;
+    text-align: center;
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    work-break: break-all;
+}
+.title{
+	font-weight:bolder;
+}
+.history .award_sec .tab-cont ol li dl dd span.title {
+  display: block;
+  margin: auto 0;
+}
+.history .award_sec .tab-cont ol li dl dd .thumnail img {
+  max-width: 243px;
+  max-height: 150px;
+}

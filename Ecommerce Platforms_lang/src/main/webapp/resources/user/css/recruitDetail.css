@@ -1,0 +1,288 @@
+/* userRecruit css */
+
+body {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+div {
+  display: block;
+}
+
+table {
+  display: table;
+  border-collapse: separate;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-spacing: 2px;
+  border-color: grey;
+}
+
+textarea {
+  width: 100%;
+  height: 6.25em;
+  border: none;
+  resize: none;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+td {
+  width: 800px;
+}
+
+p {
+  white-space: pre-line;
+}
+
+#contents {
+  position: relative;
+  margin: 0 auto;
+  max-width: 960px;
+  letter-spacing: -0.02em;
+  white-space: normal;
+  word-break: break-all;
+}
+
+#contents .inner_wrap {
+  position: relative;
+  margin: 0 auto;
+  zoom: 1;
+}
+
+.area_sub_title {
+  position: relative;
+  margin-top: 52px;
+  padding-bottom: 9px;
+  zoom: 1;
+}
+
+.mod_title {
+  padding: 10px;
+}
+
+.mod_title:after {
+  display: block;
+  clear: both;
+  content: "";
+}
+
+.mod_title_type .title {
+  font-size: 36px;
+  color: #1a1a1a;
+  float: left;
+  clear: both;
+}
+
+#contents .area_visual.visual_bg {
+  height: 280px;
+  overflow: hidden;
+  text-align: center;
+  background-image: url(../images/recruit/recruit_top.jpg);
+}
+
+.area_visual {
+  position: relative;
+  z-index: 1;
+  color: white;
+}
+
+#contents .area_visual .inner_wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#contents .area_visual .copy_txt {
+  position: relative;
+  height: 50%;
+  text-align: left;
+}
+
+#contents .area_visual .copy_txt .copy_header {
+  display: table;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  color: #fff;
+  padding: 90px 32px 19px 32px;
+}
+
+#contents .area_visual.recruit_detail .copy_txt .copy_header .inner_copy_heade {
+  display: table-cell;
+  vertical-align: middle;
+  margin-top: 52px;
+}
+
+#contents .area_visual .copy_txt .copy_header .recruit_status {
+  font-size: 24px;
+}
+
+#contents .area_visual .copy_txt .copy_header p {
+  font-size: 50px;
+}
+
+.detail_body {
+  padding: 0;
+}
+
+.tb_detail {
+  line-height: 1.75;
+}
+
+.recruit_detail {
+  padding-top: 50px;
+}
+
+.recruit_detail dt {
+  padding: 0 25px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #1a1a1a;
+}
+
+.recruit_detail dl.tb_wrap {
+  padding: 0;
+}
+
+.recruit_detail dl.tb_wrap dd {
+  padding: 0;
+}
+
+.recruit_detail dd {
+  padding: 0 15px;
+  font-size: 16px;
+  color: #666;
+  line-height: 28px;
+  word-break: keep-all;
+  word-wrap: break-word;
+}
+
+.recruit_detail dl {
+  padding: 25px 0;
+  border-bottom: 1px solid #e6e6e6;
+}
+
+.recruit_detail dl.tb_wrap th {
+  font-weight: 500;
+  color: #1a1a1a;
+}
+
+.recruit_detail dl.tb_wrap th,
+.recruit_detail dl.tb_wrap td {
+  padding: 30px 15px 25px;
+  border-top: 1px solid #e6e6e6;
+  text-align: left;
+  line-height: 28px;
+}
+
+.btn_area {
+  text-align: center;
+  padding-bottom: 50px;
+}
+
+.back_btn {
+  border-color: #444;
+  background-color: #444;
+  color: #fff;
+
+  height: 64px;
+  line-height: 64px;
+  text-align: center;
+  display: inline-block;
+  width: 200px;
+}
+
+.back_btn a {
+  color: #fff;
+}
+
+@media all and (max-width: 768px) {
+  .recruit_detail dt {
+    padding: 0 25px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 28px;
+    color: #1a1a1a;
+  }
+
+  .recruit_detail dd {
+    padding: 0 25px;
+    font-size: 16px;
+    color: #666;
+    line-height: normal;
+    word-break: keep-all;
+    word-wrap: break-word;
+  }
+
+  .recruit_detail dl.tb_wrap th,
+  .recruit_detail dl.tb_wrap td {
+    padding: 30px 25px 25px;
+    border-top: 1px solid #e6e6e6;
+    text-align: left;
+    /* line-height: inherit; */
+    font-size: 16px;
+  }
+
+  #contents .area_visual .copy_txt .copy_header p {
+    margin-top: 4px;
+    font-size: 36px;
+    line-height: 48px;
+  }
+
+  #contents .area_visual .copy_txt .copy_header .recruit_status {
+    font-size: 28px;
+  }
+
+  .back_btn {
+    border-color: #444;
+    background-color: #444;
+    color: #fff;
+    height: 64px;
+    line-height: 64px;
+    text-align: center;
+    display: inline-block;
+    width: 80%;
+    margin: 0px 50px;
+    font-size: 28px;
+  }
+
+  .top_visual_area .top_txt_outer .top_txt_area .top_txt2 {
+    margin-top: 8px;
+    font-size: 30px;
+    line-height: 62px;
+    color: #fff;
+    letter-spacing: -0.2px;
+  }
+}
+
+@media all and (max-width: 430px) {
+  .recruit_detail {
+    padding: 50px 20px 0px 20px;
+  }
+
+  .recruit_detail dd {
+    padding: 0 15px;
+    font-size: 14px;
+    color: #666;
+    line-height: normal;
+    word-break: keep-all;
+    word-wrap: break-word;
+  }
+
+  .recruit_detail dl.tb_wrap th,
+  .recruit_detail dl.tb_wrap td {
+    padding: 30px 15px 25px;
+    border-top: 1px solid #e6e6e6;
+    text-align: left;
+    /* line-height: inherit; */
+    font-size: 14px;
+  }
+}

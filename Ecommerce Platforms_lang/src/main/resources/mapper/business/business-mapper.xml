@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="business">
+
+	<resultMap id="BusinessPostMap" type="businessPost" >
+		<result property="businessPostNo"					column="BUSINESS_POST_NO"			jdbcType="NUMERIC"></result>
+		<result property="businessPostTitle"				column="BUSINESS_POST_TITLE"		jdbcType="VARCHAR"></result>
+		<result property="businessPostSubTitle"				column="BUSINESS_POST_SUB_TITLE"	jdbcType="VARCHAR"></result>
+		<result property="businessPostContents"				column="BUSINESS_POST_CONTENTS"		jdbcType="VARCHAR"></result>
+		<result property="businessPostText1"				column="BUSINESS_POST_TEXT_1"		jdbcType="VARCHAR"></result>
+		<result property="businessPostText2"				column="BUSINESS_POST_TEXT_2"		jdbcType="VARCHAR"></result>
+		<result property="inDtm"							column="IN_DTM"						jdbcType="VARCHAR"></result>
+		<result property="businessPostIcon"					column="BUSINESS_POST_ICON"			jdbcType="VARCHAR"></result>
+		<result property="businessPostImg"					column="BUSINESS_POST_IMG"			jdbcType="VARCHAR"></result>
+			
+		<association property="business" javaType="business" >
+			<result property="businessNo"			column="BUSINESS_NO"				jdbcType="NUMERIC"></result>
+			<result property="businessTitle"		column="BUSINESS_TITLE"			jdbcType="VARCHAR"></result>
+			<result property="inDtm"				column="IN_DTM"			jdbcType="VARCHAR"></result>
+		</association>
+		
+		<association property="businessMember" javaType="member" >
+			<result property="memberNo"			column="MEMBER_NO"				jdbcType="NUMERIC"></result>
+		</association>
+	</resultMap>
+	<resultMap id="BusinessConetentsMap" type="businessContents" >
+		<result property="businessContentsNo"		column="BUSINESS_CONTENTS_NO"		jdbcType="NUMERIC"></result>
+		<result property="businessContentsTitle"	column="BUSINESS_CONTENTS_TITLE"	jdbcType="VARCHAR"></result>
+		<result property="businessContentsContent"	column="BUSINESS_CONTENTS_CONTENT"	jdbcType="VARCHAR"></result>
+		<result property="image"					column="IMAGE"						jdbcType="VARCHAR"></result>
+		<result property="inDtm"					column="IN_DTM"						jdbcType="VARCHAR"></result>
+			
+		<association property="businessPost" javaType="businessPost" >
+			<result property="businessPostNo"					column="BUSINESS_POST_NO"			jdbcType="NUMERIC"></result>
+			<result property="businessPostTitle"				column="BUSINESS_POST_TITLE"		jdbcType="VARCHAR"></result>
+			<result property="businessPostSubTitle"				column="BUSINESS_POST_SUB_TITLE"	jdbcType="VARCHAR"></result>
+			<result property="businessPostContents"				column="BUSINESS_POST_CONTENTS"		jdbcType="VARCHAR"></result>
+			<result property="businessPostText1"				column="BUSINESS_POST_TEXT_1"		jdbcType="VARCHAR"></result>
+			<result property="businessPostText2"				column="BUSINESS_POST_TEXT_2"		jdbcType="VARCHAR"></result>
+			<result property="inDtm"							column="IN_DTM"						jdbcType="VARCHAR"></result>
+			<result property="businessPostIcon"					column="BUSINESS_POST_ICON"			jdbcType="VARCHAR"></result>
+		</association>	
+	</resultMap>
+
+	<insert id="addBusiness" parameterType="business" useGeneratedKeys="true" keyProperty="businessNo" keyColumn="business_no">
+		INSERT INTO business
+		(
+		BUSINESS_TITLE, 
+		IN_DTM
+		)
+		VALUES
+		(
+		#{businessTitle : VARCHAR}, 
+		SYSDATE()
+		)		
+		<selectKey keyProperty="businessNo" resultType="int" order="AFTER">
+			SELECT MAX(business_no) from business
+		</selectKey>
+	</insert>
+	
+	<insert id="addBusinessPost" parameterType="businessPost" useGeneratedKeys="true" keyProperty="businessPostNo" keyColumn="BUSINESS_POST_NO">
+		INSERT
+		INTO business_post
+		(BUSINESS_NO,
+		 BUSINESS_POST_TITLE,
+		 BUSINESS_POST_SUB_TITLE,
+		 BUSINESS_POST_CONTENTS,
+		 BUSINESS_POST_TEXT_1,
+		 BUSINESS_POST_TEXT_2,
+		 IN_DTM,
+		 BUSINESS_POST_ICON,
+		 BUSINESS_POST_IMG,
+		 MEMBER_NO)
+		VALUES
+		(#{business.businessNo},
+	     #{businessPostTitle},
+	     #{businessPostSubTitle},
+	     #{businessPostContents},
+	     #{businessPostText1},
+	     #{businessPostText2},
+	     <if test="inDtm == null or inDtm == ''">
+	   	  sysdate(),
+	     </if>
+	     <if test="inDtm != null">
+		  #{inDtm : VARCHAR},
+	  	 </if>
+	  	 #{businessPostIcon},
+	  	 #{businessPostImg},
+	  	 #{businessMember.memberNo}
+		 )
+		 <selectKey keyProperty="businessPostNo" resultType="int" order="AFTER">
+			SELECT MAX(business_post_no) from business_post
+		</selectKey>
+	</insert>
+	
+	<insert id="addBusinessContents" parameterType="businessContents">
+		INSERT INTO business_contents
+		(
+		BUSINESS_POST_NO, 
+		BUSINESS_CONTENTS_TITLE, 
+		BUSINESS_CONTENTS_CONTENT, 
+		IMAGE, 
+		IN_DTM
+		)
+		VALUES
+		(
+		#{businessPost.businessPostNo}, 
+		#{businessContentsTitle}, 
+		#{businessContentsContent}, 
+		#{image}, 
+		sysdate()
+		)	
+	</insert>
+	
+	<select id="getBusiness" parameterType="int" resultType="business">
+		SELECT 
+		tb1.*,
+		tb2.*
+		FROM business tb1, board_option tb2 
+		WHERE tb1.business_no = #{businessNo}
+		AND   tb1.business_no = tb2.board_no
+	</select>
+	
+	<select id="getBusinessPost" parameterType="int" resultType="businessPost">
+		SELECT
+		*
+		FROM business_post
+		WHERE business_post_no = #{value}
+	</select>
+	
+	<select id="getBusinessList" resultType="business" parameterType="map">
+		SELECT * FROM business
+	</select>
+	
+	<select id="getBusinessPostList" resultMap="BusinessPostMap" parameterType="map">
+		SELECT 
+		tb1.*
+		FROM business_post tb1 
+		LEFT OUTER JOIN business tb2
+		ON tb1.business_no = tb2.business_no
+		LEFT OUTER JOIN member tb3
+		ON tb1.member_no = tb3.member_no
+		WHERE tb1.business_no = #{businessNo}
+		ORDER BY tb1.business_post_no ASC
+	</select>
+	
+	<select id="getBusinessPostAllList" resultMap="BusinessPostMap">
+		SELECT  
+		tb2.BUSINESS_TITLE, 
+		tb1.*
+		FROM business_post tb1 
+		LEFT OUTER JOIN business tb2
+		ON tb1.business_no = tb2.business_no
+		LEFT OUTER JOIN member tb3
+		ON tb1.member_no = tb3.member_no
+		ORDER BY tb1.BUSINESS_NO ASC
+	</select>
+	
+	<select id="getBusinessContentsList" resultMap="BusinessConetentsMap" parameterType="map">
+		SELECT *
+		FROM business_contents tb1
+		LEFT OUTER JOIN business_post tb2
+		ON tb1.BUSINESS_POST_NO = tb2.BUSINESS_POST_NO
+		WHERE tb1.BUSINESS_POST_NO = #{businessPostNo}	
+	</select>
+	
+	<select id="getBusinessContents" resultType="businessContents" parameterType="int">
+		SELECT *
+		FROM business_contents
+		WHERE BUSINESS_CONTENTS_NO = #{value}
+	</select>
+	
+	<update id="updateBusiness" parameterType="business">
+		UPDATE business
+		<set>
+			business_title = #{businessTitle},
+		</set>
+		WHERE business_no = #{businessNo}
+	</update>
+	
+	<update id="updateBusinessPost" parameterType="businessPost">
+		UPDATE business_post
+		<set>
+			BUSINESS_POST_TITLE = #{businessPostTitle},
+			BUSINESS_POST_SUB_TITLE = #{businessPostSubTitle},
+			BUSINESS_POST_CONTENTS = #{businessPostContents},
+			BUSINESS_POST_TEXT_1 = #{businessPostText1},
+			BUSINESS_POST_TEXT_2 = #{businessPostText2},
+			BUSINESS_POST_ICON = #{businessPostIcon},
+			BUSINESS_POST_IMG = #{businessPostImg}
+		</set>
+		WHERE BUSINESS_POST_NO = #{businessPostNo}
+	</update>
+	
+	<update id="updateBusinessContents" parameterType="businessContents">
+		UPDATE business_contents
+		<set> 
+			BUSINESS_CONTENTS_TITLE = #{businessContentsTitle}, 
+			BUSINESS_CONTENTS_CONTENT = #{businessContentsContent}, 
+			IMAGE = #{image}
+		</set>
+		WHERE BUSINESS_CONTENTS_NO = #{businessContentsNo}
+	</update>
+	
+	<delete id="deleteChoiceBusiness">
+		DELETE
+		FROM business
+		WHERE <foreach collection="list" item="businessNo" open="(" close=")" separator="or">
+				business_no = #{businessNo}
+			  </foreach>	
+	</delete>
+	
+	<delete id="deleteChoiceBusinessPost">
+		DELETE
+		FROM business_post
+		WHERE <foreach collection="list" item="businessPostNo" open="(" close=")" separator="or">
+				business_post_no = #{businessPostNo}
+			  </foreach>	
+	</delete>
+	
+	<delete id="deleteChoiceBusinessContents">
+		DELETE
+		FROM business_contents
+		WHERE <foreach collection="list" item="businessContentsNo" open="(" close=")" separator="or">
+				BUSINESS_CONTENTS_NO = #{businessContentsNo}
+			  </foreach>
+	</delete>
+</mapper>
+
+
+
+
+
+
+
+
+
+

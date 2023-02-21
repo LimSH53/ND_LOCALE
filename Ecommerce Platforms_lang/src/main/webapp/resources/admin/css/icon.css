@@ -1,0 +1,441 @@
+@charset "utf-8";
+
+[class^="icon service-"] {
+  width: 48px;
+  height: 48px;
+}
+.icon.service-01 {
+  background-image: url(../images/icon/icon_1@2x.png);
+}
+.icon.service-02 {
+  background-image: url(../images/icon/icon_2@2x.png);
+}
+.icon.service-03 {
+  background-image: url(../images/icon/icon_3@2x.png);
+}
+.icon.service-04 {
+  background-image: url(../images/icon/icon_4@2x.png);
+}
+.icon.service-05 {
+  background-image: url(../images/icon/icon_5@2x.png);
+}
+.icon.service-06 {
+  background-image: url(../images/icon/icon_6@2x.png);
+}
+.icon.service-07 {
+  background-image: url(../images/icon/icon_7@2x.png);
+}
+.icon.service-08 {
+  background-image: url(../images/icon/icon_8@2x.png);
+}
+.icon.service-09 {
+  background-image: url(../images/icon/icon_9@2x.png);
+}
+.icon.service-10 {
+  background-image: url(../images/icon/icon_10@2x.png);
+}
+.icon.service-11 {
+  background-image: url(../images/icon/icon_11@2x.png);
+}
+.icon.service-12 {
+  background-image: url(../images/icon/icon_12@2x.png);
+}
+.icon.service-13 {
+  background-image: url(../images/icon/icon_13@2x.png);
+}
+.icon.service-14 {
+  background-image: url(../images/icon/icon_14@2x.png);
+}
+.icon.service-15 {
+  background-image: url(../images/icon/icon_15@2x.png);
+}
+.icon.service-16 {
+  background-image: url(../images/icon/icon_16@2x.png);
+}
+.icon.service-17 {
+  background-image: url(../images/icon/icon_17@2x.png);
+}
+.icon.service-18 {
+  background-image: url(../images/icon/icon_18@2x.png);
+}
+.icon.service-19 {
+  background-image: url(../images/icon/icon_19@2x.png);
+}
+.icon.service-20 {
+  background-image: url(../images/icon/icon_20@2x.png);
+}
+.icon.service-21 {
+  background-image: url(../images/icon/icon_21@2x.png);
+}
+.icon.service-22 {
+  background-image: url(../images/icon/icon_22@2x.png);
+}
+.icon.service-23 {
+  background-image: url(../images/icon/icon_23@2x.png);
+}
+.icon.service-24 {
+  background-image: url(../images/icon/icon_24@2x.png);
+}
+.icon.service-25 {
+  background-image: url(../images/icon/icon_25@2x.png);
+}
+.icon.service-26 {
+  background-image: url(../images/icon/icon_26@2x.png);
+}
+.icon.service-27 {
+  background-image: url(../images/icon/icon_27@2x.png);
+}
+.icon.service-28 {
+  background-image: url(../images/icon/icon_28@2x.png);
+}
+.icon.service-29 {
+  background-image: url(../images/icon/icon_29@2x.png);
+}
+.icon.service-30 {
+  background-image: url(../images/icon/icon_30@2x.png);
+}
+.icon.service-31 {
+  background-image: url(../images/icon/icon_31@2x.png);
+}
+.icon.service-32 {
+  background-image: url(../images/icon/icon_32@2x.png);
+}
+.icon.service-33 {
+  background-image: url(../images/icon/icon_33@2x.png);
+}
+.icon.service-34 {
+  background-image: url(../images/icon/icon_34@2x.png);
+}
+.icon.service-35 {
+  background-image: url(../images/icon/icon_35@2x.png);
+}
+.icon.service-36 {
+  background-image: url(../images/icon/icon_36@2x.png);
+}
+.icon.service-37 {
+  background-image: url(../images/icon/icon_37@2x.png);
+}
+.icon.service-38 {
+  background-image: url(../images/icon/icon_38@2x.png);
+}
+.icon.service-39 {
+  background-image: url(../images/icon/icon_39@2x.png);
+}
+.icon.service-40 {
+  background-image: url(../images/icon/icon_40@2x.png);
+}
+.icon.service-41 {
+  background-image: url(../images/icon/icon_41@2x.png);
+}
+.icon.service-42 {
+  background-image: url(../images/icon/icon_42@2x.png);
+}
+.icon.service-43 {
+  background-image: url(../images/icon/icon_43@2x.png);
+}
+.icon.service-44 {
+  background-image: url(../images/icon/icon_44@2x.png);
+}
+.icon.service-45 {
+  background-image: url(../images/icon/icon_45@2x.png);
+}
+.icon.service-46 {
+  background-image: url(../images/icon/icon_46@2x.png);
+}
+.icon.service-47 {
+  background-image: url(../images/icon/icon_47@2x.png);
+}
+.icon.service-48 {
+  background-image: url(../images/icon/icon_48@2x.png);
+}
+.icon.service-49 {
+  background-image: url(../images/icon/icon_49@2x.png);
+}
+.icon.service-50 {
+  background-image: url(../images/icon/icon_50@2x.png);
+}
+.icon.service-51 {
+  background-image: url(../images/icon/icon_51@2x.png);
+}
+.icon.service-52 {
+  background-image: url(../images/icon/icon_52@2x.png);
+}
+.icon.service-53 {
+  background-image: url(../images/icon/icon_53@2x.png);
+}
+.icon.service-54 {
+  background-image: url(../images/icon/icon_54@2x.png);
+}
+.icon.service-55 {
+  background-image: url(../images/icon/icon_55@2x.png);
+}
+.icon.service-56 {
+  background-image: url(../images/icon/icon_56@2x.png);
+}
+.icon.service-57 {
+  background-image: url(../images/icon/icon_57@2x.png);
+}
+.icon.service-58 {
+  background-image: url(../images/icon/icon_58@2x.png);
+}
+.icon.service-59 {
+  background-image: url(../images/icon/icon_59@2x.png);
+}
+.icon.service-60 {
+  background-image: url(../images/icon/icon_60@2x.png);
+}
+.icon.service-61 {
+  background-image: url(../images/icon/icon_61@2x.png);
+}
+.icon.service-62 {
+  background-image: url(../images/icon/icon_62@2x.png);
+}
+.icon.service-63 {
+  background-image: url(../images/icon/icon_63@2x.png);
+}
+.icon.service-64 {
+  background-image: url(../images/icon/icon_64@2x.png);
+}
+.icon.service-65 {
+  background-image: url(../images/icon/icon_65@2x.png);
+}
+.icon.service-66 {
+  background-image: url(../images/icon/icon_66@2x.png);
+}
+.icon.service-67 {
+  background-image: url(../images/icon/icon_67@2x.png);
+}
+.icon.service-68 {
+  background-image: url(../images/icon/icon_68@2x.png);
+}
+.icon.service-69 {
+  background-image: url(../images/icon/icon_69@2x.png);
+}
+.icon.service-70 {
+  background-image: url(../images/icon/icon_70@2x.png);
+}
+.icon.service-71 {
+  background-image: url(../images/icon/icon_71@2x.png);
+}
+.icon.service-72 {
+  background-image: url(../images/icon/icon_72@2x.png);
+}
+.icon.service-73 {
+  background-image: url(../images/icon/icon_73@2x.png);
+}
+.icon.service-74 {
+  background-image: url(../images/icon/icon_74@2x.png);
+}
+.icon.service-75 {
+  background-image: url(../images/icon/icon_75@2x.png);
+}
+.icon.service-76 {
+  background-image: url(../images/icon/icon_76@2x.png);
+}
+
+[class^="icon service2-"] {
+  width: 80px;
+  height: 80px;
+}
+.icon.service2-01 {
+  background-image: url(../images/icon/service2-01@2x.png);
+}
+.icon.service2-02 {
+  background-image: url(../images/icon/service2-02@2x.png);
+}
+.icon.service2-03 {
+  background-image: url(../images/icon/service2-03@2x.png);
+}
+.icon.service2-04 {
+  background-image: url(../images/icon/service2-04@2x.png);
+}
+.icon.service2-05 {
+  background-image: url(../images/icon/service2-05@2x.png);
+}
+.icon.service2-06 {
+  background-image: url(../images/icon/service2-06@2x.png);
+}
+.icon.service2-07 {
+  background-image: url(../images/icon/service2-07@2x.png);
+}
+.icon.service2-08 {
+  background-image: url(../images/icon/service2-08@2x.png);
+}
+.icon.service2-09 {
+  background-image: url(../images/icon/service2-09@2x.png);
+}
+.icon.service2-10 {
+  background-image: url(../images/icon/service2-10@2x.png);
+}
+.icon.service2-11 {
+  background-image: url(../images/icon/service2-11@2x.png);
+}
+.icon.service2-12 {
+  background-image: url(../images/icon/service2-12@2x.png);
+}
+.icon.service2-13 {
+  background-image: url(../images/icon/service2-13@2x.png);
+}
+.icon.service2-14 {
+  background-image: url(../images/icon/service2-14@2x.png);
+}
+.icon.service2-15 {
+  background-image: url(../images/icon/service2-15@2x.png);
+}
+.icon.service2-16 {
+  background-image: url(../images/icon/service2-16@2x.png);
+}
+.icon.service2-17 {
+  background-image: url(../images/icon/service2-17@2x.png);
+}
+.icon.service2-18 {
+  background-image: url(../images/icon/service2-18@2x.png);
+}
+.icon.service2-19 {
+  background-image: url(../images/icon/service2-19@2x.png);
+}
+.icon.service2-20 {
+  background-image: url(../images/icon/service2-20@2x.png);
+}
+.icon.service2-21 {
+  background-image: url(../images/icon/service2-21@2x.png);
+}
+.icon.service2-22 {
+  background-image: url(../images/icon/service2-22@2x.png);
+}
+.icon.service2-23 {
+  background-image: url(../images/icon/service2-23@2x.png);
+}
+.icon.service2-24 {
+  background-image: url(../images/icon/service2-24@2x.png);
+}
+.icon.service2-25 {
+  background-image: url(../images/icon/service2-25@2x.png);
+}
+.icon.service2-26 {
+  background-image: url(../images/icon/service2-26@2x.png);
+}
+.icon.service2-27 {
+  background-image: url(../images/icon/service2-27@2x.png);
+}
+.icon.service2-28 {
+  background-image: url(../images/icon/service2-28@2x.png);
+}
+
+[class^="icon esg_benefit-"] {
+  width: 48px;
+  height: 48px;
+}
+.icon.esg_benefit-01 {
+  background-image: url(../images/icon/icon-28-px-card@2x.png);
+}
+.icon.esg_benefit-02 {
+  background-image: url(../images/icon/icon-28-px-cloth@2x.png);
+}
+.icon.esg_benefit-03 {
+  background-image: url(../images/icon/icon-28-px-completion@2x.png);
+}
+.icon.esg_benefit-04 {
+  background-image: url(../images/icon/icon-28-px-awards@2x.png);
+}
+.icon.esg_benefit-05 {
+  background-image: url(../images/icon/icon-28-px-camera@2x.png);
+}
+.icon.esg_benefit-06 {
+  background-image: url(../images/icon/icon-28-px-consulting@2x.png);
+}
+.icon.esg_benefit-07 {
+  background-image: url(../images/icon/icon-28-px-clover@2x.png);
+}
+.icon.esg_benefit-08 {
+  background-image: url(../images/icon/icon-28-px-pencil@2x.png);
+}
+
+.icon.icon-msg {
+  width: 96px;
+  height: 96px;
+  display: inline-block;
+  background-image: url(../../../images/common/img-word-thumbnail-01-pc@2x.png);
+}
+.icon.icon-esg01 {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  background-image: url(../../../images/common/icon-esg-28-px@2x.png);
+}
+.icon.icon-esg02 {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  background-image: url(../../../images/common/icon-28-px-esg@2x.png);
+}
+.icon.icon-esg03 {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  background-image: url(../../../images/common/icon-esg-28-1-px@2x.png);
+}
+.icon.icon-esg04 {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+  background-image: url(../../../images/common/icon-esg-28-2-px@2x.png);
+}
+
+[class^="icon icon-esg_welfare"] {
+  width: 48px;
+  height: 48px;
+}
+.icon-esg_welfare01 {
+  background-image: url(../../images/icon/icon-48-px-esg-01@2x.png);
+}
+.icon-esg_welfare02 {
+  background-image: url(../../images/icon/icon-48-px-esg-02@2x.png);
+}
+.icon-esg_welfare03 {
+  background-image: url(../../images/icon/icon-48-px-esg-03@2x.png);
+}
+.icon-esg_welfare04 {
+  background-image: url(../../images/icon/icon-48-px-esg-04@2x.png);
+}
+.icon-esg_welfare05 {
+  background-image: url(../../images/icon/icon-48-px-esg-05@2x.png);
+}
+.icon-esg_welfare06 {
+  background-image: url(../../images/icon/icon-48-px-esg-06@2x.png);
+}
+.icon-esg_welfare07 {
+  background-image: url(../../images/icon/icon-48-px-esg-07@2x.png);
+}
+
+.cj-unit-01 {
+  width: 87px;
+  height: 78px;
+  background-image: url(../../images/esg/member/icon-48-px-icon-12@2x.png);
+}
+.cj-unit-02 {
+  width: 65px;
+  height: 78px;
+  background-image: url(../../images/esg/member/icon-48-px-icon-13@2x.png);
+}
+
+.culture-icon-01 {
+  width: 310px;
+  height: 310px;
+  background-image: url(../../images/culture/img-way-thumbnail-01-pc@2x.png);
+}
+.culture-icon-02 {
+  width: 310px;
+  height: 310px;
+  background-image: url(../../images/culture/img-way-thumbnail-02-pc@2x.png);
+}
+.culture-icon-03 {
+  width: 310px;
+  height: 310px;
+  background-image: url(../../images/culture/img-way-thumbnail-03-pc@2x.png);
+}
+.culture-icon-04 {
+  width: 310px;
+  height: 310px;
+  background-image: url(../../images/culture/img-way-thumbnail-04-pc@2x.png);
+}

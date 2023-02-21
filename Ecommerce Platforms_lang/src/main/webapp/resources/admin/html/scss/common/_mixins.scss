@@ -1,0 +1,270 @@
+@charset "UTF-8";
+
+// sm: 575
+// md: 767
+// lg: 991
+// xl: 1199
+
+@mixin bp-max($breakpoint) {
+  @media (max-width: $breakpoint) {
+    @content;
+  }
+}
+
+@mixin bp-min($breakpoint) {
+  @media (min-width: $breakpoint) {
+    @content;
+  }
+}
+
+// max-width: 575px
+@mixin sm-max {
+  @media (max-width: #{$breakpoint-sm}) {
+    @content;
+  }
+}
+
+// max-width: 575px
+@mixin sm-min {
+  @media (min-width: #{$breakpoint-sm + 1px}) {
+    @content;
+  }
+}
+
+// max-width: 767px
+@mixin md-max {
+  @media (max-width: #{$breakpoint-md}) {
+    @content;
+  }
+}
+
+// min-width: 768px
+@mixin md-min {
+  @media (min-width: #{$breakpoint-md + 1px}) {
+    @content;
+  }
+}
+
+// max-width: 991px
+@mixin lg-max {
+  @media (max-width: #{$breakpoint-lg}) {
+    @content;
+  }
+}
+
+// min-width: 992px
+@mixin lg-min {
+  @media (min-width: #{$breakpoint-lg + 1px}) {
+    @content;
+  }
+}
+
+// max-width: 1199px
+@mixin xl-max {
+  @media (max-width: #{$breakpoint-xl}) {
+    @content;
+  }
+}
+
+// min-width: 1200px
+@mixin xl-min {
+  @media (min-width: #{$breakpoint-xl + 1px}) {
+    @content;
+  }
+}
+
+// fullpage
+@mixin fp-min {
+  @media (min-width: #{$breakpoint-md + 1px}) , (min-height: #{$breakpoint-md + 1px}) {
+    @content;
+  }
+}
+
+@mixin fp-max {
+  @media (max-width: #{$breakpoint-md}) , (max-height: #{$breakpoint-md}) {
+    @content;
+  }
+}
+
+// variables.scss에서 header 상단(sns, 로그인, 사이트맵, 다국어)영역을 사용안함(none)으로 설정했을 경우 #contents의 padding-top 변경
+@mixin contents-pc-padding-top($site-config-header-top) {
+  @if $site-config-header-top == block {
+    padding-top: $contents-pc-padding-top; // header 상단 높이 + .header-bottom 높이
+  } @else if $site-config-header-top == none {
+    padding-top: $header-pc-height; // .header-bottom 높이
+  }
+}
+@mixin contents-tablet-padding-top($site-config-header-top) {
+  @if $site-config-header-top == block {
+    padding-top: $contents-tablet-padding-top; // header 상단 높이 + .header-bottom 높이
+  } @else if $site-config-header-top == none {
+    padding-top: $header-tablet-height; // .header-bottom 높이
+  }
+}
+@mixin contents-mobile-padding-top($site-config-header-top) {
+  @if $site-config-header-top == block {
+    padding-top: $contents-mobile-padding-top; // header 상단 높이 + .header-bottom 높이
+  } @else if $site-config-header-top == none {
+    padding-top: $header-mobile-height; // .header-bottom 높이
+  }
+}
+
+// variables.scss에서 header 상단(sns, 로그인, 사이트맵, 다국어)영역을 사용안함(none)으로 설정했을 경우 header 상단 높이 0처리
+@mixin sta-height-zero($site-config-header-top) {
+  @if $site-config-header-top == none {
+    height: 0 !important;
+  }
+}
+// variables.scss에서 header 상단(sns, 로그인, 사이트맵, 다국어)영역을 사용안함(none)으로 설정했을 경우 header.fixed top 0으로 고정
+@mixin header-fixed-top-zero($site-config-header-top) {
+  @if $site-config-header-top == none {
+    top: 0 !important;
+  }
+}
+
+@mixin transition($time: 0.2s all ease-in-out) {
+  @each $prefix in -moz-, -o-, -webkit-, "" {
+    #{$prefix}transition: $time;
+  }
+}
+
+// rem으로 변환
+@function remove-unit($value) {
+  @return ($value / ($value * 0 + 1));
+}
+
+@function rem($px, $base: 16) {
+  @return (remove-unit($px / $base)) * 1rem;
+}
+
+@mixin clearfix {
+  &:after {
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+
+@mixin d-flex {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+@mixin colspace($space) {
+  margin-left: -$space;
+  margin-right: -$space;
+
+  > [class^="col-"] {
+    padding-right: $space;
+    padding-left: $space;
+    // margin-bottom: $space * 2;
+  }
+}
+@mixin align-items-center {
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+@mixin align-items-baseline {
+  -webkit-box-align: baseline;
+  -ms-flex-align: baseline;
+  align-items: baseline;
+}
+@mixin align-items-end {
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
+}
+@mixin align-items-start {
+  -webkit-box-align: start;
+  -ms-flex-align: start;
+  align-items: flex-start;
+}
+@mixin justify-content-center {
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+@mixin justify-content-start {
+  -webkit-box-pack: start;
+  -ms-flex-pack: start;
+  justify-content: start;
+}
+@mixin justify-content-end {
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: end;
+}
+@mixin justify-content-between {
+  -webkit-flex-pack: justify;
+  -ms-flex-pack: justify;
+  justify-content: space-between;
+}
+@mixin flex-align-center {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+}
+
+@mixin flex-col($width) {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 $width;
+  flex: 0 0 $width;
+  max-width: $width;
+}
+
+@mixin fit-thumb($padding-bottom, $max-height) {
+  position: relative;
+  display: table;
+  width: 100%;
+  height: 0;
+  padding-bottom: $padding-bottom;
+  overflow: hidden;
+
+  > img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include transform(translate(-50%, -50%));
+    display: table-cell;
+    vertical-align: middle;
+    max-height: $max-height;
+  }
+}
+
+@mixin transform($args...) {
+  -webkit-transform: $args;
+  -moz-transform: $args;
+  -ms-transform: $args;
+  transform: $args;
+}
+
+// 멀티라인 말줄임 표시
+// $line-cnt : 라인 수
+// $line-height : line-height값
+// 사용법 : @include ellipsis(3, 1.6em);
+@mixin ellipsis($line-cnt, $line-height) {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: $line-cnt; /* 라인수 */
+  -webkit-box-orient: vertical;
+  word-wrap: break-word;
+  line-height: $line-height;
+  width: 100%;
+  height: $line-height * $line-cnt;
+  /* line-height 가 1.2em 이고 3라인을 자르기 때문에 height는 1.2em * 3 = 3.6em */
+}

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="setting">
+	
+	<resultMap id="partnerSelectMap" type="partner">
+		<result property="partnerNo"				column="PARTNER_NO"				jdbcType="NUMERIC"></result>
+		<result property="partnerName"				column="PARTNER_NAME"			jdbcType="VARCHAR"></result>
+		<result property="in_dtm"					column="IN_DTM"					jdbcType="VARCHAR"></result>
+		<result property="partnerImage"				column="PARTNER_IMAGE"			jdbcType="VARCHAR"></result>
+		<result property="partnerAsc"				column="PARTNER_ASC"			/>
+	</resultMap>	
+	
+	<insert id="addPartner" parameterType="partner">
+		INSERT INTO partner
+		(PARTNER_NAME, 
+		 IN_DTM, 
+		 PARTNER_IMAGE,
+		 PARTNER_ASC)
+		VALUES
+		(#{partnerName}, 
+		 sysdate(), 
+		 #{partnerImage},
+		 (SELECT IFNULL(MAX(PARTNER_ASC) + 1, 1) FROM partner p)
+		 )	
+	</insert>
+	
+	<select id="selectHistoryList" resultType="history">
+		select h.*
+		 from (select @ROWNUM := @ROWNUM +1 AS ROWNUM,
+					  H.*
+				 from history H,(SELECT @ROWNUM := 0) TMP
+			    order by history_date DESC ) h
+		LIMIT #{limit} OFFSET #{offset}
+	</select>
+	
+	<select id="selectAwardList" resultType="Award">
+		select @ROWNUM := @ROWNUM +1 AS ROWNUM,
+		A.*
+		from award A,(SELECT @ROWNUM := 0) TMP
+		order by award_date DESC
+	</select>
+	
+  	<select id="selectAdminMenuList" resultType="adminMenu">
+  		select * from admin_menu
+  	</select>
+  	
+  	<select id="selectAdminSetting" resultType="adminSetting">
+  		select * from admin_setting
+  	</select>
+  	
+  	<select id="selectPartnerList" resultMap="partnerSelectMap">
+  		select
+  		partner_no,
+  		partner_name,
+  		partner_image,
+  		date_format(in_dtm, '%Y-%m-%d') in_dtm
+  		from partner
+  	</select>
+  	
+  	<select id="adminPartnerList" resultMap="partnerSelectMap">
+	  	SELECT p.*	
+	  	FROM(SELECT
+	  		@rownum:=@rownum+1 as rownum,
+	  		tb1.partner_no,
+	  		tb1.partner_name,
+	  		tb1.partner_image,
+	  		date_format(tb1.in_dtm, '%Y-%m-%d') in_dtm
+	  		FROM partner tb1, (select @rownum:=0) row_reset
+	  		WHERE 1=1
+	  		<if test="searchKeyword != null">
+	  			AND tb1.partner_name like concat ('%',#{searchKeyword},'%')
+	  		</if>
+	  		) p
+	  	LIMIT #{limit} OFFSET #{offset}
+  	</select>  	
+  	
+  	<select id="adminPartnerTotalCount" resultType="int">
+	  	SELECT COUNT(*)	
+	  	FROM(SELECT
+	  		@rownum:=@rownum+1 as rownum,
+	  		tb1.partner_no,
+	  		tb1.partner_name,
+	  		tb1.partner_image,
+	  		date_format(tb1.in_dtm, '%Y-%m-%d') in_dtm
+	  		FROM partner tb1, (select @rownum:=0) row_reset
+	  		WHERE 1=1
+	  		<if test="searchKeyword != null">
+	  			AND tb1.partner_name like concat ('%',#{searchKeyword},'%')
+	  		</if>
+	  		) countTable
+  	</select>
+  	
+  	<select id="getPartner" parameterType="int" resultMap="partnerSelectMap">
+  		SELECT	
+  		*
+  		FROM partner
+  		WHERE partner_no = #{value}
+  	</select>
+
+  	<update id="updateAdminSetting">
+  		update admin_setting set email = #{email}, phone = #{phone}, caller_id = #{callerId}, 
+			<if test="thumbnailImg != null and thumbnailImg != ''">
+	  			thumbnail_img = #{thumbnailImg}, 
+			</if>
+			<if test="faviconImg != null and faviconImg != ''">
+	  			favicon_img = #{faviconImg}, 
+			</if>
+  			is_discount = #{isDiscount}, history_layout_no = #{historyLayoutNo}, history_view_type = #{historyViewType} 
+  	</update>
+  	
+  	<update id="updateAdminMenuAllN">
+  		update admin_menu set status = 'N'
+  	</update>
+  	
+  	<update id="updateAdminMenu">
+  		update admin_menu set status = 'Y' where menu_no = #{menuNo}
+  	</update>
+  	
+  	<update id="updatePartner" parameterType="partner">
+		UPDATE partner
+		<set>
+			PARTNER_NAME = #{partnerName}, 
+			PARTNER_IMAGE = #{partnerImage}
+		</set>
+		WHERE PARTNER_NO = #{partnerNo}
+  	</update>
+
+	<delete id="deletePartner">
+		DELETE
+		FROM partner
+		WHERE <foreach collection="list" item="partnerNo" open="(" close=")" separator="or">
+				partner_no = #{partnerNo}
+			  </foreach>	
+	</delete>
+	
+	<select id="selectAllHistoryList" resultType="int">
+		select COUNT(*)
+		  from (select
+				H.*
+				from history H)countTable 	
+	</select>
+	
+</mapper>

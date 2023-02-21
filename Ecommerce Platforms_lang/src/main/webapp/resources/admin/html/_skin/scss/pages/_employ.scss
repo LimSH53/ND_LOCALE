@@ -1,0 +1,306 @@
+/* 취업현황 */
+.sub-visual {
+  .employ-status-cares {
+    counter-reset: col;
+    text-align: left;
+    margin-top: rem(100px);
+    @include colspace(5px);
+
+    > li {
+      margin-bottom: 10px;
+    }
+
+    .col-inner {
+      overflow: hidden;
+      position: relative;
+      counter-increment: col;
+      border-radius: 1rem;
+      border: solid 2px rgba(255, 255, 255, 0.13);
+      background-color: rgba(0, 0, 0, 0.2);
+      padding: rem(50px) rem(30px) rem(86px);
+
+      &:before {
+        content: "0" counter(col);
+        position: absolute;
+        right: rem(30px);
+        bottom: -0.08em;
+        font-size: $font-size-h1;
+        font-weight: $font-weight-black;
+        line-height: 1;
+        color: rgba(255, 255, 255, 0.13);
+      }
+    }
+
+    .dfn {
+      font-size: $font-size-4;
+      line-height: 1.4;
+
+      > dt {
+        font-size: $font-size-h6;
+        color: $color-base;
+        margin-bottom: 1em;
+      }
+    }
+  }
+}
+
+.pg-employ-status {
+  .employ-status-list {
+    font-size: 0;
+    text-align: center;
+
+    > li {
+      position: relative;
+      font-size: $font-size-h6;
+    }
+
+    .item-inner {
+      padding: 2em 0;
+      border-radius: 1em;
+      background-color: #fff;
+      font-size: 1em;
+      font-weight: $font-weight-mid;
+      text-align: center;
+      color: #333;
+    }
+
+    .figure-item {
+      width: 100%;
+      line-height: 1.64;
+
+      .figcaption {
+        margin-top: 1em;
+        padding: 0 1em;
+      }
+
+      img {
+        max-width: 3.72em;
+      }
+    }
+  }
+}
+
+@include sm-min {
+  .pg-employ-status {
+    .employ-status-list {
+      font-size: 0;
+      text-align: center;
+
+      > li {
+        display: inline-block;
+        vertical-align: top;
+      }
+
+      .figure-step {
+        img {
+          width: 28.2%;
+          margin: 0 auto;
+        }
+      }
+    }
+  }
+}
+
+@include lg-min {
+  .pg-employ-status {
+    .employ-status-list {
+      font-size: 0;
+      text-align: center;
+      margin-right: rem(-40px);
+
+      > li {
+        padding-right: rem(40px);
+      }
+
+      .item-inner {
+        max-width: 290px;
+        max-height: 290px;
+        width: 13.18em;
+        height: 13.18em;
+        padding-top: 28%;
+        border-radius: 100%;
+      }
+    }
+  }
+}
+
+@include lg-max {
+  .pg-employ-status {
+    .employ-status-list {
+      @include d-flex;
+      margin-left: -5px;
+      margin-right: -5px;
+
+      > li {
+        width: 25%;
+        padding: 0 5px;
+      }
+
+      .item-inner {
+        height: 100%;
+      }
+    }
+  }
+}
+
+@include sm-max {
+  .pg-employ-status {
+    .employ-status-list {
+      > li {
+        width: 100%;
+        padding-bottom: 10px;
+
+        &:before {
+          width: 15px;
+          height: 0;
+          left: 50%;
+          bottom: 3px;
+          @include transform(translateX(-50%));
+          background-image: none;
+          border: 8px solid $color-base;
+          border-right-color: transparent;
+          border-left-color: transparent;
+          border-bottom-color: transparent;
+        }
+      }
+    }
+  }
+}
+
+/* 인재요청 */
+.recruit-step {
+  font-size: 0;
+  text-align: center;
+  margin-bottom: rem(100px);
+
+  > li {
+    position: relative;
+    font-size: $font-size-h6;
+
+    &:before {
+      content: "";
+      display: block;
+      position: absolute;
+      right: 0;
+      width: 3.6em;
+      height: 100%;
+      background: url(#{$url}/img/sub/employ/ico_step_employ.png) no-repeat
+        center center/46.25%;
+    }
+
+    &:last-child {
+      &:before {
+        display: none;
+      }
+    }
+  }
+
+  .item-inner {
+    padding: 2em 0;
+    margin-bottom: 2rem;
+    border-radius: 1em;
+    background-color: #fff;
+    font-size: 1em;
+    font-weight: $font-weight-mid;
+    text-align: center;
+    color: #333;
+  }
+
+  .figure-step {
+    width: 100%;
+    line-height: 1.64;
+
+    .figcaption {
+      margin-top: 1em;
+      padding: 0 1em;
+    }
+
+    img {
+      max-width: 3.72em;
+    }
+  }
+}
+
+@include sm-min {
+  .recruit-step {
+    font-size: 0;
+    text-align: center;
+
+    > li {
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .figure-step {
+      img {
+        width: 28.2%;
+        margin: 0 auto;
+      }
+    }
+  }
+}
+
+@include lg-min {
+  .recruit-step {
+    font-size: 0;
+    text-align: center;
+    margin-right: rem(-80px);
+
+    > li {
+      padding-right: rem(80px);
+    }
+
+    .item-inner {
+      max-width: 290px;
+      max-height: 290px;
+      width: 13.18em;
+      height: 13.18em;
+      padding-top: 28%;
+      border-radius: 100%;
+    }
+  }
+}
+
+@include lg-max {
+  .recruit-step {
+    @include d-flex;
+    margin-left: -15px;
+    margin-right: -15px;
+
+    > li {
+      width: 33.33%;
+      padding: 0 15px;
+
+      &:before {
+        width: 30px;
+        right: -15px;
+      }
+    }
+
+    .item-inner {
+      height: 100%;
+    }
+  }
+}
+
+@include sm-max {
+  .recruit-step {
+    > li {
+      width: 100%;
+      padding-bottom: 30px;
+
+      &:before {
+        width: 15px;
+        height: 0;
+        left: 50%;
+        bottom: 3px;
+        @include transform(translateX(-50%));
+        background-image: none;
+        border: 8px solid $color-base;
+        border-right-color: transparent;
+        border-left-color: transparent;
+        border-bottom-color: transparent;
+      }
+    }
+  }
+}

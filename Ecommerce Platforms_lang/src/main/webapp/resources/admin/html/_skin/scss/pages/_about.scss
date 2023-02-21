@@ -1,0 +1,499 @@
+/* 아카데미 소개 */
+.page-url-overview--fc {
+  #subWrap {
+    background: #2a2a2a url(#{$url}/img/sub/about/bg_about.jpg) no-repeat center
+      top/cover;
+  }
+}
+
+.pg-overview {
+  color: #fff;
+
+  .overview-wrap {
+    counter-reset: overview-item;
+
+    .overview-item,
+    .col-center {
+      font-size: $font-size-h6;
+      background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .overview-item {
+      position: relative;
+      counter-increment: overview-item;
+      padding: 2.63em;
+      line-height: 1.64;
+      margin-bottom: 4.09em;
+
+      &:before {
+        content: "0" counter(overview-item);
+        display: block;
+        position: absolute;
+        font-size: 2.727em;
+        font-weight: $font-weight-mid;
+        font-family: $font-point;
+        color: rgba(255, 255, 255, 0.25);
+        line-height: 1;
+      }
+
+      .dfn {
+        > dt {
+          margin-bottom: 0.5em;
+          color: $color-base;
+          font-size: $font-size-h3;
+          font-weight: $font-weight-bold;
+        }
+      }
+    }
+
+    .col-center {
+      border-radius: 100%;
+      padding: 1em;
+      width: 18.18em;
+      height: 18.18em;
+      text-align: center;
+
+      .figure-shine {
+        img {
+          margin-top: -2em;
+          margin-right: -2.5em;
+        }
+      }
+
+      .figcaption {
+        margin-top: 1rem;
+        &-tit {
+          display: inline-block;
+          padding-left: 2em;
+          font-family: $font-point;
+          background: url(#{$url}/img/sub/about/ico_overview_ci_logo.png)
+            no-repeat left center/1.63em auto;
+        }
+      }
+    }
+  }
+}
+
+@include bp-min(1280px) {
+  .pg-overview {
+    position: relative;
+
+    .overview-wrap {
+      @include justify-content-between;
+
+      .col-left,
+      .col-right {
+        @include flex-col(44.65%);
+      }
+
+      .overview-item {
+        background-color: transparent;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        min-height: 16.4em;
+
+        &.left {
+          text-align: left;
+          padding-right: 3em;
+
+          &:before {
+            right: 1em;
+          }
+        }
+
+        &.right {
+          text-align: right;
+          padding-left: 3em;
+
+          &:before {
+            left: 1em;
+          }
+        }
+
+        &.top {
+          &:before {
+            top: 0.5em;
+          }
+        }
+
+        &.bottom {
+          &:before {
+            bottom: 0.5em;
+          }
+        }
+
+        &.left.top {
+          background-image: url(#{$url}/img/sub/about/bg_overview_left_top.png);
+        }
+
+        &.left.bottom {
+          background-image: url(#{$url}/img/sub/about/bg_overview_left_bottom.png);
+        }
+
+        &.right.top {
+          background-image: url(#{$url}/img/sub/about/bg_overview_right_top.png);
+        }
+
+        &.right.bottom {
+          background-image: url(#{$url}/img/sub/about/bg_overview_right_bottom.png);
+        }
+      }
+
+      .col-center {
+        position: absolute;
+        top: 46.6%;
+        left: 50%;
+        @include transform(translate(-50%, -54.6%));
+      }
+    }
+  }
+}
+
+@include bp-max(1280px) {
+  .pg-overview {
+    .overview-wrap {
+      .col-center {
+        -ms-order: 1;
+        order: 1;
+      }
+
+      .col-left {
+        -ms-order: 2;
+        order: 2;
+      }
+
+      .col-right {
+        -ms-order: 3;
+        order: 3;
+      }
+
+      .col-left,
+      .col-right {
+        width: 100%;
+        @include d-flex;
+      }
+
+      .overview-item {
+        margin-bottom: 1rem;
+        width: 48%;
+        margin: 1%;
+
+        &:before {
+          bottom: 0.5em;
+          right: 0.5em;
+        }
+      }
+
+      .col-center {
+        margin: 0 auto 2rem;
+      }
+    }
+  }
+}
+
+@include md-max {
+  .pg-overview {
+    .overview-wrap {
+      .overview-item {
+        width: 100%;
+      }
+    }
+  }
+}
+
+/* 연혁 */
+.page-url-history--fc {
+  #subWrap {
+    background: #2a2a2a url(#{$url}/img/sub/about/bg_history.jpg) no-repeat
+      center top/cover;
+  }
+}
+
+.pg-history {
+  color: #fff;
+
+  .article-tit {
+    margin-bottom: rem(120px);
+  }
+}
+
+@include lg-min {
+  .pg-history {
+    .sub-tab-wrap--fc {
+      @include d-flex;
+    }
+
+    .sub-tab--fc {
+      @include flex-col(10.9375%);
+    }
+
+    .sub-tab__conts--fc {
+      overflow-y: scroll;
+      max-height: 46.625em;
+      padding-top: 0;
+      padding-left: 5rem;
+      @include flex-col(89.0625%);
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+
+    .sub-tab__conts--fc::-webkit-scrollbar {
+      display: none; /* Chrome, Safari, Opera*/
+    }
+  }
+}
+
+/* 교육환경 */
+.pg-edu {
+  .edu-environment {
+    text-align: center;
+    font-size: $font-size-3;
+    font-weight: $font-weight-mid;
+    line-height: 1.33;
+    color: #444;
+
+    > li {
+      margin-bottom: 1rem;
+    }
+
+    .figcaption {
+      margin-top: 0.5em;
+    }
+  }
+
+  .article-tit {
+    text-align: center;
+    margin-bottom: 1.666em;
+  }
+
+  .edu-room-list {
+    @include colspace(20px);
+    > li {
+      margin-bottom: rem(44px);
+    }
+    .col-inner {
+      padding: 1.666em;
+      background-color: #fff;
+      border: 1px solid #c8c8c8;
+      font-size: $font-size-3;
+    }
+
+    &-words {
+      padding-left: 1.125em;
+      padding-right: 1.125em;
+      margin-bottom: 1.125em;
+    }
+
+    &__tit {
+      padding-bottom: 0.5em;
+      margin-bottom: 1em;
+      text-align: center;
+      font-size: $font-size-h6;
+      font-weight: $font-weight-bold;
+      color: #333;
+      border-bottom: 1px solid #333;
+    }
+
+    &__cont {
+      .list {
+        font-size: 0;
+        > li {
+          display: inline-block;
+          vertical-align: top;
+          width: 50%;
+          font-size: $font-size-3;
+        }
+      }
+    }
+  }
+
+  .edu-slider {
+    .slick-arrow {
+      font-size: $font-size-base;
+      z-index: 10;
+      width: 1em;
+      height: 2em;
+
+      &:before {
+        content: "";
+        display: block;
+        width: 100%;
+        height: 100%;
+        @include bg-basic;
+        background-size: contain;
+      }
+    }
+
+    .slick-prev {
+      left: 1.5em;
+
+      &:before {
+        background-image: url(#{$url}/img/sub/ico_slider_arrow_prev.png);
+      }
+    }
+
+    .slick-next {
+      right: 1.5em;
+
+      &:before {
+        background-image: url(#{$url}/img/sub/ico_slider_arrow_next.png);
+      }
+    }
+
+    .slick-dots {
+      bottom: 20px;
+
+      li {
+        width: auto;
+        height: auto;
+        margin: 0 4px;
+        button {
+          font-size: $font-size-base;
+          width: 0.75em;
+          height: 0.75em;
+          border-radius: 100%;
+          border: 2px solid transparent;
+          background: rgba(255, 255, 255, 0.5);
+          padding: 0;
+        }
+
+        &.slick-active {
+          button {
+            border-color: #fff;
+            background: transparent;
+          }
+        }
+      }
+    }
+  }
+
+  .edu-slider--main {
+    .slick-arrow {
+      width: 1.875em;
+      height: 3.375em;
+    }
+    .slick-dots {
+      li {
+        button {
+          width: 1.25em;
+          height: 1.25em;
+        }
+      }
+    }
+  }
+
+  .section-slide-main {
+    padding-bottom: 0;
+    background-image: linear-gradient(to top, #efefef 40%, #fff 40%);
+  }
+}
+
+@include sm-max {
+  .pg-edu {
+    .edu-slider {
+      .slick-dots {
+        li {
+          button {
+            font-size: $font-size-6;
+            width: 1em;
+            height: 1em;
+          }
+        }
+      }
+    }
+  }
+  .edu-environment {
+    .figure-icon {
+      img {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@include lg-min {
+  .pg-edu {
+    .edu-room-list {
+      .col-inner {
+        @include d-flex;
+        @include justify-content-between;
+        flex-flow: column;
+      }
+    }
+  }
+}
+
+/* 오시는 길 */
+.pg-location {
+  .col-head {
+    display: table;
+    font-size: $font-size-h4;
+    width: 5.866em;
+    height: 5.866em;
+    margin: 0 2.45em 1em;
+    border-radius: 100%;
+    background-color: #efefef;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  &__head {
+    display: table-cell;
+    vertical-align: middle;
+
+    span {
+      color: #666;
+    }
+  }
+
+  .col-info {
+    font-size: $font-size-3;
+    max-width: 54.88em;
+  }
+
+  .location-table {
+    th,
+    td {
+      padding-top: 0.5em;
+      padding-bottom: 0.5em;
+    }
+    &__tit {
+      padding-right: 2em;
+      background-repeat: no-repeat;
+      background-size: 1.444em 1.5em;
+      background-position: right center;
+      font-weight: $font-weight-bold;
+      color: $color-base;
+
+      &.addr {
+        background-image: url(#{$url}/img/sub/about/ico_addr_pin.png);
+      }
+
+      &.tel {
+        background-image: url(#{$url}/img/sub/about/ico_addr_tel.png);
+      }
+
+      &.fax {
+        background-image: url(#{$url}/img/sub/about/ico_addr_fax.png);
+      }
+
+      &.msg {
+        background-image: url(#{$url}/img/sub/about/ico_addr_msg.png);
+      }
+    }
+
+    td {
+      padding-left: 1em;
+      padding-right: 1em;
+    }
+  }
+}
+
+@include sm-max {
+  .pg-location {
+    .col-head {
+      margin-left: 0;
+      margin-right: 0;
+    }
+  }
+}

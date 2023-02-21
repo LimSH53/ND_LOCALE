@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="award">
+
+	<select id="selectDetailByNo" parameterType="int" resultType="com.naedam.admin.award.model.vo.Award">
+	select * from award	where award_no = #{awardNo} order by award_date desc;
+	</select>
+
+	<select id="selectAwardList" resultType="award">
+	select *,
+		DATE_FORMAT(award_date, '%Y') AS year,
+		DATE_FORMAT(award_date, '%c') AS month
+		from award 
+	order by award_date DESC;
+	</select>
+
+	<select id="selectYear" resultType="award">
+	select distinct
+		DATE_FORMAT(award_date, '%Y') AS year
+		from award
+		order by award_date DESC;
+	</select>
+
+	<select id="selectMonth" resultType="award">
+	select distinct
+		DATE_FORMAT(award_date, '%Y') AS year,
+		DATE_FORMAT(award_date, '%c') AS month
+		from award
+		order by award_date desc;
+	</select>
+	
+	<insert id="insertAward" parameterType="award" >
+		INSERT INTO award
+			(img_url, award_date, content, host)
+		VALUE(#{imgUrl},#{awardDate},#{content}, #{host} )
+	</insert>
+	
+	<update id="updateAward">
+		UPDATE award
+		SET award_date=#{awardDate}, content=#{content}, img_url=#{imgUrl}, host = #{host}
+		WHERE award_no = #{awardNo}
+	</update>
+	
+	<delete id="deleteAward">
+		delete from award
+		where award_no = #{awardNo}
+	</delete>
+</mapper>
