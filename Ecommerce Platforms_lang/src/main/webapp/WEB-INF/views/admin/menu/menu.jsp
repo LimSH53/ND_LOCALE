@@ -41,12 +41,16 @@
 	    <div class="row">
 	        <div class="col-xs-12">
 	            <div class="box">
+            	    <div class="btn-group" style="margin: 12px 5px 5px 12px;">
+    					<button type="button" id="locale_ko" onclick="location.href='${pageContext.request.contextPath}/admin/menu/menu?locale=ko'" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
+    					<button type="button" id="locale_en" onclick="location.href='${pageContext.request.contextPath}/admin/menu/menu?locale=en'" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
+    				</div>	
 	                <div class="box-body">
 		                <div class="col-xs-3" style="padding:0 5px 0 0;">
-		                	<iframe name="tree" id="iframe_tree" src="${pageContext.request.contextPath}/admin/menu/tree" width="100%" scrolling="auto" frameborder="1" height="769"></iframe>
+		                	<iframe name="tree" id="iframe_tree" src="${pageContext.request.contextPath}/admin/menu/tree?locale=${locale}" width="100%" scrolling="auto" frameborder="1" height="769"></iframe>
 		                </div>
 		                <div class="col-xs-9" style="padding:0 5px 0 0;">
-		                	<iframe name="list" id="iframe_list" src="${pageContext.request.contextPath}/admin/menu/menuList" width="100%" scrolling="auto" frameborder="1" height="769"></iframe>
+		                	<iframe name="list" id="iframe_list" src="${pageContext.request.contextPath}/admin/menu/menuList?locale=${locale}" width="100%" scrolling="auto" frameborder="1" height="769"></iframe>
 		                </div>
 	                </div><!-- /.box-body -->
 	            </div><!-- /.box -->
@@ -63,7 +67,7 @@
 		            <input type="hidden" name="part" value="menu">
 		            <input type="hidden" name="originNo" id="originCode">
 		            <input type="hidden" name="ord" id="ordCode">
-		            <input type="hidden" name="locale" value="ko">
+		            <input type="hidden" name="locale" value="${locale}">
 		            <div class="modal-header">
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		                <h4 class="modal-title">메뉴 등록</h4>
@@ -83,13 +87,7 @@
       								<button type="button" id="locale_zh" onclick="setLocale('zh')" class="btn btn-default">
       									<i class="fa fa-globe" aria-hidden="true"></i> 中国</button>      
       								<button type="button" id="locale_vn" onclick="setLocale('vn')" class="btn btn-default">
-      									<i class="fa fa-globe" aria-hidden="true"></i> Tiếng việt</button>
-<%-- 									<select class="form-select" name="outer_mapping" aria-label="Default select example">
-									  <option value="0">게시판 맵핑</option>
-									  <c:forEach var="board" items="${board}">
-										  <option value="${board.boardNo}">${board.boardTitle}</option>
-									  </c:forEach>
-									</select>  --%>     									                
+      									<i class="fa fa-globe" aria-hidden="true"></i> Tiếng việt</button>   									                
       							</div>
                 			</div>
             			</div>
@@ -149,7 +147,7 @@
 		            <input type="hidden" name="mode" value="update">
 		            <input type="hidden" name="part" value="menu">
 		            <input type="hidden" name="code" id="getCode">
-		            <input type="hidden" name="locale" value="ko">
+		            <input type="hidden" name="locale" value="${locale}">
 		            <div class="modal-header">
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		                <h4 class="modal-title">메뉴 등록</h4>

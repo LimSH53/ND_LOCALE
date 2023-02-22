@@ -30,6 +30,7 @@ public class Menu implements Serializable {
 	private int menuAsc;
 	private int originNo;
 	private int ord;
+	private String locale;
 	
 	
 	

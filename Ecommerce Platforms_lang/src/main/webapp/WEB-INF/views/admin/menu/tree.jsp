@@ -110,7 +110,7 @@
 		<tbody>
 			<tr>
 				<td nowrap="">
-					<a href="javascript:parent.list.location.replace('${pageContext.request.contextPath}/admin/menu/menuList');">
+					<a href="javascript:parent.list.location.replace('${pageContext.request.contextPath}/admin/menu/menuList?locale=${locale}');">
 						<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/base.gif" border="0" align="absbottom" name="i_img0_0" class="t0im">Home
 					</a>
 				</td>
@@ -126,7 +126,7 @@
 					<tr>
 						<td nowrap="">
 							<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/joinbottom.gif" border="0" align="absbottom">
-								<a href="javascript:parent.list.location.replace('${pageContext.request.contextPath}/admin/menu/menu2?code=${menu.code}&originNo=${menu.originNo}&ord=${menu.ord}');"class="t0i" id="i_txt0_1">
+								<a href="javascript:parent.list.location.replace('${pageContext.request.contextPath}/admin/menu/menu2?code=${menu.code}&originNo=${menu.originNo}&ord=${menu.ord}&locale=${locale}');"class="t0i" id="i_txt0_1">
 							<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/page.gif" border="0" align="absbottom" name="i_img0_1" class="t0im">메인페이지</a>
 						</td>
 					</tr>
@@ -138,7 +138,7 @@
 								<a>
 									<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/minusbottom.gif" border="0" align="absbottom" name="j_img${menu.code}" onclick="displayTree(${menu.code})">
 								</a>
-								<a href="javascript:parent.list.location.replace('${pageContext.request.contextPath}/admin/menu/menu2?code=${menu.code}&originNo=${menu.originNo}&ord=${menu.ord}');">
+								<a href="javascript:parent.list.location.replace('${pageContext.request.contextPath}/admin/menu/menu2?code=${menu.code}&originNo=${menu.originNo}&ord=${menu.ord}&locale=${locale}');">
 									<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/folderopen.gif" border="0" align="absbottom" name="i_img0_2" class="t0im">${menu.title}
 								</a>
 							</td>
@@ -148,7 +148,7 @@
 								<a>
 									<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/minus.gif" border="0" align="absbottom" name="j_img${menu.code}" onclick="displayTree(${menu.code})">
 								</a>
-								<a href="javascript:parent.list.location.replace('${pageContext.request.contextPath}/admin/menu/menu2?code=${menu.code}&originNo=${menu.originNo}&ord=${menu.ord}');">
+								<a href="javascript:parent.list.location.replace('${pageContext.request.contextPath}/admin/menu/menu2?code=${menu.code}&originNo=${menu.originNo}&ord=${menu.ord}&locale=${locale}');">
 									<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/folderopen.gif" border="0" align="absbottom" name="i_img0_2" class="t0im">${menu.title}
 								</a>
 							</td>

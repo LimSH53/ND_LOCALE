@@ -64,11 +64,13 @@
 		INTO board(BOARD_TITLE, 
 				   BOARD_SUBTITLE, 
 				   BOARD_CONTENTS,
-				   MEMBER_NO)
+				   MEMBER_NO,
+				   LOCALE)
 		VALUES(#{boardTitle : VARCHAR},
 			   #{boardSubTitle : VARCHAR},
 			   #{boardContents : VARCHAR},
-			   #{boardMemberNo.memberNo})		
+			   #{boardMemberNo.memberNo},
+			   #{locale : VARCHAR})		
 		<selectKey keyProperty="boardNo" resultType="int" order="AFTER">
 			SELECT MAX(board_no) from board
 		</selectKey>

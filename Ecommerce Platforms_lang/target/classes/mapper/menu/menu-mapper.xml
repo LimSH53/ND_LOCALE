@@ -45,7 +45,8 @@
 				  MENU_DATE,
 				  ORIGIN_NO,
 				  ORD,
-				  MENU_ASC)
+				  MENU_ASC,
+				  LOCALE)
 		VALUES(#{category_code},
 			   0,
 			   #{title : VARCHAR},
@@ -55,7 +56,8 @@
 			   now(),
 			   #{originNo : VARCHAR},
 			   #{ord : VARCHAR},
-			   (SELECT IFNULL(MAX(MENU_ASC) + 1, 1) FROM menu p))
+			   (SELECT IFNULL(MAX(MENU_ASC) + 1, 1) FROM menu p),
+			   #{locale : VARCHAR})
 	</insert>
 	
 	<insert id="addHead" parameterType="head">
@@ -140,7 +142,7 @@
 		SELECT *
 		FROM menu
 		WHERE revision_code = 0
-		AND   code != 0
+		AND   code != 1
 		<if test="menu.code != null and menu.code != ''">
 		AND   origin_no = #{menu.code}
 		</if>
@@ -211,19 +213,21 @@
 		ORDER BY HEAD_ASC ASC
 	</select>	
 	
-	<select id="getMenuCategoryList" resultType="hashmap" resultMap="MenuSelectMap">
+	<select id="getMenuCategoryList" parameterType="hashmap" resultMap="MenuSelectMap">
 		SELECT *
 		FROM menu
 		WHERE ord = 0
 		AND revision_code = 0
+		AND locale = #{locale}
 		ORDER BY menu_asc ASC, code ASC
 	</select>
 	
-	<select id="getMenuCategoryList2" resultType="hashmap" resultMap="MenuSelectMap">
+	<select id="getMenuCategoryList2" parameterType="hashmap" resultMap="MenuSelectMap">
 		SELECT *
 		FROM menu
 		WHERE ord = 1
 		AND revision_code = 0
+		AND locale = #{locale}
 		ORDER BY menu_asc ASC, code ASC
 	</select>
 		 
