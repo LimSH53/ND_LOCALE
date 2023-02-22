@@ -13,9 +13,9 @@ public interface SettingDao {
 
 	public void addPartner(Partner partner) throws Exception;
 	
-	List<History> selectHistoryList(int limit, int offset);
+	List<History> selectHistoryList(int limit, int offset, String locale);
 
-	List<Award> selectAwardList();
+	List<Award> selectAwardList(String locale);
 	
 	List<AdminMenu> selectAdminMenuList();
 	
@@ -37,7 +37,7 @@ public interface SettingDao {
 	
 	public void deletePartner(List<Integer> partnerNo) throws Exception;
 
-	public int selectAllHistoryList();
+	public int selectAllHistoryList(String locale);
 
 	public int adminPartnerTotalCount(Map<String, Object> map);
 

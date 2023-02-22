@@ -29,14 +29,14 @@ public class RecruitServiceImpl implements RecruitService {
 	private RecruitDao recruitDao;
 
 	@Override
-	public Map<String, Object> getRecruitList(String search, int limit, int offset) throws Exception {
+	public Map<String, Object> getRecruitList(String search, int limit, int offset, String locale) throws Exception {
 		
 		System.out.println("==========recruitList service =================");
 		System.out.println("search>>>" + search);
 		
 		Map<String, Object> resultMap = new HashMap<String, Object>();
-		resultMap.put("list", recruitDao.getRecruitList(search, offset, limit));
-		resultMap.put("totalCount", recruitDao.getTotalCount(search));
+		resultMap.put("list", recruitDao.getRecruitList(search, offset, limit, locale));
+		resultMap.put("totalCount", recruitDao.getTotalCount(search, locale));
 		
 		return resultMap;
 	}
@@ -59,7 +59,7 @@ public class RecruitServiceImpl implements RecruitService {
 	@Override
 	public int insertRecruit(recruitDTO recruit) {
 		
-		log.info(">>>>>insertRecruitService 실행");
+		log.info(">>>>>insertRecruitService 실행" + recruit);
 		
 		int recruitResult = recruitDao.insertRecruit(recruit);
 		

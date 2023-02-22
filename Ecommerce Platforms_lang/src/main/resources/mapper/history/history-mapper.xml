@@ -35,10 +35,10 @@
 
 	<insert id="insertHistroy">
 		insert into history 
-		(history_date, content, img_url)
+		(history_date, content, img_url, locale)
 		values
 		(#{historyDate},
-		#{content}, #{imgUrl})
+		#{content}, #{imgUrl}, #{locale})
 	</insert>
 
 	<update id="updateHistory">

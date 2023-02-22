@@ -33,12 +33,13 @@
 					<div class="box-body">
 						<label style="margin-top: 5px;">총 ${awardList.size() } 건</label>
 	                    <div class="btn-group pull-right">
-      						<button type="button" name="locale" id="ko" onclick="" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
-      						<button type="button" name="locale" id="en" onclick="" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
-      					</div>						
+                        	<button type="button" id="locale_ko" onclick="location.href='${pageContext.request.contextPath}/admin/setting/award?locale=ko'" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
+                        	<button type="button" id="locale_en" onclick="location.href='${pageContext.request.contextPath}/admin/setting/award?locale=en'" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
+                     	</div>					
 						<div class="box-tools pull-right" style="margin-bottom: 5px;"></div>
 						<form name="form_list" method="post" action="${pageContext.request.contextPath }/admin/award/award_process?${_csrf.parameterName}=${_csrf.token}">
 							<input type="hidden" name="mode" id="mode">
+							<input type="hidden" name="locale" id="locale" value="${locale}">
 							<table class="table table-bordered table-hover">
 								<thead>
 									<tr>
@@ -95,7 +96,7 @@
 				<form name="form_register" method="post" action="${pageContext.request.contextPath }/admin/award/award_process?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
 					<input type="hidden" name="mode" id="mode" value="insert"> 
 					<input type="hidden" name="awardNo" id="awardNo" value="0"> 
-					<input type="hidden" name="locale" id="locale" value="ko">
+					<input type="hidden" name="locale" id="locale" value="${locale}">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 						<h4 class="modal-title" id="myModalLabelPortfolio">수상 관리</h4>

@@ -86,6 +86,7 @@
 			
 			//FormData 새로운 객체 생성 
 			var formData = new FormData();
+			
 
 			//넘길 데이터
 			var data = {
@@ -101,7 +102,8 @@
 					"recruitManager": $("#recruitManager").val(),
 					"contentsStatus": contentsStatus,
 					"subTitle": subTitle,
-					"contents": contents
+					"contents": contents,
+					"locale": $("#locale").val()
 			}
 			
 			var fileinput = $("input[name='fileName']");
@@ -149,7 +151,7 @@
 	   	    		 			msg = "게시글 등록에 실패했습니다.";
 	   	    		 		}
 	   	    		 		alert(msg);
-	   	   			  		location.href = "/admin/recruitList";
+	   	   			  		location.href = "/admin/recruitList?locale="+ $("#locale").val();
 	   	  		  	 	 }
 	   		  		})
 	  		  	 	 }
@@ -196,6 +198,7 @@
 					<input type="hidden" name="mode" id="mode" value="insert">
 					<input type="hidden" name="secNo"
 						value="<sec:authentication property='principal.memberNo'/>">
+					<input type="hidden" name="locale" id="locale" value="${locale }">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
 							aria-hidden="true">×</button>

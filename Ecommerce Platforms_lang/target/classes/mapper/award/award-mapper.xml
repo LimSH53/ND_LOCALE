@@ -11,6 +11,7 @@
 		DATE_FORMAT(award_date, '%Y') AS year,
 		DATE_FORMAT(award_date, '%c') AS month
 		from award 
+		where locale like #{locale}
 	order by award_date DESC;
 	</select>
 
@@ -31,8 +32,8 @@
 	
 	<insert id="insertAward" parameterType="award" >
 		INSERT INTO award
-			(img_url, award_date, content, host)
-		VALUE(#{imgUrl},#{awardDate},#{content}, #{host} )
+			(img_url, award_date, content, host, locale)
+		VALUE(#{imgUrl},#{awardDate},#{content}, #{host}, #{locale})
 	</insert>
 	
 	<update id="updateAward">

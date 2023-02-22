@@ -53,13 +53,15 @@ public class HistoryController {
 	 */
 	@PostMapping("history_process")
 	public String history_process(HttpServletRequest request, History history, RedirectAttributes redirectAttr,
-								  @RequestParam(value="historyImage", required = false) MultipartFile historyImage) throws Exception {
+								  @RequestParam(value="historyImage", required = false) MultipartFile historyImage,
+								  @RequestParam(value = "locale", defaultValue = "ko") String locale) throws Exception {
 		
 		System.out.println(">>>>>history_process");
 		Map<String, Object> map = new HashMap<>();
 		map.put("history", history);
 		map.put("mode", request.getParameter("mode"));
 		map.put("request", request);
+		map.put("locale", locale);
 		/* map.put("historyImage", historyImage); */
 		System.out.println("map>>>" + map);
 		Map<String, Object> resultMap = historyService.historyProcess(map);

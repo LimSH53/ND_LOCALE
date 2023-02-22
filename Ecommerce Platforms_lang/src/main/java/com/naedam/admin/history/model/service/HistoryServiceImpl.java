@@ -54,6 +54,7 @@ public class HistoryServiceImpl implements HistoryService {
 			resultDate = formatter.parse(str.toString());
 			Date date = resultDate;
 			history.setHistoryDate(date);
+			history.setLocale((String)map.get("locale"));
 			if("insert".equals(map.get("mode"))) {
 				historyDao.insertHistory(history);
 				resultMap.put("msg", "연혁 정보가 등록되었습니다.");

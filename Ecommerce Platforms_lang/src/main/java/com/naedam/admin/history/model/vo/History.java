@@ -24,6 +24,7 @@ public class History extends Comm {
 	private String content;
 	private String imgUrl;
 	private int ROWNUM;
+	private String locale;
 
 
 }

@@ -14,9 +14,9 @@ public interface SettingService {
 	
 	public void partnerProcess(Map<String, Object> map) throws Exception;
 	
-	List<History> selectHistoryList(int limit, int offset);
+	List<History> selectHistoryList(int limit, int offset, String locale);
 	
-	List<Award> selectAwardList();
+	List<Award> selectAwardList(String locale);
 
 	List<AdminMenu> selectAdminMenuList();
 
@@ -36,6 +36,6 @@ public interface SettingService {
 
 	int updateAdminMenuAllN();
 
-	int selectAllHistoryList();
+	int selectAllHistoryList(String locale);
 	
 }
