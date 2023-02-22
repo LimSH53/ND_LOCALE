@@ -41,13 +41,9 @@ public class BoardServiceImpl implements BoardService {
 		//게시판 등록, 권한 등록, 옵션 등록
 		if("insert".equals(map.get("mode"))) {
 			boardDao.addBoard(board);
-			boardOption.setOptionBoard(board.getBoardNo());
-			boardDao.addOption(boardOption);
 		//게시판 수정, 권한 수정, 옵션 수정
 		}else if("update".equals(map.get("mode"))) {
 			boardDao.updateBoard(board);
-			boardOption.setOptionBoard(board.getBoardNo());
-			boardDao.updateOption(boardOption);
 		//게시판 삭제
 		}else if("delete".equals(map.get("mode"))) {
 			List<Integer> boardArr = (List<Integer>) map.get("boardArr");

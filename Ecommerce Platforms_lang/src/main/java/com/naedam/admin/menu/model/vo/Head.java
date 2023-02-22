@@ -25,6 +25,7 @@ public class Head implements Serializable {
 	private String headImage;
 	private String headUrl;
 	private int headAsc;
+	private String locale;
 	
 	
 }

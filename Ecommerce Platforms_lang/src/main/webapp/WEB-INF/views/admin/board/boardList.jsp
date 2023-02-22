@@ -79,39 +79,10 @@
 					} ,
 					success : function(JSONData, status){
 						var a = JSONData.boardNo * 1
-
 						$("#boardNo2").val(a);
 						$("#boardTitle2").val(JSONData.boardTitle);
-						$("#boardType2").val(JSONData.boardType);
-						$("#boardCategory2").val(JSONData.boardCategory);
-						$("#boardEmail2").val(JSONData.boardEmail);
-						if(JSONData.option.optionNotice == "y"){
-							$("#optionNotice2").prop("checked", true)
-						}
-						if(JSONData.option.optionComment == "y"){
-							$("#optionComment2").prop("checked", true)
-						}
-						if(JSONData.option.optionSecret == "y"){
-							$("#optionSecret2").prop("checked", true)
-						}
-						if(JSONData.option.optionAnswer == "y"){
-							$("#optionAnswer2").prop("checked", true)
-						}
-						if(JSONData.option.optionCaptcha == "y"){
-							$("#optionCaptcha2").prop("checked", true)
-						}
-						if(JSONData.option.optionMass == "y"){
-							$("#optionMass2").prop("checked", true)
-						}
-						if(JSONData.option.optionOrder == "y"){
-							$("#optionOrder2").prop("checked", true)
-						}
-						if(JSONData.option.optionAddinfo == "y"){
-							$("#optionAddinfo2").prop("checked", true)
-						}
-						if(JSONData.option.optionPopup == "y"){
-							$("#optionPopup2").prop("checked", true)
-						}
+						$("#boardSubTitle2").val(JSONData.boardSubTitle);
+						$("#boardContents2").val(JSONData.boardContents);
 					}
 				});			
 			}); 
@@ -120,14 +91,17 @@
 		
 		function fncUpdateBoard(){
 			
-			var boardNo2 = $("#boardNo2").val()
-			var boardTitle = $("input[id='boardTitle2']").val();
-			var boardCategory = $("input[id='boardCategory2']").val();
+			var boardTitle = $("[id=boardTitle2]").val();
+			var boardSubTitle = $("[id=boardSubTitle2]").val();
+			var boardContents = $("[id=boardContents2]").val();
 			if(boardTitle == null || boardTitle == ''){
 				alert("제목이 입력되지 않았습니다.");
 				return;
-			}else if(boardCategory == null || boardCategory == ''){
-				alert("카테고리가 입력되지 않았습니다.");
+			}else if(boardSubTitle == null || boardSubTitle == ''){
+				alert("부제목이 입력되지 않았습니다.");
+				return;
+			}else if(boardContents == null || boardContents == ''){
+				alert("내용이 입력되지 않았습니다.");
 				return;
 			}
 			
@@ -201,7 +175,6 @@
 				                        <td style="width:60px;">NO</td>
 				                        <td>제목</td>
 				                        <td style="width:250px;">연결주소</td>
-				                        <td style="width:100px;">type</td>
 				                        <td style="width:80px;">등록 글수</td>
 				                        <td style="width:220px;">명령</td>
 				                    </tr>
@@ -224,32 +197,6 @@
 										  <td>${i}</td>
 										  <td align="left">${board.boardTitle}</td>
 										  <td align="left">http://localhost:8080/admin/board/postList?boardNo=${board.boardNo}]</td>
-										  <td>
-											<c:if test="${board.boardType == 'list'}">
-										  		일반
-										  	</c:if>
-										  	<c:if test="${board.boardType == 'gallery'}">
-										  		갤러리
-										  	</c:if>
-										  	<c:if test="${board.boardType == 'qna'}">
-										  		FAQ
-										  	</c:if>
-										  	<c:if test="${board.boardType == 'webzine'}">
-										  		웹진
-										  	</c:if>
-										  	<c:if test="${board.boardType == 'movie'}">
-										  		동영상
-										  	</c:if>
-											<c:if test="${board.boardType == 'event'}">
-										  		이벤트
-										  	</c:if>
-										  	<c:if test="${board.boardType == 'manual'}">
-										  		메뉴얼
-										  	</c:if>
-										  	<c:if test="${board.boardType == 'brochure'}">
-										  		브로슈어
-										  	</c:if>	
-										  </td>
 										  <td>${postCount[i-1]}</td>
 										  <td>
 					                        <button type="button" onclick="onclickView(${board.boardNo});" class="btn btn-success btn-xs">바로가기</button>

@@ -6,14 +6,16 @@
 	//addBoard 실행 function
 	function fncAddBoard(){
 		var boardTitle = $("input[name='boardTitle']").val();
-		var boardType = $("select[name='boardType']").val();
-		var boardCategory = $("input[name='boardCategory']").val();
-		var	boardEmail = $("input[name='boardEmail']").val();
+		var boardSubTitle = $("input[name='boardSubTitle']").val();
+		var boardContents = $("[name=boardContents]").val();
 		if(boardTitle == null || boardTitle == ''){
 			alert("제목이 입력되지 않았습니다.");
 			return;
-		}else if(boardCategory == null || boardCategory == ''){
-			alert("카테고리가 입력되지 않았습니다.");
+		}else if(boardSubTitle == null || boardSubTitle == ''){
+			alert("부제목이 입력되지 않았습니다.");
+			return;
+		}else if(boardContents == null || boardContents == ''){
+			alert("내용이 입력되지 않았습니다.");
 			return;
 		}
 		alert("게시판이 등록 되었습니다.")
@@ -44,43 +46,16 @@
 		            <table class="table table-bordered">
 			            <tr>
 			                <td class="menu">제목</td>
-			                <td align="left" colspan="3"><input type="text" name="boardTitle" id="boardTitle" class="form-control input-sm"></td>
+			                <td align="left" colspan="3"><input type="text" name="boardTitle" id="boardTitle" class="form-control input-sm" placeholder="제목을 입력해주세요"></td>
 			            </tr>
 			            <tr>
-			                <td class="menu">종류 <span class="text-light-blue"><i class="fa fa-check"></i></span></td>
-			                <td colspan="3">
-			                	<select name="boardType" id="boardType" class="form-control input-sm" style="width:120px;">
-			      					<option value="list">일반</option>      
-			      					<option value="gallery">갤러리</option>      
-			      					<option value="qna">FAQ</option>      
-			      					<option value="webzine">웹진</option>      
-			      					<option value="movie">동영상</option>      
-			      					<option value="event">이벤트</option>      
-			      					<option value="manual">메뉴얼</option>      
-			      					<option value="brochure">브로슈어</option>                
-			      				</select>
-			                </td>
+			                <td class="menu">부제목</td>
+			                <td align="left" colspan="3"><input type="text" name="boardSubTitle" id="boardSubTitle" class="form-control input-sm" placeholder="부제목을 입력해주세요"></td>
 			            </tr>
 			            <tr>
-			                <td class="menu">카테고리</td>
-			                <td align="left" colspan="3"><input type="text" name="boardCategory" id="boardCategory" class="form-control input-sm" placeholder=",(콤마)로 구분해 주세요"></td>
-			            </tr>
-			            <tr>
-			                <td class="menu">수신 메일 주소</td>
-			                <td align="left" colspan="3"><input type="text" name="boardEmail" placeholder=", 구분" class="form-control input-sm"></td>
-			            </tr>
-			            <tr>
-			                <td class="menu">기타 옵션</td>
-			                <td align="left" colspan="3">
-				                <span class="option_tab"><input type="checkbox" name="optionNotice" value="y">공지기능</span>
-				                <span class="option_tab"><input type="checkbox" name="optionComment" value="y">댓글</span>
-				                <span class="option_tab"><input type="checkbox" name="optionSecret" value="y">비밀글</span>
-				                <span class="option_tab"><input type="checkbox" name="optionAnswer" value="y">답변기능</span>
-				                <span class="option_tab"><input type="checkbox" name="optionCaptcha" value="y">도용방지문자</span>
-				                <span class="option_tab"><input type="checkbox" name="optionMass" value="y">대용량 업로드</span>
-				                <span class="option_tab"><input type="checkbox" name="optionOrder" value="y">순서변경</span>
-				                <span class="option_tab" style="width:263px;"><input type="checkbox" name="optionAddinfo" value="y">추가정보(휴대전화,이메일)</span>
-				                <span class="option_tab"><input type="checkbox" name="optionPopup" value="y">상세보기(팝업)</span>
+			                <td class="menu">내용</td>
+			                <td colspan="2" style="text-align:left">
+			                	<textarea name="boardContents" id="boardContents" rows="10" cols="80" style="width:450px; writing-mode: horizontal-tb;"placeholder="내용을 입력해주세요"></textarea>
 			                </td>
 			            </tr>
 		            </table>

@@ -7,7 +7,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ko">
 <head>
-    <title>MIR9 SHOP</title>
+    <title>메뉴 관리</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="format-detection" content="telephone=no">
@@ -168,18 +168,14 @@
 									<td nowrap="">
 										<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/line.gif" border="0" align="absbottom">
 										<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/join.gif" border="0" align="absbottom">
-											<a href="javascript:parent.list.location.replace('${pageContext.request.contextPath}/admin/menu/menu2?code=${menu2.code}&originNo=${menu2.code}&ord=${menu2.ord}');" >
-												<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/page.gif" border="0" align="absbottom" name="i_img0_3" class="t0im">${menu2.title}
-											</a>
+										<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/page.gif" border="0" align="absbottom" name="i_img0_3" class="t0im">${menu2.title}
 									</td>
 								</c:if>
 								<c:if test="${status.last}">
 									<td nowrap="">
 										<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/empty.gif" border="0" align="absbottom">
 										<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/join.gif" border="0" align="absbottom">
-										<a href="javascript:parent.list.location.replace('${pageContext.request.contextPath}/admin/menu/menu2?code=${menu2.code}&originNo=${menu2.code}&ord=${menu2.ord}');" >
-											<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/page.gif" border="0" align="absbottom" name="i_img0_3" class="t0im">${menu2.title}
-										</a>
+										<img src="${pageContext.request.contextPath}/resources/admin/imgs/tree/page.gif" border="0" align="absbottom" name="i_img0_3" class="t0im">${menu2.title}
 									</td>
 								</c:if>							
 							</tr>

@@ -24,13 +24,14 @@
 	        <div class="col-xs-12">
 	            <div class="box">
 	                <div class="box-body">
-	                    <div class="btn-group pull-right">
-      						<button type="button" name="locale" id="ko" onclick="" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
-      						<button type="button" name="locale" id="en" onclick="" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
+	                    <div class="btn-group pull-right" style="margin-bottom:5px;">
+      						<button type="button" id="locale_ko" onclick="location.href='${pageContext.request.contextPath}/admin/menu/headList?locale=ko'" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
+      						<button type="button" id="locale_en" onclick="location.href='${pageContext.request.contextPath}/admin/menu/headList?locale=en'" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
       					</div>	                
 	                    <table class="table table-bordered table-hover">
 		                    <form name="form_list" method="post" action="?tpf=admin/menu/process"></form>
 				            <input type="hidden" name="mode" id="mode">
+				            <input type="hidden" name="locale" value="${locale}"/>
 		                    <thead>
 		                    	<tr>
 		                        	<td style="width:30px;">
@@ -58,6 +59,11 @@
                     			</tr>
                     		</thead>
       						<tbody>
+      							<c:if test="${empty list}">
+				                    <tr>
+				                   		<td colspan="10"><br>등록된 자료가 없습니다.<br><br></td>
+				                   	</tr>
+			                    </c:if>
       							<c:forEach var="head" items="${list}">
 				      				<tr>
 				                        <td>
@@ -104,7 +110,7 @@
 	            <form name="form_register" method="post" action="/admin/menu/headProcess?${_csrf.parameterName}=${_csrf.token}" enctype="multipart/form-data">
 		            <input type="hidden" name="mode" value="insert">
 		            <input type="hidden" name="part" value="head">
-		            <input type="hidden" name="locale" value="ko">
+		            <input type="hidden" name="locale" value="${locale}"/>
 		            <div class="modal-header">
 		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
 		                <h4 class="modal-title">헤더 등록</h4>

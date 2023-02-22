@@ -180,13 +180,14 @@
 	                <div class="box-body">
 	                    <label style="margin-top:5px;">총 ${pageCount} 건</label>
 	                    <div class="btn-group pull-right">
-      						<button type="button" id="locale_ko" onclick="location.href='${pageContext.request.contextPath}/admin/board/postList?locale=ko'" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
-      						<button type="button" id="locale_en" onclick="location.href='${pageContext.request.contextPath}/admin/board/postList?locale=en'" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
+      						<button type="button" id="locale_ko" onclick="location.href='${pageContext.request.contextPath}/admin/board/postList?locale=ko&boardNo=${boardNo}'" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
+      						<button type="button" id="locale_en" onclick="location.href='${pageContext.request.contextPath}/admin/board/postList?locale=en&boardNo=${boardNo}'" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
       					</div>	                    
 	                    <form name="searchForm" method="post" action="/admin/board/postList?${_csrf.parameterName}=${_csrf.token}" style="margin-top: 8px;">
 		                    <div class="box-tools pull-right" style="margin-bottom:5px;">
 		                    	<input type="hidden" name="boardNo" value="${boardNo}">
 		                    	<input type="hidden" name="cPage">
+		                    	<input type="hidden" name="locale" value="${locale}"/>
 		                        <div class="has-feedback">
 			                        <span>
 			                      	  <input type="text" name="searchKeyword" id="searchKeyword" class="form-control input-sm" placeholder="검색" value="${comm.searchKeyword}"/>
@@ -226,17 +227,11 @@
 				                        <td>제목</td>
 				                        <td style="width:100px;">작성자</td>
 				                        <td style="width:140px;">등록일</td>
-				                        <c:if test="${board2.option.optionOrder eq 'y'}">
-					                        <td style="width:60px;">
-					                            <i onclick="fncDown();" name="up" class="fa fa-fw fa-arrow-circle-down cp" style="cursor:pointer;"></i>
-					                            <i onclick="fncUp();" class="fa fa-fw fa-arrow-circle-up cp" style="cursor:pointer;"></i>
-					                        </td>
-				                        </c:if>
 				                        <td style="width:80px;">명령</td>
 				                    </tr>
 			                    </thead>
 			                    <tbody>
-				                    <c:if test="${empty list}">
+			                    	<c:if test="${empty list}">
 					                    <tr>
 					                   		<td colspan="10"><br>등록된 자료가 없습니다.<br><br></td>
 					                   	</tr>
@@ -257,22 +252,13 @@
 					                   			<td>
 					                   				<fmt:formatNumber type="number" maxFractionDigits="0" value="${post.rownum}" />
 					                   			</td>
-					                   			<td align="left">
-					                   				<c:if test="${nowDate eq post.postDate}">
-					                   					<img src="${pageContext.request.contextPath}/resources/admin/imgs/imageBoard/new.png" width="15">
-					                   				</c:if>                             				     				
+					                   			<td align="left">                           				     				
 					                   				${post.postTitle}
 					                   			</td>
 					                   			<td>${post.postMemberName}</td>
 					                   			<td>
 						                        	${post.postDate}
 						                        </td>
-					                   			<c:if test="${board2.option.optionOrder eq 'y'}">
-						                   			<td>
-						                   				<input type="radio" name="order_code" value="${post.postAsc}" chack="">
-						                   				<input type="hidden" name="originNo" value="${post.postOriginNo}">
-						                   			</td>
-					                   			</c:if>
 					                   			<td>
 						                   			<button type="button" name="getPostBotton" data-toggle="modal" data-target="#modalContent4" class="btn btn-primary btn-xs" value="${post.postNo}">상세보기
 						                   			<input type="hidden" class="post_member_no" value="${post.postMember.memberNo}"></button>
@@ -303,7 +289,6 @@
 	
 <jsp:include page="/WEB-INF/views/admin/board/addPost.jsp"/>
 <jsp:include page="/WEB-INF/views/admin/board/getPost.jsp"/>
-<jsp:include page="/WEB-INF/views/admin/board/addComment.jsp"/>
 <jsp:include page="/WEB-INF/views/admin/board/boardCopy.jsp"/>
 <jsp:include page="/WEB-INF/views/admin/board/boardChange.jsp"/>
 </div><!-- /.content-wrapper -->

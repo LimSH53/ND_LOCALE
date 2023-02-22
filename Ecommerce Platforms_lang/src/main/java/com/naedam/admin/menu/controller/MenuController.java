@@ -84,9 +84,13 @@ public class MenuController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="menu")
-	public String listMenu(Menu menu, Model model) throws Exception{
+	public String listMenu(Menu menu, Model model,
+			 			   @RequestParam(value="revision_code", defaultValue = "0") int revision_code,
+			 			   @RequestParam(value="ord", defaultValue = "0") int ord,
+			 			   @RequestParam(value = "locale", defaultValue = "ko") String locale) throws Exception{
 		System.out.println("menu 시작");
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("locale", locale);
 		Map<String, Object> resultMap = menuService.getMenuList(map);
 		model.addAttribute("list", resultMap.get("list"));
 		model.addAttribute("list2", resultMap.get("list2"));
@@ -160,11 +164,14 @@ public class MenuController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="headList")
-	public String headList(Head head, Model model) throws Exception{
+	public String headList(Head head, Model model,
+						   @RequestParam(value = "locale", defaultValue = "ko") String locale) throws Exception{
 		System.out.println("head/headList 시작");
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("locale", locale);
 		Map<String, Object> resultMap = menuService.getHeadList(map);
 		model.addAttribute("list", resultMap.get("list"));
+		model.addAttribute("locale", locale);
 		return "admin/menu/head";
 	}	
 	

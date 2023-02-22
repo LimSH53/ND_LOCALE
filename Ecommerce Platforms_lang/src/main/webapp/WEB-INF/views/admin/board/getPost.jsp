@@ -93,27 +93,15 @@
 	}
 	
 	function fncUpdatePost(){
-		if("${board2.option.optionMass}" != "y"){
-			var postFile = $("input[id='getPostFile']").length;
-			var postName = new Array(postFile);
-			
-			for(var i = 0; i < postFile; i++){
-				postName[i] = $("input[id='getPostFile']")[i].value;
-				alert(postName[i])
-			}
-			alert("수정 되었습니다.");
-			$("form[name='getPostForm']").attr("method", "POST").attr("action", "/admin/board/postProcess?${_csrf.parameterName}=${_csrf.token}").submit();
-		}else if("${board2.option.optionMass}" == "y"){
-			var postFile = $("input[id='getPostFile']").length;
-			var postName = new Array(postFile);
-			
-			for(var i = 0; i < postFile; i++){
-				postName[i] = $("input[id='getPostFile']")[i].value;
-				alert(postName[i])
-			}
-			alert("수정 되었습니다.");
-			$("form[name='getPostForm']").attr("method", "POST").attr("action", "/admin/board/postProcess?${_csrf.parameterName}=${_csrf.token}").submit();
+		var postFile = $("input[id='getPostFile']").length;
+		var postName = new Array(postFile);
+		
+		for(var i = 0; i < postFile; i++){
+			postName[i] = $("input[id='getPostFile']")[i].value;
+			alert(postName[i])
 		}
+		alert("수정 되었습니다.");
+		$("form[name='getPostForm']").attr("method", "POST").attr("action", "/admin/board/postProcess?${_csrf.parameterName}=${_csrf.token}").submit();
 	}
 	
 	function fucAddFile2(){
@@ -290,26 +278,10 @@
 				            <tr>
 				                <td class="menu">작성자</td>
 				                <td align="left"><input type="text" name="name" id="postGetName" class="form-control input-sm"></td>
-				            </tr>
-				            <c:if test="${board2.option.optionAddinfo eq 'y'}">
-					            <tr>
-					                <td class="menu">휴대전화</td>
-					                <td align="left"><input type="text" name="phone" id="postGetPhone" class="form-control input-sm" style="width:50%;"></td>
-					            </tr>
-					            <tr>
-					                <td class="menu">이메일</td>
-					                <td align="left"><input type="text" name="email" id="postGetEmail" class="form-control input-sm" style="width:50%;"></td>
-					            </tr>
-				            </c:if>
 				            <tr>
 				                <td class="menu">제목</td>
 				                <td align="left">
 					                <span style="float:left;width:80%;"><input type="text" name="postTitle" id="getPostTitle" class="form-control input-sm"></span>
-					                <c:if test="${board2.option.optionNotice eq 'y'}">
-						                <span>&nbsp;&nbsp;
-						                	<input type="checkbox" id="getPostNotice" name="postNotice" value="1" >공지사항
-						                </span>
-						            </c:if>
 				                </td>
 				            </tr>
 							<tr>
@@ -322,67 +294,24 @@
 									 );
 									</script>	                 	
 				                </td>
-				            </tr>
-				            <c:if test="${board2.option.optionSecret eq 'y'}">
-					            <tr>
-						            <td class="menu">비밀글</td>
-						            <td align="left">
-						                <span>&nbsp;&nbsp;
-						                <input type="checkbox" name="is_secret" value="y"></span>
-						            </td>
-					            </tr>
-				            </c:if>            
+				            </tr>           
 				            <tr>
 				                <td class="menu">파일</td>
 				                <td align="left">
-					                <c:if test="${board2.option.optionMass eq null}">
-						                <p><span id="file_list"></span></p>
-						                <p style="padding-top:10px; float:left; width:100%;">
-						                    <button type="button" class="btn btn-primary btn-xs" onclick="fucAddFile();"><span class="glyphicon glyphicon-plus"></span> 파일추가</button><br>
-						                </p>
-					                    <div id="list_file" name="listFile">
-					                    	
-					                    </div>
-					                </c:if>
-					                <c:if test="${board2.option.optionMass eq 'y'}">
-						                <p id="diplay-plupload" style="heigth:150px; overflow-y:scroll;" >
-						                    <span id="file_list">
-						                    	<input type="hidden" name="postName" id="postName" class="form-control input-sm" style="width:100%; display:inline; margin-bottom:10px;" >
-						                    </span>            
-						                </p>  
-										<div id="uploader2"></div>                              
-					                </c:if> 
+					                <p><span id="file_list"></span></p>
+					                <p style="padding-top:10px; float:left; width:100%;">
+					                    <button type="button" class="btn btn-primary btn-xs" onclick="fucAddFile();"><span class="glyphicon glyphicon-plus"></span> 파일추가</button><br>
+					                </p>
+				                    <div id="list_file" name="listFile">
+				                    	
+				                    </div>
 				                </td>
 				            </tr>
             			</tbody>
             		</table>
-            		<c:if test="${board2.option.optionComment eq 'y'}">
-						<div id="displayMemo" style="">
-			            	<h4>
-	            				<p class="text-light-blue"><i class="fa fa-fw fa-info-circle"></i> 댓글 관리
-	            					<button type="button" onclick="fncAddComment()" name="comment" class="btn btn-info" data-toggle="modal" data-target="#modalContent5">댓글 작성</button>
-	            				</p>
-	            			</h4>
-			            	<span id="memo_list">
-			            		<table class="table table-bordered">
-			            			<tbody id="commentList">
-				            			<tr>  
-				            				<td class="menu" style="width:80px;">글쓴이</td>  
-				            				<td class="menu">내용</td>  
-				            				<td class="menu" style="width:60px;">등록일</td>  
-				            				<td class="menu" style="width:50px;">명령</td>
-				            			</tr>
-			            			</tbody>
-			            		</table>
-			            	</span>
-	            		</div>
-            		</c:if>
             	</div><!-- /.modal-body -->
 	            <div class="modal-footer">
 		            <button type="button" onclick="fncUpdatePost()" name="updatePost" class="btn btn-primary">확인</button>&nbsp;&nbsp;&nbsp;
-		            <c:if test="${board2.option.optionAnswer eq 'y'}">
-		            	<button type="button" onclick="funReply()" name="display_reply" style="" class="btn btn-danger">답변 페이지로 전환</button>
-		            </c:if>
 	            </div>
             	<input type="hidden" value="${boardNo}" name="boardNo">
         	</form>

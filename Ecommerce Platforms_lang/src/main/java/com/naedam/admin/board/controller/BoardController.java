@@ -99,7 +99,7 @@ public class BoardController {
 		postMap.put("filePath", filePath);
 		postMap.put("secNo", secNo);
 		boardService.postProcess(postMap);
-		return "redirect:/admin/board/postList?boardNo="+board.getBoardNo();
+		return "redirect:/admin/board/postList?boardNo="+board.getBoardNo()+"&locale="+post.getLocale();
 	}
 	
 	/***

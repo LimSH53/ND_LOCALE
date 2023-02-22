@@ -7,25 +7,10 @@
 	<resultMap id="BoardSelectMap" type="board">
 		<result property="boardNo"					column="BOARD_NO"			jdbcType="NUMERIC"></result>
 		<result property="boardTitle"				column="BOARD_TITLE"		jdbcType="VARCHAR"></result>
-		<result property="boardType"				column="BOARD_TYPE"			jdbcType="VARCHAR"></result>
-		<result property="boardCategory"			column="BOARD_CATEGORY"		jdbcType="VARCHAR"></result>
-		<result property="boardEmail"				column="BOARD_EMAIL"		jdbcType="VARCHAR"></result>
-		<result property="locale"					column="LOCALE"		jdbcType="VARCHAR"></result>
+		<result property="boardSubTitle"			column="BOARD_SUBTITLE"		jdbcType="VARCHAR"></result>
+		<result property="boardContents"			column="BOARD_CONTENTS"		jdbcType="VARCHAR"></result>
+		<result property="locale"					column="LOCALE"				jdbcType="VARCHAR"></result>
 		<result property="boardMemberNo.memberNo"	column="MEMBER_NO"			jdbcType="NUMERIC"></result>
-		
-		<association property="option" javaType="BoardOption" >
-			<result property="optionNo"				column="OPTION_NO"				jdbcType="NUMERIC"></result>
-			<result property="optionNotice"			column="OPTION_NOTICE"			jdbcType="VARCHAR"></result>
-			<result property="optionComment"		column="OPTION_COMMENT"			jdbcType="VARCHAR"></result>
-			<result property="optionSecret"			column="OPTION_SECRET"			jdbcType="VARCHAR"></result>
-			<result property="optionAnswer"			column="OPTION_ANSWER"			jdbcType="VARCHAR"></result>
-			<result property="optionCaptcha"		column="OPTION_CAPTCHA"			jdbcType="VARCHAR"></result>
-			<result property="optionMass"			column="OPTION_MASS"			jdbcType="VARCHAR"></result>
-			<result property="optionOrder"			column="OPTION_ORDER"			jdbcType="VARCHAR"></result>
-			<result property="optionAddinfo"		column="OPTION_ADDINFO"			jdbcType="VARCHAR"></result>
-			<result property="optionPopup"			column="OPTION_POPUP"			jdbcType="VARCHAR"></result>
-			<result property="optionBoard"			column="BOARD_NO"				jdbcType="NUMERIC"></result>
-		</association>
 		
 		<association property="boardMemberNo" javaType="member" >
 			<result property="memberNo"				column="MEMBER_NO"				jdbcType="NUMERIC"></result>
@@ -48,33 +33,12 @@
 		<association property="postBoard" javaType="Board" >
 			<result property="boardNo"					column="BOARD_NO"			jdbcType="NUMERIC"></result>
 			<result property="boardTitle"				column="BOARD_TITLE"		jdbcType="VARCHAR"></result>
-			<result property="boardType"				column="BOARD_TYPE"			jdbcType="VARCHAR"></result>
-			<result property="boardCategory"			column="BOARD_CATEGORY"		jdbcType="VARCHAR"></result>
-			<result property="boardEmail"				column="BOARD_EMAIL"		jdbcType="VARCHAR"></result>
+			<result property="boardSubTitle"			column="BOARD_SUBTITLE"		jdbcType="VARCHAR"></result>
+			<result property="boardContents"			column="BOARD_CONTENTS"		jdbcType="VARCHAR"></result>
 			<result property="boardMemberNo.memberNo"	column="MEMBER_NO"			jdbcType="NUMERIC"></result>		
 		</association>
 		
-	</resultMap>	
-	
-	<resultMap id="optionSelectMap" type="boardOption">
-		<result property="optionNo"					column="OPTION_NO"				jdbcType="NUMERIC"></result>
-		<result property="optionNotice"				column="OPTION_NOTICE"			jdbcType="VARCHAR"></result>
-		<result property="optionComment"			column="OPTION_COMMENT"			jdbcType="VARCHAR"></result>
-		<result property="optionSecret"				column="OPTION_SECRET"			jdbcType="VARCHAR"></result>
-		<result property="optionAnswer"				column="OPTION_ANSWER"			jdbcType="VARCHAR"></result>
-		<result property="optionCaptcha"			column="OPTION_CAPTCHA"			jdbcType="VARCHAR"></result>
-		<result property="optionMass"				column="OPTION_MASS"			jdbcType="VARCHAR"></result>
-		<result property="optionOrder"				column="OPTION_ORDER"			jdbcType="VARCHAR"></result>
-		<result property="optionAddinfo"			column="OPTION_ADDINFO"			jdbcType="VARCHAR"></result>
-		<result property="optionPopup"				column="OPTION_POPUP"			jdbcType="VARCHAR"></result>
-		<result property="optionBoard"				column="BOARD_NO"				jdbcType="NUMERIC"></result>
-	</resultMap>	
-	
-	<resultMap id="translateSelectMap" type="boardTranslate">
-		<result property="translateNo"				column="TRANSLATE_NO"			jdbcType="NUMERIC"></result>
-		<result property="translateCategory"		column="TRANSLATE_CATEGORY"		jdbcType="VARCHAR"></result>
-		<result property="boardNo.boardNo"			column="BOARD_NO"				jdbcType="NUMERIC"></result>
-	</resultMap>
+	</resultMap>		
 	
 	<resultMap id="fileSelectMap" type="boardFile">
 		<result property="fileNo"					column="FILE_NO"				jdbcType="NUMERIC"></result>
@@ -98,14 +62,12 @@
 	<insert id="addBoard" parameterType="board">	
 		INSERT
 		INTO board(BOARD_TITLE, 
-				   BOARD_TYPE, 
-				   BOARD_CATEGORY, 
-				   BOARD_EMAIL,
+				   BOARD_SUBTITLE, 
+				   BOARD_CONTENTS,
 				   MEMBER_NO)
 		VALUES(#{boardTitle : VARCHAR},
-			   #{boardType : VARCHAR},
-			   #{boardCategory : VARCHAR},
-			   #{boardEmail : VARCHAR},
+			   #{boardSubTitle : VARCHAR},
+			   #{boardContents : VARCHAR},
 			   #{boardMemberNo.memberNo})		
 		<selectKey keyProperty="boardNo" resultType="int" order="AFTER">
 			SELECT MAX(board_no) from board
@@ -121,7 +83,8 @@
 				  POST_DATE,
 				  POST_ORIGIN_NO,
 				  MEMBER_NO,
-				  MEMBER_NAME)
+				  MEMBER_NAME,
+				  LOCALE)
 		VALUES(0,
 			   #{postBoard.boardNo},
 			   #{postTitle : VARCHAR},
@@ -134,57 +97,13 @@
 			   </if>
 			   0,
 			   #{postMember.memberNo},
-			   #{postMemberName : VARCHAR})		
+			   #{postMemberName : VARCHAR},
+			   #{locale : VARCHAR})		
 			   
 		<selectKey keyProperty="postNo" resultType="int" order="AFTER">
 			SELECT MAX(post_no) from post
 		</selectKey>
-	</insert>
-	
-	<insert id="addAnswerPost" parameterType="post">
-		INSERT
-		INTO post(POST_ASC,		
-				  BOARD_NO,
-				  POST_TITLE,
-				  POST_CONTENTS,
-				  POST_DATE,
-				  POST_ORIGIN_NO,
-				  MEMBER_NO,
-				  MEMBER_NAME)
-		VALUES(#{postAsc : NUMERIC},
-			   #{postBoard.boardNo},
-			   #{postTitle : VARCHAR},
-			   #{postContents : VARCHAR},
-			   now(),
-			   #{postOriginNo : NUMERIC},
-			   #{postMember.memberNo},
-			   #{postMemberName : VARCHAR})		
 	</insert>	
-	
-	<insert id="addOption"	parameterType="boardOption">	
-		INSERT
-		INTO board_option(
-				   OPTION_NOTICE,
-				   OPTION_COMMENT,
-				   OPTION_SECRET,
-				   OPTION_ANSWER,
-				   OPTION_CAPTCHA,
-				   OPTION_MASS,
-				   OPTION_ORDER,
-				   OPTION_ADDINFO,
-				   OPTION_POPUP,
-				   BOARD_NO) 
-		VALUES(#{optionNotice : VARCHAR},
-			   #{optionComment : VARCHAR},
-			   #{optionSecret : VARCHAR},
-			   #{optionAnswer : VARCHAR},
-			   #{optionCaptcha : VARCHAR},
-			   #{optionMass : VARCHAR},
-			   #{optionOrder : VARCHAR},
-			   #{optionAddinfo : VARCHAR},
-			   #{optionPopup : VARCHAR},
-			   #{optionBoard : NUMERIC})	
-	</insert>			
 	
 	<insert id="addFile" parameterType="boardFile">
 		INSERT
@@ -198,9 +117,8 @@
 		 SELECT
 				board_no,
 				board_title,
-				board_type,
-				board_category,
-				board_email,
+				board_subtitle,
+				board_contents,
 				(SELECT COUNT(*)
 				 FROM post p
 				 WHERE p.board_no = board_no) count
@@ -214,9 +132,8 @@
 	  	FROM(	SELECT
 						board_no,
 						board_title,
-						board_type,
-						board_category,
-						board_email,
+						board_subtitle,
+						board_contents,
 						(SELECT COUNT(*)
 						 FROM post p
 						 WHERE p.board_no = board_no) count
@@ -241,6 +158,7 @@
 								WHERE	b.board_no = p.board_no
 								AND		m.member_no = p.member_no
 								AND		b.board_no = #{boardNo}
+								AND		p.locale = #{locale}
 								<if test="comm.searchType != null">
 									<if test="comm.searchType == 1 and comm.searchKeyword !='' ">
 									AND		p.post_title like concat ('%',#{comm.searchKeyword},'%')
@@ -321,9 +239,8 @@
 		tb1.board_no,
 		tb1.member_no,
 		tb1.board_title,
-		tb1.board_type,
-		tb1.board_category,
-		tb1.board_email,
+		tb1.board_subtitle,
+		tb1.board_contents,
 		tb2.OPTION_NO,
 		tb2.OPTION_NOTICE,
 		tb2.OPTION_COMMENT,
@@ -358,6 +275,7 @@
 				WHERE	b.board_no = p.board_no
 				AND		m.member_no = p.member_no
 				AND		b.board_no = #{boardNo}
+				AND		p.locale = #{locale}
 				<if test="comm.searchType != null">
 					<if test="comm.searchType == 1 and comm.searchKeyword !='' ">
 					AND		p.post_title like concat ('%',#{comm.searchKeyword},'%')
@@ -487,9 +405,8 @@
 		UPDATE board
 		<set>
 			board_title = #{boardTitle},
-			board_type = #{boardType},
-			board_category = #{boardCategory},
-			board_email = #{boardEmail} 
+			board_subtitle = #{boardSubTitle},
+			board_contents = #{boardContents}
 		</set>
 		WHERE board_no = #{boardNo : NUMERIC}
 	</update>
@@ -513,30 +430,6 @@
 		WHERE post_no = #{postNo}
 	</update>	
 	
-	<update id="updatePostReply" parameterType="post">
-		UPDATE post
-		<set>
-			post_asc = #{postAsc}+1
-		</set>
-		WHERE post_no = #{postOriginNo}
-	</update>
-	
-	<update id="updateOption" parameterType="boardOption">
-		UPDATE board_option
-		<set>
-			option_notice = #{optionNotice},
-			option_comment = #{optionComment},
-			option_secret = #{optionSecret},
-			option_answer = #{optionAnswer},
-			option_captcha = #{optionCaptcha},
-			option_mass = #{optionMass},
-			option_order = #{optionOrder},
-			option_addinfo = #{optionAddinfo},
-			option_popup = #{optionPopup}			
-		</set>
-		WHERE board_no = #{optionBoard : NUMERIC}			
-	</update>
-	
 	<update id="updateUpAsc" parameterType="map">
 		UPDATE post
 		<set>
@@ -558,14 +451,6 @@
 		<set>
 			POST_VIEWCOUNT = #{postViewCount}
 		</set>	
-		WHERE post_no = #{postNo}
-	</update>
-	
-	<update id="updateThombnail" parameterType="post">
-		UPDATE post
-		<set>
-			post_thombnail = #{postThombnail}
-		</set>
 		WHERE post_no = #{postNo}
 	</update>
 	
