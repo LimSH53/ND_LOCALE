@@ -854,15 +854,15 @@ h4 {
   stroke-dashoffset: 2200;
 }
 .core-wrap .cloud #cloudPath2 {
-  stroke-dasharray: 1400;
-  stroke-dashoffset: 1200;
+  stroke-dasharray: 2400;
+  stroke-dashoffset: 1600;
 }
 .core-wrap .cloud #cloudPath3 {
   stroke-dasharray: 2200;
   stroke-dashoffset: 1800;
 }
 .core-wrap .cloud #cloudPath4 {
-  stroke-dasharray: 1500;
+  stroke-dasharray: 2600;
   stroke-dashoffset: 1300;
 }
 .core-wrap .cloud #cloudPath5 {
@@ -874,12 +874,12 @@ h4 {
   stroke-dashoffset: 1200;
 }
 .core-wrap .cloud #cloudPath7 {
-  stroke-dasharray: 1100;
-  stroke-dashoffset: 1100;
+  stroke-dasharray: 2000;
+  stroke-dashoffset: 1600;
 }
 .core-wrap .cloud #cloudPath8 {
-  stroke-dasharray: 1600;
-  stroke-dashoffset: 1400;
+  stroke-dasharray: 2400;
+  stroke-dashoffset: 2000;
 }
 .core-wrap .cloud #cloudPath9 {
   stroke-dasharray: 2400;

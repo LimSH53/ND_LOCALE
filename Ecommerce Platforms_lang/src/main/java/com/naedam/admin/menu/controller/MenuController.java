@@ -89,12 +89,14 @@ public class MenuController {
 			 			   @RequestParam(value="ord", defaultValue = "0") int ord,
 			 			   @RequestParam(value = "locale", defaultValue = "ko") String locale) throws Exception{
 		System.out.println("menu 시작");
+		System.out.println("locale 확인 === "+locale);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("locale", locale);
 		Map<String, Object> resultMap = menuService.getMenuList(map);
 		model.addAttribute("list", resultMap.get("list"));
 		model.addAttribute("list2", resultMap.get("list2"));
 		model.addAttribute("board", resultMap.get("board"));
+		model.addAttribute("locale", locale);
 		return "admin/menu/menu";
 	}
 	
@@ -107,16 +109,20 @@ public class MenuController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="menu2")
-	public String listMenu2(@ModelAttribute("menu") Menu menu, Model model) throws Exception{
+	public String listMenu2(@ModelAttribute("menu") Menu menu, Model model,
+							@RequestParam(value="ord", defaultValue = "0") int ord,
+						    @RequestParam(value = "locale", defaultValue = "ko") String locale) throws Exception{
 		System.out.println("menu2 시작");
+		System.out.println("locale 확인 === "+locale);
 		menu.setOrd(menu.getOrd()+1);
-		System.out.println("menu 체크 === "+menu);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("menu", menu);
+		map.put("locale", locale);
 		Map<String, Object> resultMap = menuService.getMenuList2(map);
 		model.addAttribute("menu", menu);
 		model.addAttribute("list", resultMap.get("list"));
-		model.addAttribute("list2", resultMap.get("list2"));			
+		model.addAttribute("list2", resultMap.get("list2"));
+		model.addAttribute("locale", locale);
 		return "admin/menu/menuList";
 	}	
 	
@@ -129,12 +135,17 @@ public class MenuController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="menuList")
-	public String menuList(Menu menu, Model model, HttpServletRequest request) throws Exception{
+	public String menuList(Menu menu, Model model, HttpServletRequest request,
+						  @RequestParam(value="ord", defaultValue = "0") int ord,
+						  @RequestParam(value = "locale", defaultValue = "ko") String locale) throws Exception{
 		System.out.println("menuList 시작");
+		System.out.println("locale 확인 === "+locale);
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("locale", locale);
 		Map<String, Object> resultMap = menuService.getMenuList(map);
 		model.addAttribute("list", resultMap.get("list"));
 		model.addAttribute("list2", resultMap.get("list2"));
+		model.addAttribute("locale", locale);
 		return "admin/menu/menuList";
 	}
 	
@@ -146,13 +157,16 @@ public class MenuController {
 	 * @throws Exception
 	 */
 	@GetMapping("tree")
-	public String tree(Model model, MenuCategory menuCategory) throws Exception{
+	public String tree(Model model, MenuCategory menuCategory,
+					   @RequestParam(value = "locale", defaultValue = "ko") String locale) throws Exception{
 		System.out.println("menuCategory/tree 시작");
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("locale", locale);
 		Map<String, Object> resultMap = menuService.getMenuCategoryList(map);
 		model.addAttribute("list", resultMap.get("list"));
 		model.addAttribute("list2", resultMap.get("list2"));
 		model.addAttribute("list3", resultMap.get("list3"));
+		model.addAttribute("locale", locale);
 		return "admin/menu/tree";
 	}
 	
