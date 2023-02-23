@@ -70,7 +70,7 @@
 		
 		window.onload=function(){
 			$.ajax({
-				url : "/admin/board/json/listBoard",
+				url : "/admin/board/json/listBoard?locale=${locale}",
 				method : "GET" ,
 				dataType : "json" ,
 				headers : {
@@ -92,7 +92,7 @@
 				}
 			});		
 			$.ajax({
-				url : "/admin/business/json/getBusinessList",
+				url : "/admin/business/json/getBusinessList?locale=${locale}",
 				method : "GET" ,
 				dataType : "json" ,
 				headers : {
@@ -134,7 +134,6 @@
 
 <body class="hold-transition skin-red sidebar-mini">
 	<iframe name="iframe_process" width="0" height="0" frameborder="0" style="display: none;"></iframe>
-
 	<div class="wrapper">
 		<!-- header -->
 		<header class="main-header">

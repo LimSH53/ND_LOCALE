@@ -14,6 +14,7 @@
 		<result property="inDtm"							column="IN_DTM"						jdbcType="VARCHAR"></result>
 		<result property="businessPostIcon"					column="BUSINESS_POST_ICON"			jdbcType="VARCHAR"></result>
 		<result property="businessPostImg"					column="BUSINESS_POST_IMG"			jdbcType="VARCHAR"></result>
+		<result property="locale"							column="LOCALE"						jdbcType="VARCHAR"></result>
 			
 		<association property="business" javaType="business" >
 			<result property="businessNo"			column="BUSINESS_NO"				jdbcType="NUMERIC"></result>
@@ -31,6 +32,7 @@
 		<result property="businessContentsContent"	column="BUSINESS_CONTENTS_CONTENT"	jdbcType="VARCHAR"></result>
 		<result property="image"					column="IMAGE"						jdbcType="VARCHAR"></result>
 		<result property="inDtm"					column="IN_DTM"						jdbcType="VARCHAR"></result>
+		<result property="locale"							column="LOCALE"						jdbcType="VARCHAR"></result>
 			
 		<association property="businessPost" javaType="businessPost" >
 			<result property="businessPostNo"					column="BUSINESS_POST_NO"			jdbcType="NUMERIC"></result>
@@ -41,6 +43,7 @@
 			<result property="businessPostText2"				column="BUSINESS_POST_TEXT_2"		jdbcType="VARCHAR"></result>
 			<result property="inDtm"							column="IN_DTM"						jdbcType="VARCHAR"></result>
 			<result property="businessPostIcon"					column="BUSINESS_POST_ICON"			jdbcType="VARCHAR"></result>
+			<result property="locale"							column="LOCALE"						jdbcType="VARCHAR"></result>
 		</association>	
 	</resultMap>
 
@@ -48,12 +51,14 @@
 		INSERT INTO business
 		(
 		BUSINESS_TITLE, 
-		IN_DTM
+		IN_DTM,
+		LOCALE
 		)
 		VALUES
 		(
 		#{businessTitle : VARCHAR}, 
-		SYSDATE()
+		SYSDATE(),
+		#{locale : VARCHAR}
 		)		
 		<selectKey keyProperty="businessNo" resultType="int" order="AFTER">
 			SELECT MAX(business_no) from business
@@ -72,7 +77,8 @@
 		 IN_DTM,
 		 BUSINESS_POST_ICON,
 		 BUSINESS_POST_IMG,
-		 MEMBER_NO)
+		 MEMBER_NO,
+		 LOCALE)
 		VALUES
 		(#{business.businessNo},
 	     #{businessPostTitle},
@@ -88,8 +94,8 @@
 	  	 </if>
 	  	 #{businessPostIcon},
 	  	 #{businessPostImg},
-	  	 #{businessMember.memberNo}
-		 )
+	  	 #{businessMember.memberNo},
+		 #{locale})
 		 <selectKey keyProperty="businessPostNo" resultType="int" order="AFTER">
 			SELECT MAX(business_post_no) from business_post
 		</selectKey>
@@ -102,7 +108,8 @@
 		BUSINESS_CONTENTS_TITLE, 
 		BUSINESS_CONTENTS_CONTENT, 
 		IMAGE, 
-		IN_DTM
+		IN_DTM,
+		LOCALE
 		)
 		VALUES
 		(
@@ -110,7 +117,8 @@
 		#{businessContentsTitle}, 
 		#{businessContentsContent}, 
 		#{image}, 
-		sysdate()
+		sysdate(),
+		locale
 		)	
 	</insert>
 	
@@ -132,6 +140,7 @@
 	
 	<select id="getBusinessList" resultType="business" parameterType="map">
 		SELECT * FROM business
+		WHERE locale = #{locale}
 	</select>
 	
 	<select id="getBusinessPostList" resultMap="BusinessPostMap" parameterType="map">
@@ -143,6 +152,7 @@
 		LEFT OUTER JOIN member tb3
 		ON tb1.member_no = tb3.member_no
 		WHERE tb1.business_no = #{businessNo}
+		AND   tb1.locale = #{locale}
 		ORDER BY tb1.business_post_no ASC
 	</select>
 	
@@ -163,7 +173,8 @@
 		FROM business_contents tb1
 		LEFT OUTER JOIN business_post tb2
 		ON tb1.BUSINESS_POST_NO = tb2.BUSINESS_POST_NO
-		WHERE tb1.BUSINESS_POST_NO = #{businessPostNo}	
+		WHERE tb1.BUSINESS_POST_NO = #{businessPostNo}
+		AND   tb1.locale = #{locale}
 	</select>
 	
 	<select id="getBusinessContents" resultType="businessContents" parameterType="int">

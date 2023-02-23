@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.naedam.admin.board.model.service.BoardService;
 import com.naedam.admin.business.model.service.BusinessService;
@@ -63,12 +64,14 @@ public class HomeController {
 	// locale, model
 	// 로그인 시 시작되는 메서드
 	@RequestMapping(value = "/admin/dashBoard", method = RequestMethod.GET)
-	public String goDashBoard(Locale locale, Model model) throws Exception {
-		log.debug("HomeController ---- forward ----> dashBoard");
+	public String goDashBoard(Locale locale, Model model,
+							 @RequestParam(value = "locale", defaultValue = "ko") String locales) throws Exception {
+		log.debug("HomeController/admin/dashBoard ---- forward ----> dashBoard");
 		
 		//board List 가져오기
 		List<String> boardList = boardService.getBoardList();
 		model.addAttribute(boardList);
+		model.addAttribute("locale",locales);
 		return "admin/dashBoard";
 	}
 	

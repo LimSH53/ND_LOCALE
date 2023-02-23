@@ -70,8 +70,9 @@ public class BusinessRestController {
 	}
 	
 	@GetMapping("json/getBusinessList")
-	public List<Business> getBusinessList() throws Exception{
+	public List<Business> getBusinessList(@RequestParam(value = "locale", defaultValue = "ko") String locale) throws Exception{
 		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("locale", locale);
 		Map<String, Object> resultMap = businessService.getBusinessList(map);
 		List<Business> businessList = (List<Business>) resultMap.get("list");
 		return businessList;

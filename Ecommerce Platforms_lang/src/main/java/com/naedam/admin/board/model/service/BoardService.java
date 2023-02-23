@@ -38,7 +38,7 @@ public interface BoardService {
 	public int getTotalCount3(int boardNo) throws Exception;
 	
 	//hearder의 게시판 제목
-	public List<Board> getBoardTitle() throws Exception;
+	public List<Board> getBoardTitle(Map<String, Object> map) throws Exception;
 	
 	//게시글 목록
 	public Map<String, Object> getPostList(Map<String, Object> map) throws Exception;

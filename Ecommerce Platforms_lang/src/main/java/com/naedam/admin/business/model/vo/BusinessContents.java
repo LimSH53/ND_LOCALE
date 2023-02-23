@@ -28,6 +28,7 @@ public class BusinessContents implements Serializable {
 	private String businessContentsContent;	
 	private String image;
 	private String inDtm;
+	private String locale;
 	
 	
 	
