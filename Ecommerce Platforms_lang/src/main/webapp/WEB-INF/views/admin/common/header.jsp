@@ -5,11 +5,6 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
-<% 
-	Cookie cookie = new Cookie("locale", "ko"); 
-	response.addCookie(cookie);
-%>
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -131,9 +126,6 @@
 			
 			var arr = link.split('?');
 			
-			/* $('.h_dashBoard').prop('href', "${pageContext.request.contextPath}/admin/dashBoard?locale=en"); */
-			$(".h_dashBoard").prop("href", "${pageContext.request.contextPath}/admin/dashBoard?locale=en");
-			
 			if(arr[1] == 'locale=en' || arr[1] == 'locale=ko' || arr.length == 1){
 				location.href = newLink[0] +"?locale=" + lang;
 			} else {
@@ -142,7 +134,6 @@
 			}
 			//쿠키
 			document.cookie = 'locale=' + lang;
-			alert(document.cookie);
 			
 		}
 		
