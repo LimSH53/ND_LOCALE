@@ -31,8 +31,7 @@
 			<div class="col-xs-12">
 				<div class="box">
 					<div class="box-body">
-						<label style="margin-top: 5px;">총 ${awardList.size() } 건</label>
-	                    <div class="btn-group pull-right">				
+						<label style="margin-top: 5px;">총 ${awardList.size() } 건</label>				
 						<div class="box-tools pull-right" style="margin-bottom: 5px;"></div>
 						<form name="form_list" method="post" action="${pageContext.request.contextPath }/admin/award/award_process?${_csrf.parameterName}=${_csrf.token}">
 							<input type="hidden" name="mode" id="mode">
