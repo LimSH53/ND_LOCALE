@@ -178,11 +178,7 @@
 	        <div class="col-xs-12">
 	            <div class="box">
 	                <div class="box-body">
-	                    <label style="margin-top:5px;">총 ${pageCount} 건</label>
-	                    <div class="btn-group pull-right">
-      						<button type="button" id="locale_ko" onclick="location.href='${pageContext.request.contextPath}/admin/board/postList?locale=ko&boardNo=${boardNo}'" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
-      						<button type="button" id="locale_en" onclick="location.href='${pageContext.request.contextPath}/admin/board/postList?locale=en&boardNo=${boardNo}'" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
-      					</div>	                    
+	                    <label style="margin-top:5px;">총 ${pageCount} 건</label>	                    
 	                    <form name="searchForm" method="post" action="/admin/board/postList?${_csrf.parameterName}=${_csrf.token}" style="margin-top: 8px;">
 		                    <div class="box-tools pull-right" style="margin-bottom:5px;">
 		                    	<input type="hidden" name="boardNo" value="${boardNo}">

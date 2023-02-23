@@ -46,7 +46,9 @@
 		      			R.CONTENTS_STATUS
 		 		   FROM recruit R,(SELECT @ROWNUM := 0) TMP
 				  WHERE RECRUIT_DLE_STATUS = 'N'
-				  	AND LOCALE LIKE #{locale}
+				  		<if test="locale != null">
+				  		AND LOCALE LIKE #{locale}
+				  		</if>
 						<if test="search != null">
 						AND R.RECRUIT_TITLE like concat ('%',#{search},'%')
 						</if>

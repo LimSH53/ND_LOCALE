@@ -123,8 +123,14 @@
 		
 		function newPage(lang){
 			var link =  document.location.href;
-			var newLink = link.split('?');
-			location.href = newLink[0] +"?locale=" + lang;
+			var newLink = link.split('?locale');
+			console.log('newLink>>>>>>>', newLink);
+			alert('?????')
+			if(link.split('?').size > 1){
+				location.href = newLink[0] +"&locale=" + lang;
+			} else {
+				location.href = newLink[0] +"?locale=" + lang;
+			}
 		}
 		
 	</script>
