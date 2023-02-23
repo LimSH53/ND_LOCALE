@@ -119,15 +119,17 @@
 	        <div class="col-xs-12">
 	            <div class="box">
 	                <div class="box-body">
-	                    <label style="margin-top:5px;">총 ${pageCount} 건</label>
-	                    <div class="btn-group pull-right">
-      						<button type="button" name="locale" id="ko" onclick="" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
-      						<button type="button" name="locale" id="en" onclick="" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
-      					</div>	                    
+	                    <label style="margin-top:5px;">총 ${pageCount} 건
+	                    <div class="btn-group pull-right" style="padding-left: 1235px;">
+                        	<button type="button" id="locale_ko" onclick="location.href='${pageContext.request.contextPath}/admin/recruitList?locale=ko'" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
+                        	<button type="button" id="locale_en" onclick="location.href='${pageContext.request.contextPath}/admin/recruitList?locale=en'" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
+                     	</div>   
+	                    </label>        
 	                    <form name="searchForm" method="post" action="/admin/recruitList?${_csrf.parameterName}=${_csrf.token}">
 		                    <div class="box-tools pull-right" style="margin-bottom:5px;">
 		                    	<%-- <input type="hidden" name="boardNo" value="${boardNo}"> --%>
 		                    	<input type="hidden" name="cPage">
+		                    	<input type="hidden" name="locale" value="${locale }">
 		                    	<!-- <input type="hidden" name="searchKeyword"> -->
 		                        <div id="searchBox">
 			                      	  <input type="text" name="searchKeyword" id="searchKeyword" placeholder="제목으로 검색" value="${searchKeyword}">

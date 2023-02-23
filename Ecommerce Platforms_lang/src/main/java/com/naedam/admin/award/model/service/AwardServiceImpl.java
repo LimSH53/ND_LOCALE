@@ -52,9 +52,11 @@ public class AwardServiceImpl implements AwardService {
 			resultDate = formatter.parse(str.toString());
 			Date date = resultDate;
 			award.setAwardDate(date);
+			award.setLocale((String)map.get("locale"));
 			if("insert".equals(map.get("mode"))) {
 				File file = new File(filePath+awardImage.getOriginalFilename());
 				award.setImgUrl(awardImage.getOriginalFilename());
+				award.setLocale((String)map.get("locale"));
 				awardImage.transferTo(file);
 				awardDao.insertAward(award);
 				resultMap.put("msg", "연혁 정보가 등록되었습니다.");

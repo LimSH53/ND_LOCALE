@@ -45,8 +45,9 @@ public class RecruitController {
 	// 채용 게시글 조회
 	@RequestMapping("recruitList")
 	public String recruitList(Model model, @RequestParam(defaultValue = "1") int cPage, HttpServletRequest request,
-			@RequestParam(value= "searchKeyword",required = false) String searchKeyword) throws Exception {
-		System.out.println("recruitList start =======");
+			@RequestParam(value= "searchKeyword",required = false) String searchKeyword,
+			@RequestParam(value = "locale", defaultValue = "ko") String locale) throws Exception {
+		System.out.println("recruitList start =======" + locale);
 		//조회 전 마감일자 지난 list들 채용마감으로 변경
 		int update = recruitService.updateContentsStatus();
 		
@@ -55,7 +56,7 @@ public class RecruitController {
 		int offset = (cPage - 1) * limit;
 
 		// 게시글 리스트
-		Map<String, Object> resultMap = recruitService.getRecruitList(searchKeyword, limit, offset);
+		Map<String, Object> resultMap = recruitService.getRecruitList(searchKeyword, limit, offset, locale);
 
 		// 게시글 총 갯수
 		int totalRecruitListCount = Integer.parseInt(resultMap.get("totalCount").toString());
@@ -70,6 +71,7 @@ public class RecruitController {
 		model.addAttribute("list", resultMap.get("list"));
 		model.addAttribute("pageCount", totalRecruitListCount);
 		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("locale", locale);
 		
 		System.out.println("resultMap.get(\"list\")" + resultMap.get("list"));
 
@@ -97,9 +99,13 @@ public class RecruitController {
 	@ResponseBody
 	public String insertRecruit(@ModelAttribute recruitDTO recruit,
 			@RequestParam(value = "subTitle[]", required = false)List<String> subTitle,
-			@RequestParam(value = "contents[]", required = false)List<String> contents) {
+			@RequestParam(value = "contents[]", required = false)List<String> contents,
+			@RequestParam(value = "locale", defaultValue = "ko") String locale) {
 	
 		int recruitRecult = 0;
+		
+		System.out.println("locale =====" + locale);
+		System.out.println("recruit locale =====" + recruit);
 		
 		// 채용 게시글 입력
 		recruitRecult = recruitService.insertRecruit(recruit);

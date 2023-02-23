@@ -288,7 +288,7 @@ function updateRecruit(){
 			    		 			msg = "게시글 등록에 실패했습니다.";
 			    		 		}
 			    		 		alert(msg);
-			   			  		location.href = "/admin/recruitList";
+			   			  		location.href = "/admin/recruitList?locale="+ $("#locale").val();
 			  		  	 	 }
 				  		})
 			 		} else {

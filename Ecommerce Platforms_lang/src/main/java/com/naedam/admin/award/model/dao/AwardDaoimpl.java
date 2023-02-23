@@ -16,6 +16,7 @@ public class AwardDaoimpl implements AwardDao {
 
 	@Override
 	public void insertAward(Award award) {
+		System.out.println("insertAward dao =====" + award);
 		session.insert("award.insertAward", award);
 	}
 

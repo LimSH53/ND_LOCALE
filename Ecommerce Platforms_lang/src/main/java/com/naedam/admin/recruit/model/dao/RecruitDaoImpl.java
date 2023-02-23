@@ -28,7 +28,7 @@ public class RecruitDaoImpl implements RecruitDao {
 	}
 
 	@Override
-	public List<recruitDTO> getRecruitList(String search, int offset, int limit) throws Exception {
+	public List<recruitDTO> getRecruitList(String search, int offset, int limit, String locale) throws Exception {
 		System.out.println("==========recruitList dao =================");
 		System.out.println("search>>>" + search);
 		/* RowBounds rowBounds = new RowBounds(offset, limit); */
@@ -36,13 +36,17 @@ public class RecruitDaoImpl implements RecruitDao {
 		page.put("search", search);
 		page.put("offset", offset);
 		page.put("limit", limit);
+		page.put("locale", locale);
 		System.out.println("page>>>" + page);
 		return sqlSession.selectList("recruit.getRecruitList", page);
 	}
 	
 	@Override
-	public Object getTotalCount(String search) {
-		return sqlSession.selectOne("recruit.getTotalCount", search);
+	public Object getTotalCount(String search, String locale) {
+		Map<String, Object> option = new HashMap<>();
+		option.put("search", search);
+		option.put("locale", locale);
+		return sqlSession.selectOne("recruit.getTotalCount", option);
 	}
 
 	@Override
@@ -52,7 +56,7 @@ public class RecruitDaoImpl implements RecruitDao {
 
 	@Override
 	public int insertRecruit(recruitDTO recruit) {
-		log.info(">>>>>insertRecruitDAO 실행");
+		log.info(">>>>>insertRecruitDAO 실행" + recruit);
 		return sqlSession.insert("recruit.insertRecruit", recruit);
 	}
 
