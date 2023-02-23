@@ -124,12 +124,13 @@
 		function newPage(lang){
 			var link =  document.location.href;
 			var newLink = link.split('?locale');
-			console.log('newLink>>>>>>>', newLink);
-			alert('?????')
-			if(link.split('?').size > 1){
-				location.href = newLink[0] +"&locale=" + lang;
-			} else {
+			
+			var arr = link.split('?');
+			if(arr[1] == 'locale=en' || arr[1] == 'locale=ko' || arr.length == 1){
 				location.href = newLink[0] +"?locale=" + lang;
+			} else {
+				newLink = link.split('&locale');
+				location.href = newLink[0] +"&locale=" + lang;
 			}
 		}
 		
