@@ -23,11 +23,7 @@
 	    <div class="row">
 	        <div class="col-xs-12">
 	            <div class="box">
-	                <div class="box-body">
-	                    <div class="btn-group pull-right" style="margin-bottom:5px;">
-      						<button type="button" id="locale_ko" onclick="location.href='${pageContext.request.contextPath}/admin/menu/headList?locale=ko'" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
-      						<button type="button" id="locale_en" onclick="location.href='${pageContext.request.contextPath}/admin/menu/headList?locale=en'" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
-      					</div>	                
+	                <div class="box-body">              
 	                    <table class="table table-bordered table-hover">
 		                    <form name="form_list" method="post" action="?tpf=admin/menu/process"></form>
 				            <input type="hidden" name="mode" id="mode">

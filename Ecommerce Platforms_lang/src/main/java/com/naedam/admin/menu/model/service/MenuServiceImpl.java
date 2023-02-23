@@ -112,7 +112,7 @@ public class MenuServiceImpl implements MenuService {
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		resultMap.put("list", menuDao.getMenuList(map));
 		resultMap.put("list2", menuDao.getHeadList(map));
-		resultMap.put("board", boardDao.getBoardTitle());
+		resultMap.put("board", boardDao.getBoardTitle(map));
 		return resultMap;
 	}
 	

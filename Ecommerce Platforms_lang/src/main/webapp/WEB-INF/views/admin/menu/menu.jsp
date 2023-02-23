@@ -41,10 +41,6 @@
 	    <div class="row">
 	        <div class="col-xs-12">
 	            <div class="box">
-            	    <div class="btn-group" style="margin: 12px 5px 5px 12px;">
-    					<button type="button" id="locale_ko" onclick="location.href='${pageContext.request.contextPath}/admin/menu/menu?locale=ko'" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
-    					<button type="button" id="locale_en" onclick="location.href='${pageContext.request.contextPath}/admin/menu/menu?locale=en'" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
-    				</div>	
 	                <div class="box-body">
 		                <div class="col-xs-3" style="padding:0 5px 0 0;">
 		                	<iframe name="tree" id="iframe_tree" src="${pageContext.request.contextPath}/admin/menu/tree?locale=${locale}" width="100%" scrolling="auto" frameborder="1" height="769"></iframe>

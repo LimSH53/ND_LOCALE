@@ -32,10 +32,7 @@
 				<div class="box">
 					<div class="box-body">
 						<label style="margin-top: 5px;">총 ${awardList.size() } 건</label>
-	                    <div class="btn-group pull-right">
-                        	<button type="button" id="locale_ko" onclick="location.href='${pageContext.request.contextPath}/admin/setting/award?locale=ko'" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
-                        	<button type="button" id="locale_en" onclick="location.href='${pageContext.request.contextPath}/admin/setting/award?locale=en'" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
-                     	</div>					
+	                    <div class="btn-group pull-right">				
 						<div class="box-tools pull-right" style="margin-bottom: 5px;"></div>
 						<form name="form_list" method="post" action="${pageContext.request.contextPath }/admin/award/award_process?${_csrf.parameterName}=${_csrf.token}">
 							<input type="hidden" name="mode" id="mode">

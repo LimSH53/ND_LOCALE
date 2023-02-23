@@ -121,6 +121,12 @@
 			$(document.memberLogoutFrm).submit();
 		}
 		
+		function newPage(lang){
+			var link =  document.location.href;
+			var newLink = link.split('?');
+			location.href = newLink[0] +"?locale=" + lang;
+		}
+		
 	</script>
 	
 	<!-- redirect Msg 처리 : deliveryController 참조 -->
@@ -150,6 +156,10 @@
 				</a>
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
+						<div class="btn-group pull-right" style="padding-right: 18px; padding-top: 10px">
+                        	<button type="button" id="locale_ko" onclick="newPage('ko')" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
+                        	<button type="button" id="locale_en" onclick="newPage('en')" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
+                     	</div>  
 						<li class="dropdown user user-menu">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"> 
 								<img src="https://mir9.co.kr/resource/js/AdminLTE-2.4.2/dist/img/avatar5.png" class="user-image" alt="User Image" /> 

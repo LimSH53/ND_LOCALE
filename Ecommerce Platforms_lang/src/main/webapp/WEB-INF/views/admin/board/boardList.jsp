@@ -147,10 +147,6 @@
 	            <div class="box">
 	                <div class="box-body">
 	                    <label style="margin-top:5px;">총 ${resultPage.totalCount} 건</label>
-	                    <div class="btn-group pull-right">
-      						<button type="button" id="locale_ko" onclick="location.href='${pageContext.request.contextPath}/admin/board/listBoard?locale=ko'" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
-      						<button type="button" id="locale_en" onclick="location.href='${pageContext.request.contextPath}/admin/board/listBoard?locale=en'" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
-      					</div>
 	                    <table class="table table-bordered table-hover">
 		                    <form name="form_list" method="post">
 					            <input type="hidden" name="mode" id="mode">

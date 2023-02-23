@@ -56,11 +56,7 @@ const paging = (cPage) => {
 	        <div class="col-xs-12">
 	            <div class="box">
 	                <div class="box-body">
-	                	<label style="margin-top:5px;">총 ${totalCount} 건</label>
-	                    <div class="btn-group pull-right">
-      						<button type="button" name="locale" id="ko" onclick="" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
-      						<button type="button" name="locale" id="en" onclick="" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
-      					</div>	                	
+	                	<label style="margin-top:5px;">총 ${totalCount} 건</label>               	
 	                    <table class="table table-bordered table-hover">
 		                    <form name="searchForm" method="post" action="/admin/setting/listPartner?${_csrf.parameterName}=${_csrf.token}">
 					            <input type="hidden" name="mode" id="mode">
