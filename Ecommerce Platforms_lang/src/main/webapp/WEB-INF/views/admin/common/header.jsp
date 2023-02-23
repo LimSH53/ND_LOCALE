@@ -5,6 +5,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 
+<% 
+	Cookie cookie = new Cookie("locale", "ko"); 
+	response.addCookie(cookie);
+%>
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
@@ -45,7 +50,6 @@
 
 	<script type="text/javascript">
 		$(function(){
-			
 			$.ajax({
 				url : "/admin/board/json/getAdminMenu",
 				method : "GET" ,
@@ -121,17 +125,25 @@
 			$(document.memberLogoutFrm).submit();
 		}
 		
-		function newPage(lang){
+		function newPage(lang){	
 			var link =  document.location.href;
 			var newLink = link.split('?locale');
 			
 			var arr = link.split('?');
+			
+			/* $('.h_dashBoard').prop('href', "${pageContext.request.contextPath}/admin/dashBoard?locale=en"); */
+			$(".h_dashBoard").prop("href", "${pageContext.request.contextPath}/admin/dashBoard?locale=en");
+			
 			if(arr[1] == 'locale=en' || arr[1] == 'locale=ko' || arr.length == 1){
 				location.href = newLink[0] +"?locale=" + lang;
 			} else {
 				newLink = link.split('&locale');
 				location.href = newLink[0] +"&locale=" + lang;
 			}
+			//쿠키
+			document.cookie = 'locale=' + lang;
+			alert(document.cookie);
+			
 		}
 		
 	</script>
@@ -207,7 +219,7 @@
 				<ul class="sidebar-menu" data-widget="tree">
 					<li class="header">NaeDam Admin</li>
 					<li>
-						<a href="${pageContext.request.contextPath}/admin/dashBoard"> 
+						<a id="h_dashBoard" href="${pageContext.request.contextPath}/admin/dashBoard?locale=${cookie.locale.value}">
 							<i class="fa fa-dashboard"></i> <span>Dashboard</span>
 						</a>
 					</li>
@@ -218,12 +230,12 @@
 						</a>
 						<ul class="treeview-menu">
 							<li>
-								<a href="${pageContext.request.contextPath}/admin/menu/menu">
+								<a id="h_menu" href="${pageContext.request.contextPath}/admin/menu/menu?locale=${cookie.locale.value}">
 									<i class="fa fa-circle-o"></i> 메뉴 관리
 								</a>
 							</li>
 							<li>
-								<a href="${pageContext.request.contextPath}/admin/menu/headList">
+								<a id="h_headList" href="${pageContext.request.contextPath}/admin/menu/headList?locale=${cookie.locale.value}">
 									<i class="fa fa-circle-o"></i> 헤더 관리
 								</a>
 							</li>
@@ -236,7 +248,7 @@
 						</a>
 						<ul class="treeview-menu" id="boardMenu" >
 							<li>
-								<a href="/admin/board/listBoard">
+								<a id="h_listBoard" href="/admin/board/listBoard?locale=${cookie.locale.value}">
 									<i class="fa fa-circle-o"></i> 리스트
 								</a>
 							</li>
@@ -249,7 +261,7 @@
 						</a>
 						<ul class="treeview-menu" id="businessMenu" >
 							<li>
-								<a href="/admin/business/getBusinessList">
+								<a id="h_getBusinessList" href="/admin/business/getBusinessList?locale=${cookie.locale.value}">
 									<i class="fa fa-circle-o"></i> 리스트
 								</a>
 							</li>
@@ -282,7 +294,7 @@
 						</a>
 						<ul class="treeview-menu">
 							<li>
-								<a href="${pageContext.request.contextPath}/admin/recruitList">
+								<a id="h_recruitList" href="${pageContext.request.contextPath}/admin/recruitList?locale=${cookie.locale.value}">
 									<i class="fa fa-circle-o"></i> 채용
 								</a>
 							</li>
@@ -295,25 +307,25 @@
 						</a>
 						<ul class="treeview-menu">
 							<li id="historyManage">
-								<a href="${pageContext.request.contextPath }/admin/setting/history">
+								<a id="h_history" href="${pageContext.request.contextPath }/admin/setting/history?locale=${cookie.locale.value}">
 									<i class="fa fa-circle-o"></i> 연혁 관리
 								</a>
 							</li>
 							<li id="awardManage">
-								<a href="${pageContext.request.contextPath }/admin/setting/award">
+								<a id="h_award" href="${pageContext.request.contextPath }/admin/setting/award?locale=${cookie.locale.value}">
 									<i class="fa fa-circle-o"></i> 수상 관리
 								</a>
 							</li>
 							<li id="partnerManage">
-								<a href="${pageContext.request.contextPath }/admin/setting/listPartner">
+								<a id="h_listPartner" href="${pageContext.request.contextPath }/admin/setting/listPartner?locale=${cookie.locale.value}">
 									<i class="fa fa-circle-o"></i> 파트너 관리
 								</a>
 							</li>							
-							<li id="infoManage">
+							<%-- <li id="infoManage">
 								<a href="${pageContext.request.contextPath}/admin/setting/info">
 									<i class="fa fa-circle-o"></i> 기본 설정
 								</a>
-							</li>									
+							</li> --%>									
 						</ul>
 					</li>
 					<li>
