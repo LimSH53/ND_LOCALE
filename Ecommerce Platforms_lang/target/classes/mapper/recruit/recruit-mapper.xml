@@ -46,9 +46,6 @@
 		      			R.CONTENTS_STATUS
 		 		   FROM recruit R,(SELECT @ROWNUM := 0) TMP
 				  WHERE RECRUIT_DLE_STATUS = 'N'
-				  		<if test="locale != null">
-				  		AND LOCALE LIKE #{locale}
-				  		</if>
 						<if test="search != null">
 						AND R.RECRUIT_TITLE like concat ('%',#{search},'%')
 						</if>
@@ -73,7 +70,6 @@
 				RECRUIT_TITLE like concat ('%',#{value},'%')
 			</if>
 			AND RECRUIT_DLE_STATUS = 'N'
-			AND LOCALE LIKE #{locale}
 		</where>
 		ORDER BY CONTENTS_STATUS, RECRUIT_NO DESC)countTable
 	</select>
@@ -99,8 +95,7 @@
 		JOB_INTRO,
 		QUALIFICATION,
 		CONTENTS_STATUS,
-		RECRUIT_MANAGER,
-		LOCALE
+		RECRUIT_MANAGER
 		)
 		VALUES
 		(
@@ -131,8 +126,7 @@
 			"Y",
 			</otherwise>
 		</choose>
-		#{recruitManager},
-		#{locale}
+		#{recruitManager}
 		)
 		
 		<selectKey keyProperty="recruitNo" order="AFTER" resultType="int">
