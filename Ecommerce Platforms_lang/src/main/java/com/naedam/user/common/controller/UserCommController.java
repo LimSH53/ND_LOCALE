@@ -29,7 +29,7 @@ public class UserCommController {
 	
 	@GetMapping("json/menuHeaderList")
 	public Map menuHeaderList(Locale locale, Model model,
-							  @RequestParam("locale") String lang) throws Exception {
+							  @RequestParam(value = "locale", defaultValue = "ko") String lang) throws Exception {
 		System.out.println("menuHeaderList 시작 ====");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("locale", lang);

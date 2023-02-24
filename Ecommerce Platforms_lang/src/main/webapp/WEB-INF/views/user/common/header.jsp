@@ -50,12 +50,29 @@ window.onload=function(){
 		}
 	})	
 }
+
+function newPage(lang){	
+	var link =  document.location.href;
+	var newLink = link.split('?locale');
+	
+	var arr = link.split('?');
+	
+	if(arr[1] == 'locale=en' || arr[1] == 'locale=ko' || arr.length == 1){
+		location.href = newLink[0] +"?locale=" + lang;
+	} else {
+		newLink = link.split('&locale');
+		location.href = newLink[0] +"&locale=" + lang;
+	}
+	//쿠키
+	document.cookie = 'locale=' + lang;
+	
+}
 </script>
       <!-- 공통 header -->
       <header id="header">
         <div class="inner">
           <h1 class="logo">
-            <a href="${pageContext.request.contextPath}/user/dashBoard">
+            <a href="${pageContext.request.contextPath}/user/dashBoard?locale=${cookie.locale.value}">
               <img src="${pageContext.request.contextPath}/resources/admin/imgs/imageBoard/neadam_logo.png" alt="logo" class="basic_neadam" />
             </a>
           </h1>
