@@ -32,7 +32,7 @@
 			<div class="top_visual_area ceo_msg">
 				<div class="inner_container">
 					<img class="ceo-img"
-						src="${pageContext.request.contextPath}/resources/user/images/ceo_image.png"
+						src="${pageContext.request.contextPath}/resources/user/images/CEO_image_01.png"
 						alt="내담씨앤씨 대표 한 창 엽">
 					<div class="ceo_msg-box">
 						<p class="ceo_msg-txt1">

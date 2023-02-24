@@ -32,33 +32,33 @@
 			<div class="top_visual_area ceo_msg">
 				<div class="inner_container">
 					<img class="ceo-img"
-						src="${pageContext.request.contextPath}/resources/user/images/ceo_image.png"
+						src="${pageContext.request.contextPath}/resources/user/images/CEO_image_01.png"
 						alt="내담씨앤씨 대표 한 창 엽">
 					<div class="ceo_msg-box">
 						<p class="ceo_msg-txt1">
-							내담씨앤씨 <br> 홈페이지에 오신 것을 <br class="show_768">환영합니다.
+							Welcome to the <br> NEDAM C&C <br class="show_768">homepage.
 						</p>
 						<p class="ceo_msg-txt2 line-01">
-							(주)내담씨앤씨는 풍부한 경험을 가진 해당 분야의 전문가들로 구성되어 있으며, 
-							이를 뒷받침 해주는 전문화된 최신 기술과 혁신적인 솔루션을 기반으로, 고객사의 고객 만족 및 내부 경쟁력 향상을 이끌어 내어 한단계 업그레이드 시키는 것을 Mission으로 하고 있으며, 
-							나아가 글로벌 경쟁력을 갖춘 IT Total Service Provider 기업으로의 성장을 Vision으로 하고 있습니다. <br>
-							또한, 4차산업혁명에 발 맞추어 스마트 빌딩을 구축하고 궁극적으로 공간 내부 사용자의 효율성과 편안함을 개선하는 동시에 비용을 절감할 디지털 트윈의 잠재력을 실현 하겠습니다.
+							NEDAM C&C is composed of experts in their respective fields with rich experience. 
+							Based on specialized and innovative solutions supported by the latest technology, 
+							our mission is to upgrade our customers' satisfaction and internal competitiveness by leading them to the next level. 
+							Furthermore, our vision is to grow into a global IT total service provider with competitive edge.
 						</p>
 						<p class="ceo_msg-txt2 line-03">
-							<strong>내담은 고객의 요구사항을 반영한 명확한 청사진을 제공합니다.</strong> <br> 
-							내담은 고객과의 소통으로 고객이 원하는 경영계획과 목표달성을 위해 구체적인 Process을 제공합니다.
+							<strong>In line with the Fourth Industrial Revolution,</strong> <br> 
+							NEDAM will build smart buildings and realize the potential of digital twins that reduce costs 
+							while improving the efficiency and comfort of indoor space users.
 						</p>
 						<p class="ceo_msg-txt2 line-03">
-							<strong>내담은 혁신적인 서비스와 비즈니스로 감동을 선사합니다.</strong> <br> 고객과
-							제휴사를 최우선으로 하여 믿음과 신뢰를 더하는 차별화된 서비스를 제공하고 있습니다
+							<strong>NEDAM provides clear blueprints that reflect customers</strong> <br> 
+							requirements and offers specific processes to achieve their desired management plans and objectives through communication with them.
 						</p>
 						<p class="ceo_msg-txt2 line-03">
-							<strong>내담은 성장하고자 하는 마음에 진심으로 응답합니다.</strong> <br> 다양한 꿈과
-							열정을 가진 인재들을 지원하며, 비즈니스 파트너로써 함께 성장하고자 합니다.
+							We provide differentiated services that add trust and confidence by prioritizing customers and partners.
 						</p>
-						<p class="ceo_msg-txt2 line-04">내담씨앤씨는 고객과 함께 발맞추어 성장하는 것을
-							목표로 만족스러운 서비스 그리고 새로운 시각에서 바라보는 솔루션을 통해 함께 성장해가는 동반자가 되는 내담이
-							되겠습니다.</p>
+						<p class="ceo_msg-txt2 line-04">NEDAM responds sincerely to the desire for growth. We support individuals with various 
+						dreams and passions and strive to grow together as business partners.
+						Our goal is to become a companion that grows together with our customers through satisfactory services and solutions from a new perspective.</p>
 						<p class="ceo_msg-txt3">
 							내담씨앤씨 대표 <span>한 창 엽</span>
 						</p>

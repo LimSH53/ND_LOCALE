@@ -12,7 +12,7 @@
 <meta name="description" content="내담씨앤씨의 Partner를 소개합니다.">
 <meta property="og:description" content="내담씨앤씨의 Partner를 소개합니다.">
 <meta name="keywords" content="내담C&C, 내담씨앤씨, ndcnc, 내담, NDCNC, 내담씨앤씨 Partner, 내담C&C Partner, 내담 Partner, 내담씨앤씨 파트너, 내담C&C 파트너, 내담 파트너">
-<meta property="og:url" content="https://ndcc.co.kr/user/introduction/PartnerList">
+<meta property="og:url" content="http://ndcc.co.kr/user/introduction/PartnerList">
 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/user/css/partner.css">
 <jsp:include page="/WEB-INF/views/user/common/script_css_js.jsp" />
@@ -30,7 +30,7 @@
                     <div class="inner_container">
                         <div class="layout_head">
                             <p class="top_txt1">
-                            	내담씨앤씨의 Partner를 소개합니다.
+                            	Let me introduce Naedam C&C's partners.
                             </p>
                         </div>
                         <div class="layout_body">

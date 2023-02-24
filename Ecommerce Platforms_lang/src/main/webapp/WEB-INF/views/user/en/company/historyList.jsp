@@ -51,15 +51,14 @@
 				<div class="sub_title_area history_sub_title_area">
 					<div class="common-swiper_area sub_history_area_top">
 						<div class="inner_container">
-							<h2 class="sub_title sub_title_area">연혁</h2>
+							<h2 class="sub_title sub_title_area">History</h2>
 							<div class="layout_head">
-								<p class="top_txt1 service_txt1 history_txt1">내담씨앤씨의 연혁을
-									알려드립니다.</p>
+								<p class="top_txt1 service_txt1 history_txt1">Introducing the history of Naedam C&C.</p>
 							</div>
 							<div class="common-swiper_tab">
 								<ul class="swiper-wrapper history_swiper">
-									<li class="swiper-slide active" ><a href="javascript:void(0);" id="cont1" class="is-link">회사연혁</a></li>
-									<li class="swiper-slide"><a href="javascript:void(0);" id="cont2" class="is-link">수상/인증</a>
+									<li class="swiper-slide active" ><a href="javascript:void(0);" id="cont1" class="is-link">History</a></li>
+									<li class="swiper-slide"><a href="javascript:void(0);" id="cont2" class="is-link">Award/Certification</a>
 									</li>
 								</ul>
 							</div>

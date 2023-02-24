@@ -24,23 +24,23 @@
             <div id="contents" class="contents_top">
                 <div class="sub_title_area">
                     <div class="inner_container">
-                        <h2 class="sub_title">오시는 길</h2>
+                        <h2 class="sub_title">Location</h2>
                     </div>
                 </div><!-- // .sub_title_area -->
 
                 <div class="layout_section_outer location_area type03">
                     <div class="inner_container">
                         <p class="common_txt-40">
-                            내담씨앤씨는 판교 본사와 서울 지사를 두고 있습니다.
+                            Naedam C&C has its headquarters in Pangyo and a branch office in Seoul.
                         </p>
 
                         <ul class="common-layout_2 is-vertical location_list introduction_vertical">
                             <li class="items">
                                 <div class="location_text">
-	                                <h3 class="location_name">본사</h3>
+	                                <h3 class="location_name">HQ</h3>
 	                                <p class="location_info">
-	                                    경기도 성남시 분당구 판교역로231, S동 711호 (삼평동, H square) <br>
-	                                    신분당선 판교역 1~4번 출구에서 버스로 3분 소요 <br>
+	                                    231 Pangyoyeok-ro, Bundang-gu, Seongnam-si, Gyeonggi-do, Republic of Korea, S-711 (H square, Sampyeong-dong) <br>
+	                                    It takes 3 minutes by bus from Exit 1 - 4 of Pangyo Station on the Shinbundang Line. <br>
 	                                    TEL 031-712-8315 <br>
 	                                    FAX 031-789-3545
 	                                </p>
@@ -56,10 +56,10 @@
                             </li>
                             <li class="items">
                                 <div class="location_text">
-	                                <h3 class="location_name">서울 지사</h3>
+	                                <h3 class="location_name">Branch Office</h3>
 	                                <p class="location_info">
-	                                    서울시 금천구 벛꽃로 298 대륭포스트타워6차 1104호 (가산동 50-3) <br>
-	                                    7호선 가산디지털단지역 2번 출구 연결 <br>
+	                                    298 Beotkkot-ro, Geumcheon-gu, Seoul, 11F 1104 (50-3 Gasan-dong) <br>
+	                                    Gasan Digital Complex Station on Line 7 connects to Exit 2 <br>
 	                                    TEL 02-2083-5590 <br>
 	                                    FAX 02-2083-5594
 	                                </p>

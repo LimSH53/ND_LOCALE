@@ -23,7 +23,7 @@
             <div id="contents" class="contents_top">
                 <div class="sub_title_area">
                     <div class="inner_container">
-                        <h2 class="sub_title">사업 소개</h2>
+                        <h2 class="sub_title">OUR BUSINESS</h2>
                     </div>
                 </div><!-- // .sub_title_area -->
 
@@ -31,8 +31,8 @@
                     <div class="inner_container">
                         <div class="layout_head">
                             <p class="top_txt1 service_txt1">
-                                IT분야에서의 구축 경험을 토대로 고객사를 위한 
-                                다양한 솔루션과 서비스를 제공합니다.
+                                We provide various solutions and services for our clients 
+                                based on our experience in the IT areas.
                             </p>
                         </div>
                     </div>
