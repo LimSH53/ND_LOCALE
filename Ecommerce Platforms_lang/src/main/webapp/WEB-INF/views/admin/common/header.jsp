@@ -81,7 +81,7 @@
 					if(Data.length > 0){
 						for(var i = 0; i < Data.length; i++){
 							display = "<li>"
-									+ "<a href=/admin/board/postList?boardNo="+Data[i].boardNo+"&locale=${cookie.locale.value>"
+									+ "<a href=/admin/board/postList?boardNo="+Data[i].boardNo+"&locale=${cookie.locale.value}>"
 									+ "<i class='fa fa-circle-o'></i> "+Data[i].boardTitle
 									+ "</a>"
 									+ "</li>"
