@@ -3,6 +3,7 @@ package com.naedam.user.highflier.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,9 +19,9 @@ public class HighflierController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="qualifiedEmployee")
-	public ModelAndView qualifiedEmployee(Model model) throws Exception{
+	public ModelAndView qualifiedEmployee(Model model, @RequestParam(value = "locale", defaultValue = "ko") String locales) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("user/highflier/qualifiedEmployee");
+		mv.setViewName("user/"+locales+"/highflier/qualifiedEmployee");
 		return mv;
 	}
 	
@@ -31,9 +32,9 @@ public class HighflierController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="hrDepartment")
-	public ModelAndView hrDepartment(Model model) throws Exception{
+	public ModelAndView hrDepartment(Model model, @RequestParam(value = "locale", defaultValue = "ko") String locales) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("user/highflier/hrDepartment");
+		mv.setViewName("user/"+locales+"/highflier/hrDepartment");
 		return mv;
 	}
 	

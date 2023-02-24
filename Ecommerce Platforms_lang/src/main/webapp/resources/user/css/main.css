@@ -250,6 +250,7 @@ h4 {
   height: 100%;
   background: no-repeat 50% 50%;
   background-size: cover;
+  background-position: 70%;
 }
 .visual-wrapper .swiper-slide video {
   position: absolute;
@@ -544,7 +545,7 @@ h4 {
   align-items: center;
   position: relative;
   height: 100vh;
-  background: url(../images/image_14.jpg) no-repeat;
+  background: url(../images/main_banner2_bulb.jpg) no-repeat;
   background-size: cover;
   transition: 0.4s ease;
 }
@@ -655,14 +656,14 @@ h4 {
 }
 .core-wrap .core-list .naedamcnc {
   position: absolute;
-  top: -153%;
+  top: -130%;
   right: -11%;
   width: 175%;
   height: 317%;
 }
 .core-wrap .core-list .solution {
   position: absolute;
-  top: -235%;
+  top: -105%;
   right: -253px;
   width: 162%;
   height: 600%;
@@ -691,7 +692,7 @@ h4 {
   width: 660px;
   height: 504px;
   border-radius: 3%;
-  background-image: url(../images/Corporate.jpg);
+  background-image: url(../images/dashboard_ndcnc_section1.jpg);
   background-size: cover;
   position: fixed;
 }
@@ -713,7 +714,7 @@ h4 {
   width: 660px;
   height: 504px;
   border-radius: 3%;
-  background-image: url(../images/make.jpg);
+  background-image: url(../images/dashboard_ndcnc_section2.jpg);
   background-size: cover;
 }
 .core-wrap .core-list .big-data .bg-text {
@@ -730,7 +731,7 @@ h4 {
   width: 660px;
   height: 504px;
   border-radius: 3%;
-  background-image: url(../images/integration.jpg);
+  background-image: url(../images/dashboard_ndcnc_section3.jpg);
   background-size: cover;
   position: fixed;
 }
@@ -751,7 +752,7 @@ h4 {
   width: 660px;
   height: 504px;
   border-radius: 3%;
-  background-image: url(../images/bulb2.jpg);
+  background-image: url(../images/dashboard_ndcnc_section4.jpg);
   background-size: cover;
   position: absolute;
   left: -107px;
@@ -855,15 +856,15 @@ h4 {
 }
 .core-wrap .cloud #cloudPath2 {
   stroke-dasharray: 2400;
-  stroke-dashoffset: 1600;
+  stroke-dashoffset: 2000;
 }
 .core-wrap .cloud #cloudPath3 {
   stroke-dasharray: 2200;
   stroke-dashoffset: 1800;
 }
 .core-wrap .cloud #cloudPath4 {
-  stroke-dasharray: 2600;
-  stroke-dashoffset: 1300;
+  stroke-dasharray: 3200;
+  stroke-dashoffset: 2800;
 }
 .core-wrap .cloud #cloudPath5 {
   stroke-dasharray: 2200;
@@ -874,12 +875,12 @@ h4 {
   stroke-dashoffset: 1200;
 }
 .core-wrap .cloud #cloudPath7 {
-  stroke-dasharray: 2000;
-  stroke-dashoffset: 1600;
-}
-.core-wrap .cloud #cloudPath8 {
   stroke-dasharray: 2400;
   stroke-dashoffset: 2000;
+}
+.core-wrap .cloud #cloudPath8 {
+  stroke-dasharray: 3200;
+  stroke-dashoffset: 2800;
 }
 .core-wrap .cloud #cloudPath9 {
   stroke-dasharray: 2400;
@@ -1195,7 +1196,7 @@ h4 {
   height: 100%;
 }
 .culture-wrap .half-wrap .is-people::before {
-  background-image: url(../images/main/main_employee_3.jpg);
+  background-image: url(../images/main/dashboard_recruit_section1.jpg);
 }
 .culture-wrap .half-wrap .tit {
   font-weight: bold;
@@ -1224,7 +1225,7 @@ h4 {
   height: 272px;
 }
 .culture-wrap .half-wrap .is-recruit::before {
-  background-image: url(../images/main/main_employee_1.jpg);
+  background-image: url(../images/main/dashboard_recruit_section2.jpg);
 }
 .culture-wrap .half-wrap .is-recruit .recruit-num {
   font-size: 40px;
@@ -1235,7 +1236,8 @@ h4 {
   height: 396px;
 }
 .culture-wrap .half-wrap .is-growth::before {
-  background-image: url(../images/main/main_employee_2.jpg);
+  background-image: url(../images/main/dashboard_recruit_section3.jpg);
+  background-position-x: right;
 }
 
 .news-wrap .tit {
@@ -1923,7 +1925,7 @@ h4 {
   }
   .core-wrap .core-list .solution {
     position: absolute;
-    top: -246%;
+    top: -145%;
     right: -183px;
     width: 162%;
     height: 600%;
@@ -2160,7 +2162,7 @@ h4 {
   .service-wrap .service-list {
     display: flex;
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
     float: none;
     width: auto;
     margin-right: 0;

@@ -79,11 +79,7 @@
       								<button type="button" id="locale_ko" onclick="setLocale('ko')" class="btn btn-primary">
       									<i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>      
       								<button type="button" id="locale_en" onclick="setLocale('en')" class="btn btn-default">
-      									<i class="fa fa-globe" aria-hidden="true"></i> ENG</button>      
-      								<button type="button" id="locale_zh" onclick="setLocale('zh')" class="btn btn-default">
-      									<i class="fa fa-globe" aria-hidden="true"></i> 中国</button>      
-      								<button type="button" id="locale_vn" onclick="setLocale('vn')" class="btn btn-default">
-      									<i class="fa fa-globe" aria-hidden="true"></i> Tiếng việt</button>   									                
+      									<i class="fa fa-globe" aria-hidden="true"></i> ENG</button>       									                
       							</div>
                 			</div>
             			</div>
@@ -159,17 +155,7 @@
 				      				<button type="button" id="locale_ko" onclick="setLocale('ko')" class="btn btn-primary">
 				      					<i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>      
 				      				<button type="button" id="locale_en" onclick="setLocale('en')" class="btn btn-default">
-				      					<i class="fa fa-globe" aria-hidden="true"></i> ENG</button>      
-				      				<button type="button" id="locale_zh" onclick="setLocale('zh')" class="btn btn-default">
-				      					<i class="fa fa-globe" aria-hidden="true"></i> 中国</button>      
-				      				<button type="button" id="locale_vn" onclick="setLocale('vn')" class="btn btn-default">
-				      					<i class="fa fa-globe" aria-hidden="true"></i> Tiếng việt</button>
-									<select class="form-select" name="outerMapping" aria-label="Default select example">
-									  <option selected>게시판 맵핑</option>
-									  <c:forEach var="board" items="${board}">
-										  <option value="${board.boardNo}">${board.boardTitle}</option>
-									  </c:forEach>
-									</select> 				      					                
+				      					<i class="fa fa-globe" aria-hidden="true"></i> ENG</button>      	      					                
 				      			</div>
 				            </div>
 			            </div>
@@ -409,8 +395,8 @@
            form_register2.target = 'iframe_process';
            form_register2.submit();
            alert("메뉴가 수정되었습니다.")
-		$('#iframe_tree').attr('src', '${pageContext.request.contextPath}/admin/menu/tree');
-		$('#iframe_list').attr('src', '${pageContext.request.contextPath}/admin/menu/menuList');            
+		/* $('#iframe_tree').attr('src', '${pageContext.request.contextPath}/admin/menu/tree');
+		$('#iframe_list').attr('src', '${pageContext.request.contextPath}/admin/menu/menuList'); */            
            //location.reload();
        }  
        

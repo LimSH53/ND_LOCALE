@@ -10,7 +10,7 @@ public interface HistoryService {
 	
 	History selectOneHistoryByHisNo(int historyNo);
 
-	Map<String, Object> selectHistoryList() throws Exception;
+	Map<String, Object> selectHistoryList(Map<String, Object> map) throws Exception;
 	
 	int insertHistory(History history);
 

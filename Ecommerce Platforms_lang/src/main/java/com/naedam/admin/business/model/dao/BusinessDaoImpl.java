@@ -91,9 +91,9 @@ public class BusinessDaoImpl implements BusinessDao {
 	 * businessPost All Select
 	 */
 	@Override
-	public List<BusinessPost> getBusinessPostAllList() throws Exception {
+	public List<BusinessPost> getBusinessPostAllList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return sqlSession.selectList("business.getBusinessPostAllList");
+		return sqlSession.selectList("business.getBusinessPostAllList", map);
 	}
 	
 	/**

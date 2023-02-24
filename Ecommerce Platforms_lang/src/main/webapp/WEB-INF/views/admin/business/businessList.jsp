@@ -67,6 +67,7 @@
  			// business 상세보기 시작
 			$("button[name='updateBusiness']").on("click", function(){
 				var businessNo = $(this).find('input').val();
+
 				$.ajax({
 					url : "/admin/business/json/getBusiness/"+businessNo,
 					method : "GET",
@@ -76,8 +77,10 @@
 						"Content-Type" : "application/json"	 						
 					} ,
 					success : function(JSONData, status){
-						console.log(JSONData)
 						$("#businessTitle2").val(JSONData.businessTitle);
+					},
+					error:function(request,status,error){
+						  alert("에러")     
 					}
 				});			
 			}); 	 
@@ -116,7 +119,7 @@
 	
 	    <ol class="breadcrumb">
 	        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-	        <li>사업관리</li>
+	        <li>사업관리</li> 
 	        <li class="active">사업관리 리스트</li>
 	    </ol>
 	</section>

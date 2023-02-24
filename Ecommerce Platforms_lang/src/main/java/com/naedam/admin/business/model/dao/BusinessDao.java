@@ -33,7 +33,7 @@ public interface BusinessDao {
 	//BusinessPost SelectList
 	public List<BusinessPost> getBusinessPostList(Map<String, Object> map) throws Exception;
 	
-	public List<BusinessPost> getBusinessPostAllList() throws Exception;
+	public List<BusinessPost> getBusinessPostAllList(Map<String, Object> map) throws Exception;
 	
 	//BusinessContents SelectList
 	public List<BusinessContents> getBusinessContentsList(Map<String, Object> map) throws Exception;

@@ -44,24 +44,24 @@ public class HistoryDaoImpl implements HistoryDao {
 	}
 
 	@Override
-	public List<History> selectHistoryList() {
+	public List<History> selectHistoryList(Map<String,Object> map) {
 		// TODO Auto-generated method stub
 		System.out.println("selectHistoryList Dao >>>");
-		return session.selectList("history.selectHistoryList");
+		return session.selectList("history.selectHistoryList", map);
 	}
 
 	@Override
-	public List<History> selectYearList() {
+	public List<History> selectYearList(Map<String,Object> map) {
 		// TODO Auto-generated method stub
 		System.out.println("selectYearList Dao >>>");
-		return session.selectList("history.selectYearList");
+		return session.selectList("history.selectYearList", map);
 	}
 
 	@Override
-	public List<History> selectMonthList() {
+	public List<History> selectMonthList(Map<String,Object> map) {
 		// TODO Auto-generated method stub
 		System.out.println("selectMonthList Dao >>>");
-		return session.selectList("history.selectMonthList");
+		return session.selectList("history.selectMonthList", map);
 	}
 	
 	

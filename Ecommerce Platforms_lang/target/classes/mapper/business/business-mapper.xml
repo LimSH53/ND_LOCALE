@@ -124,11 +124,9 @@
 	
 	<select id="getBusiness" parameterType="int" resultType="business">
 		SELECT 
-		tb1.*,
-		tb2.*
-		FROM business tb1, board_option tb2 
+		tb1.*
+		FROM business tb1 
 		WHERE tb1.business_no = #{businessNo}
-		AND   tb1.business_no = tb2.board_no
 	</select>
 	
 	<select id="getBusinessPost" parameterType="int" resultType="businessPost">
@@ -156,7 +154,7 @@
 		ORDER BY tb1.business_post_no ASC
 	</select>
 	
-	<select id="getBusinessPostAllList" resultMap="BusinessPostMap">
+	<select id="getBusinessPostAllList" resultMap="BusinessPostMap" parameterType="map">
 		SELECT  
 		tb2.BUSINESS_TITLE, 
 		tb1.*
@@ -165,6 +163,7 @@
 		ON tb1.business_no = tb2.business_no
 		LEFT OUTER JOIN member tb3
 		ON tb1.member_no = tb3.member_no
+		WHERE tb1.locale = #{locale}
 		ORDER BY tb1.BUSINESS_NO ASC
 	</select>
 	

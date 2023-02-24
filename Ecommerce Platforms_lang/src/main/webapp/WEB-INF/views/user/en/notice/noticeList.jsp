@@ -32,8 +32,8 @@
 				<div class="inner_container">
 					<div class="top_txt_outer">
 						<div class="top_txt_area txt_notice">
-							<p class="top_txt2">${board2.boardCategory}</p>
-							<p class="top_txt3">${board2.boardEmail}</p>
+							<p class="top_txt2">${board2.boardSubTitle}</p>
+							<p class="top_txt3">${board2.boardContents}</p>
 						</div>
 					</div>
 				</div>

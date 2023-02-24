@@ -65,7 +65,7 @@ public class BusinessRestController {
 	}
 	
 	@GetMapping("json/getBusiness/{businessNo}")
-	public Business getBusiness(@PathVariable("businessNo") int businessNo) throws Exception{ 
+	public Business getBusiness(@PathVariable("businessNo") int businessNo) throws Exception{
 		return businessService.getBusiness(businessNo);
 	}
 	

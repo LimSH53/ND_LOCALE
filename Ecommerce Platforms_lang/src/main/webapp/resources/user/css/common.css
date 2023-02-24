@@ -321,7 +321,7 @@ body.overflow::-webkit-scrollbar {
   border: 1px solid #e6e6e6;
   background-color: #fff;
   border-radius: 8px;
-  padding: 0px 13px;
+  padding: 0px 10px;
   transition: all 0.2s ease-out;
   z-index: 1;
 }

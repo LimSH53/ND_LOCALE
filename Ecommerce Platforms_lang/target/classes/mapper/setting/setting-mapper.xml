@@ -28,7 +28,7 @@
 		 )	
 	</insert>
 	
-	<select id="selectHistoryList" resultType="history">
+	<select id="selectHistoryList" resultType="history" parameterType="map">
 		select h.*
 		 from (select @ROWNUM := @ROWNUM +1 AS ROWNUM,
 					  H.*
@@ -38,7 +38,7 @@
 		LIMIT #{limit} OFFSET #{offset}
 	</select>
 	
-	<select id="selectAwardList" resultType="Award">
+	<select id="selectAwardList" resultType="Award" parameterType="map">
 		select @ROWNUM := @ROWNUM +1 AS ROWNUM,
 		A.*
 		from award A,(SELECT @ROWNUM := 0) TMP

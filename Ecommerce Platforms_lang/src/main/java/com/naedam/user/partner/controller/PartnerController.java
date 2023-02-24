@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -24,9 +25,9 @@ public class PartnerController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="partnerShipList")
-	public ModelAndView partnerShipList(Model model) throws Exception{
+	public ModelAndView partnerShipList(Model model, @RequestParam(value = "locale", defaultValue = "ko") String locales) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		mv.setViewName("user/partner/partnerShip");
+		mv.setViewName("user/"+locales+"/partner/partnerShip");
 		return mv;
 	}
 	
@@ -37,10 +38,10 @@ public class PartnerController {
 	 * @throws Exception
 	 */
 	@RequestMapping(value="partnerList")
-	public ModelAndView partnerList(Model model) throws Exception{
+	public ModelAndView partnerList(Model model, @RequestParam(value = "locale", defaultValue = "ko") String locales) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("list", settingService.selectPartner());
-		mv.setViewName("user/partner/partner");
+		mv.setViewName("user/"+locales+"/partner/partner");
 		return mv;
 	}
 	

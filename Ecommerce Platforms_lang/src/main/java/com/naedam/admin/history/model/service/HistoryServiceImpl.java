@@ -94,15 +94,15 @@ public class HistoryServiceImpl implements HistoryService {
 	}
 	
 	@Override
-	public Map<String, Object> selectHistoryList() throws Exception {
+	public Map<String, Object> selectHistoryList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		/* 연혁 정보 */
-		resultMap.put("history", historyDao.selectHistoryList());
+		resultMap.put("history", historyDao.selectHistoryList(map));
 		/* 기재 년도 조회 */
-		resultMap.put("years", historyDao.selectYearList());
+		resultMap.put("years", historyDao.selectYearList(map));
 		/* 기재 월 조회 */
-		resultMap.put("months", historyDao.selectMonthList());
+		resultMap.put("months", historyDao.selectMonthList(map));
 		
 		System.out.println("selectHistoryList Service resultMap>>>>" + resultMap);
 		return resultMap;

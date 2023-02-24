@@ -23,7 +23,7 @@ public interface BusinessService {
 	
 	public List<BusinessPost> getBusinessPostList(Map<String, Object> map) throws Exception;
 	
-	public List<BusinessPost> getBusinessPostAllList() throws Exception;
+	public List<BusinessPost> getBusinessPostAllList(Map<String, Object> map) throws Exception;
 	
 	public List<BusinessContents> getBusinessContentsList(Map<String, Object> map) throws Exception;
 	

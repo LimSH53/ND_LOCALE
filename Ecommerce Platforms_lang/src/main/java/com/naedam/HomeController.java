@@ -41,15 +41,16 @@ public class HomeController {
 	 */
 	@Cacheable
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String gohome(Locale locale, Model model) throws Exception {
+	public String gohome(Locale locale, Model model,
+						 @RequestParam(value = "locale", defaultValue = "ko") String locales) throws Exception {
 		log.debug("userHomeController ---- forward ----> dashBoard");
-		System.out.println("locale 확인 === "+locale);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("businessNo", 10);
+		map.put("locale", locales);
 		model.addAttribute("head", menuService.getUserHeadList(map).get("list"));
 		model.addAttribute("post", boardService.getMainPostList());
 		model.addAttribute("businessPost", businessService.getBusinessPostList(map));
-		return "user/userDashBoard";
+		return "user/"+locales+"/userDashBoard";
 	}	
 
 	
@@ -78,14 +79,16 @@ public class HomeController {
 	
 	@Cacheable
 	@RequestMapping(value = "/user/dashBoard", method = RequestMethod.GET)
-	public String goDashBoard2(Locale locale, Model model) throws Exception {
+	public String goDashBoard2(Locale locale, Model model,
+						       @RequestParam(value = "locale", defaultValue = "ko") String locales) throws Exception {
 		log.debug("userHomeController ---- forward ----> dashBoard");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("businessNo", 10);
+		map.put("locale", locales);
 		model.addAttribute("head", menuService.getUserHeadList(map).get("list"));
 		model.addAttribute("post", boardService.getMainPostList());
 		model.addAttribute("businessPost", businessService.getBusinessPostList(map));
-		return "user/userDashBoard";
+		return "user/"+locales+"/userDashBoard";
 	}	
 
 }
