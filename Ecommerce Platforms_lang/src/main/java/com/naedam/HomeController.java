@@ -43,6 +43,7 @@ public class HomeController {
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String gohome(Locale locale, Model model) throws Exception {
 		log.debug("userHomeController ---- forward ----> dashBoard");
+		System.out.println("locale 확인 === "+locale);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("businessNo", 10);
 		model.addAttribute("head", menuService.getUserHeadList(map).get("list"));
