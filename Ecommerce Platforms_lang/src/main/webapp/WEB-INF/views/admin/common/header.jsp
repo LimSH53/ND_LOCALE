@@ -103,7 +103,7 @@
 					if(Data.length > 0){
 						for(var i = 0; i < Data.length; i++){
 							display = "<li>"
-									+ "<a href=/admin/business/getBusinessPostList?businessNo="+Data[i].businessNo+"&locale=${cookie.locale.value>"
+									+ "<a href=/admin/business/getBusinessPostList?businessNo="+Data[i].businessNo+"&locale=${cookie.locale.value}>"
 									+ "<i class='fa fa-circle-o'></i> "+Data[i].businessTitle
 									+ "</a>"
 									+ "</li>"
