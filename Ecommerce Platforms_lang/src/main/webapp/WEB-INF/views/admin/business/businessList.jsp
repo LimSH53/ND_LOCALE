@@ -110,13 +110,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	<section class="content-header">
 	    <h1>
-		    사업관리 관리
+		    사업관리
 		    <small>사업관리 list</small>
 	    </h1>
 	
 	    <ol class="breadcrumb">
 	        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-	        <li>사업관리 관리</li>
+	        <li>사업관리</li>
 	        <li class="active">사업관리 리스트</li>
 	    </ol>
 	</section>
@@ -149,8 +149,6 @@
 				                        <td style="width:60px;">NO</td>
 				                        <td>제목</td>
 				                        <td style="width:250px;">연결주소</td>
-				                        <td style="width:100px;">type</td>
-				                        <td style="width:80px;">등록 글수</td>
 				                        <td style="width:220px;">명령</td>
 				                    </tr>
 			                    </thead>
@@ -177,10 +175,6 @@
 										  <td>${i}</td>
 										  <td align="left">${business.businessTitle}</td>
 										  <td align="left">http://localhost:8080/admin/board/postList</td>
-										  <td>
-											0
-										  </td>
-										  <td></td>
 										  <td>
 					                        <button type="button" onclick="onclickView(${business.businessNo});" class="btn btn-success btn-xs">바로가기</button>
 					                        <button type="button" onclick="copyURL(${business.businessNo});" class="btn btn-warning btn-xs" value="${business.businessNo}">
