@@ -82,6 +82,7 @@ public class MenuDaoImpl implements MenuDao {
 	//사용자 헤더 리스트
 	@Override
 	public List<Head> getUserHeadList(Map<String, Object> map) throws Exception {
+		System.out.println("map 체크 === "+map);
 		return sqlSession.selectList("menu.getUserHeadList", map);
 	}	
 	

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.naedam.admin.board.model.service.BoardService;
 import com.naedam.admin.business.model.service.BusinessService;
@@ -40,14 +41,16 @@ public class HomeController {
 	 */
 	@Cacheable
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String gohome(Locale locale, Model model) throws Exception {
+	public String gohome(Locale locale, Model model,
+						 @RequestParam(value = "locale", defaultValue = "ko") String locales) throws Exception {
 		log.debug("userHomeController ---- forward ----> dashBoard");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("businessNo", 10);
+		map.put("locale", locales);
 		model.addAttribute("head", menuService.getUserHeadList(map).get("list"));
 		model.addAttribute("post", boardService.getMainPostList());
 		model.addAttribute("businessPost", businessService.getBusinessPostList(map));
-		return "user/userDashBoard";
+		return "user/"+locales+"/userDashBoard";
 	}	
 
 	
@@ -63,25 +66,29 @@ public class HomeController {
 	// locale, model
 	// 로그인 시 시작되는 메서드
 	@RequestMapping(value = "/admin/dashBoard", method = RequestMethod.GET)
-	public String goDashBoard(Locale locale, Model model) throws Exception {
-		log.debug("HomeController ---- forward ----> dashBoard");
+	public String goDashBoard(Locale locale, Model model,
+							 @RequestParam(value = "locale", defaultValue = "ko") String locales) throws Exception {
+		log.debug("HomeController/admin/dashBoard ---- forward ----> dashBoard");
 		
 		//board List 가져오기
 		List<String> boardList = boardService.getBoardList();
 		model.addAttribute(boardList);
+		model.addAttribute("locale",locales);
 		return "admin/dashBoard";
 	}
 	
 	@Cacheable
 	@RequestMapping(value = "/user/dashBoard", method = RequestMethod.GET)
-	public String goDashBoard2(Locale locale, Model model) throws Exception {
+	public String goDashBoard2(Locale locale, Model model,
+						       @RequestParam(value = "locale", defaultValue = "ko") String locales) throws Exception {
 		log.debug("userHomeController ---- forward ----> dashBoard");
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("businessNo", 10);
+		map.put("locale", locales);
 		model.addAttribute("head", menuService.getUserHeadList(map).get("list"));
 		model.addAttribute("post", boardService.getMainPostList());
 		model.addAttribute("businessPost", businessService.getBusinessPostList(map));
-		return "user/userDashBoard";
+		return "user/"+locales+"/userDashBoard";
 	}	
 
 }

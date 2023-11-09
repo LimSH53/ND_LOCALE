@@ -192,11 +192,12 @@
 	</select>
 	
 	
-	<select id="getBoardTitle" resultType="board">		
+	<select id="getBoardTitle" resultType="board" parameterType="hashmap">		
 		SELECT
 				board_no,
 				board_title
 		FROM	board
+		WHERE   locale = #{locale}
 		ORDER BY board_no ASC	
 	</select>
 	

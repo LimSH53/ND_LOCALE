@@ -1,6 +1,7 @@
 package com.naedam.admin.award.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,9 @@ public class AwardDaoimpl implements AwardDao {
 	}
 
 	@Override
-	public List<Award> selectAwardList() {
+	public List<Award> selectAwardList(Map<String, Object> map) {
 		System.out.println("check === "+session.selectList("award.selectAwardList"));
-		return session.selectList("award.selectAwardList");
+		return session.selectList("award.selectAwardList", map);
 	}
 
 	@Override
@@ -42,15 +43,15 @@ public class AwardDaoimpl implements AwardDao {
 	}
 
 	@Override
-	public List<Award> SelectYear() {
+	public List<Award> SelectYear(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return session.selectList("award.selectYear");
+		return session.selectList("award.selectYear", map);
 	}
 
 	@Override
-	public List<Award> SelectMonth() {
+	public List<Award> SelectMonth(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return session.selectList("award.selectMonth");
+		return session.selectList("award.selectMonth", map);
 	}
 
 

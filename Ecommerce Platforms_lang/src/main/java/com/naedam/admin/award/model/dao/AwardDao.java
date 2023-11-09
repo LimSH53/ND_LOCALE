@@ -1,6 +1,7 @@
 package com.naedam.admin.award.model.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.naedam.admin.award.model.vo.Award;
 
@@ -14,11 +15,11 @@ public interface AwardDao {
 
 	public Award selectDetailByNo(int awardNo);
 
-	public List<Award> selectAwardList();
+	public List<Award> selectAwardList(Map<String, Object> map);
 	
-	public List<Award> SelectYear();
+	public List<Award> SelectYear(Map<String, Object> map);
 
-	public List<Award> SelectMonth();
+	public List<Award> SelectMonth(Map<String, Object> map);
 
 
 

@@ -72,11 +72,11 @@
 			                        <td>메뉴명</td>
 			                        <td>url</td>
 			                        <td style="width:55px;">상태</td>
-			                        <td style="width:60px;">
+			                        <td style="width:80px;">
 			                            <i onclick="fncDown();" class="fa fa-fw fa-arrow-circle-down cp" style="cursor:pointer"></i>
 			                            <i onclick="fncUp();" class="fa fa-fw fa-arrow-circle-up cp" style="cursor:pointer"></i>
 			                        </td>
-			                        <td style="width:220px;">명령</td>
+			                        <td style="width:200px;">명령</td>
 			                    </tr>
 		                    </thead>
 		      				<c:if test="${list != null || list != ''}">
@@ -109,8 +109,6 @@
 				                        	<input type="hidden" name="originNo" value="${menu.originNo}">
 				                        </td>
 				                        <td>
-				                            <button type="button" onclick="onclickRevision(${menu.code});" class="btn btn-warning btn-xs">리비젼보기</button>
-				                            <button type="button" onclick="onclickView('${menu.url}');" class="btn btn-success btn-xs">바로가기</button>
 				                            <button type="button" onclick="onclickUpdate(${menu.code});" class="btn btn-primary btn-xs">수정하기</button>
 				                        </td>
 				                    </tr>			                
@@ -129,9 +127,6 @@
 	                    <br>
 	                    <button type="button" onclick="updateChoiceMenu();" class="btn btn-danger btn-sm"><i class="fa fa-minus-square" aria-hidden="true"></i> 선택삭제</button>
 	                    <button type="button" onclick="onclickInsert(${menu.code}, ${menu.ord});" class="btn btn-primary btn-sm"><i class="fa fa-plus-square"></i> 메뉴 등록</button>
-	                    <div style="float:right; margin-right:12px;">
-	                        <button type="button" onclick="onclickRevision2();" class="btn btn-warning btn-sm"><i class="fa fa-minus-square"></i> 삭제 리비젼보기</button>
-	                    </div>
 	                </div><!-- /.box-body -->
 	            </div><!-- /.box -->
 	        </div><!-- /.col-xs-12 -->

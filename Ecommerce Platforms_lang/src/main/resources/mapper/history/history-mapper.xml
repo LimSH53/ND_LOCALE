@@ -7,28 +7,31 @@
 		select * from history where history_no = #{history}
 	</select>
 
-	<select id="selectHistoryList" resultType="history">
+	<select id="selectHistoryList" resultType="history" parameterType="map">
 		select @ROWNUM := @ROWNUM +1 AS ROWNUM,
 		H.*,
 		DATE_FORMAT(H.history_date, '%Y') AS year,
 		DATE_FORMAT(H.history_date, '%c') AS month
 		from history H,(SELECT @ROWNUM := 0) TMP
+		where H.locale = #{locale}
 		order by history_date;
 	</select>
 
-	<select id="selectYearList" resultType="history">
+	<select id="selectYearList" resultType="history" parameterType="map">
 		select distinct
 		DATE_FORMAT(history_date, '%Y') AS year
 		from history
+		where locale = #{locale}
 		order by history_date desc;
 		
 	</select>
 
-	<select id="selectMonthList" resultType="history">
+	<select id="selectMonthList" resultType="history" parameterType="map">
 		select distinct
 		DATE_FORMAT(history_date, '%Y') AS year,
 		DATE_FORMAT(history_date, '%c') AS month
 		from history
+		where locale = #{locale}
 		order by history_date desc;
 		
 	</select>

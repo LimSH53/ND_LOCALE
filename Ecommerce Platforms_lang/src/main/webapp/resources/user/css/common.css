@@ -317,11 +317,11 @@ body.overflow::-webkit-scrollbar {
   visibility: hidden;
   position: absolute;
   top: 68px;
-  right: 107px;
+  right: 52px;
   border: 1px solid #e6e6e6;
   background-color: #fff;
   border-radius: 8px;
-  padding: 8px 24px;
+  padding: 0px 10px;
   transition: all 0.2s ease-out;
   z-index: 1;
 }

@@ -119,6 +119,7 @@
             <form name="getBusinessPostForm" method="businessPost" enctype="multipart/form-data">
             	<input type="hidden" name="businessContentsNo" class="businessContentsNo">
 	            <input type="hidden" name="businessPostNo" value="${businessPost.businessPostNo}">
+	            <input type="hidden" name="locale" value="${locale}"/>
 	            <input type="hidden" name="mode" id="mode" value="update">
 	            <input type="hidden" name="secNo" value="<sec:authentication property='principal.memberNo'/>">            
 	            <div class="modal-header">

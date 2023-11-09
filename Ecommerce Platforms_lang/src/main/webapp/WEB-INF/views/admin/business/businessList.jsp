@@ -67,6 +67,7 @@
  			// business 상세보기 시작
 			$("button[name='updateBusiness']").on("click", function(){
 				var businessNo = $(this).find('input').val();
+
 				$.ajax({
 					url : "/admin/business/json/getBusiness/"+businessNo,
 					method : "GET",
@@ -76,8 +77,10 @@
 						"Content-Type" : "application/json"	 						
 					} ,
 					success : function(JSONData, status){
-						console.log(JSONData)
 						$("#businessTitle2").val(JSONData.businessTitle);
+					},
+					error:function(request,status,error){
+						  alert("에러")     
 					}
 				});			
 			}); 	 
@@ -110,14 +113,14 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" ></script>
 	<section class="content-header">
 	    <h1>
-		    서비스 관리
-		    <small>서비스 list</small>
+		    사업관리
+		    <small>사업관리 list</small>
 	    </h1>
 	
 	    <ol class="breadcrumb">
 	        <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-	        <li>서비스 관리</li>
-	        <li class="active">서비스 리스트</li>
+	        <li>사업관리</li> 
+	        <li class="active">사업관리 리스트</li>
 	    </ol>
 	</section>
 	
@@ -125,12 +128,7 @@
 	    <div class="row">
 	        <div class="col-xs-12">
 	            <div class="box">
-	                <div class="box-body">
-	                    <label style="margin-top:5px;">총  건</label>
-	                    <div class="btn-group pull-right">
-      						<button type="button" name="locale" id="ko" onclick="" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
-      						<button type="button" name="locale" id="en" onclick="" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
-      					</div>	                    
+	                <div class="box-body">                   
 	                    <table class="table table-bordered table-hover">
 		                    <form name="form_list" method="post" action="?tpf=admin/board/manage_process">
 					            <input type="hidden" name="mode" id="mode">
@@ -154,13 +152,16 @@
 				                        <td style="width:60px;">NO</td>
 				                        <td>제목</td>
 				                        <td style="width:250px;">연결주소</td>
-				                        <td style="width:100px;">type</td>
-				                        <td style="width:80px;">등록 글수</td>
 				                        <td style="width:220px;">명령</td>
 				                    </tr>
 			                    </thead>
 			                    <tbody>
 			                    	<c:set var="i" value="0"/>
+			                    	<c:if test="${empty business}">
+					                    <tr>
+					                   		<td colspan="10"><br>등록된 자료가 없습니다.<br><br></td>
+					                   	</tr>
+				                    </c:if>
 			                    	<c:forEach var="business" items="${business}" varStatus="status" >
 				                    	<c:set var="i" value="${ i+1 }" />
 										<tr>
@@ -177,10 +178,6 @@
 										  <td>${i}</td>
 										  <td align="left">${business.businessTitle}</td>
 										  <td align="left">http://localhost:8080/admin/board/postList</td>
-										  <td>
-											0
-										  </td>
-										  <td></td>
 										  <td>
 					                        <button type="button" onclick="onclickView(${business.businessNo});" class="btn btn-success btn-xs">바로가기</button>
 					                        <button type="button" onclick="copyURL(${business.businessNo});" class="btn btn-warning btn-xs" value="${business.businessNo}">

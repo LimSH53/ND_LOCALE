@@ -83,8 +83,10 @@ public class BoardRestController {
 	 * @throws Exception
 	 */
 	@GetMapping(value="json/listBoard")
-	public List<Board> listBoard() throws Exception{		
-		return boardService.getBoardTitle();
+	public List<Board> listBoard(@RequestParam(value = "locale", defaultValue = "ko") String locale) throws Exception{
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("locale", locale);
+		return boardService.getBoardTitle(map);
 	}
 	
 	/***

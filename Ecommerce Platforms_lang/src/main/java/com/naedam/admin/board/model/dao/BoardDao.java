@@ -69,7 +69,7 @@ public interface BoardDao {
 	public int getTotalCount3(int boardNo) throws Exception;
 	
 	//header의 게시판 제목
-	public List<Board> getBoardTitle();
+	public List<Board> getBoardTitle(Map<String, Object> map);
 	
 	//게시판의 데이터
 	public Board getBoardData(int boardNo) throws Exception;

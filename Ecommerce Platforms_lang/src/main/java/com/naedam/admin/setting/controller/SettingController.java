@@ -45,18 +45,20 @@ public class SettingController {
 	 */
 	@GetMapping("/history")
 	public String history(Model model, @RequestParam(defaultValue = "1") int cPage,
-			HttpServletRequest request) {
+			HttpServletRequest request,
+			@RequestParam(value = "locale", defaultValue = "ko")String locale) {
 		// 게시글 조회 한도
 		int limit = 10;
 		int offset = (cPage - 1) * limit;
 		
-		List<History> historyList = settingService.selectHistoryList(limit, offset);
+		System.out.println("=====history locale ====" + locale);
+		List<History> historyList = settingService.selectHistoryList(limit, offset, locale);
 		model.addAttribute("historyList", historyList);
 		
 		System.out.println("historyList>>>>>" + historyList);
 		
 		//게시글 총 갯수
-		int totalRecruitListCount = settingService.selectAllHistoryList();
+		int totalRecruitListCount = settingService.selectAllHistoryList(locale);
 		
 		//페이징 처리
 		String url = request.getRequestURI();
@@ -64,10 +66,11 @@ public class SettingController {
 		
 		model.addAttribute("pagebar", pagebar);
 		model.addAttribute("pageCount", totalRecruitListCount);
+		model.addAttribute("locale", locale);
 		
 		System.out.println("history model >>>>>" + model);
 		
-		return "/admin/setting/history";
+		return "admin/setting/history";
 	}
 
 	/**
@@ -75,9 +78,10 @@ public class SettingController {
 	 * @param model
 	 */
 	@GetMapping("/award")
-	public void award(Model model) {
-		List<Award> awardList = settingService.selectAwardList();
+	public void award(Model model, @RequestParam(value = "locale", defaultValue = "ko") String locale) {
+		List<Award> awardList = settingService.selectAwardList(locale);
 		model.addAttribute("awardList", awardList);
+		model.addAttribute("locale", locale);
 	}
 	/**
 	 * 설정 => 기본 설정 => 기본, 언어, 관리자 메뉴 조회
@@ -95,21 +99,24 @@ public class SettingController {
 	public String partnerProcess(@ModelAttribute("partner") Partner partner,
 								 @RequestParam("mode") String mode,
 								 @RequestParam(value="file", required = false) MultipartFile file,
-								 HttpServletRequest request) throws Exception{
+								 HttpServletRequest request,
+								 @RequestParam(value = "locale", defaultValue = "ko") String locale) throws Exception{
 		String filePath = request.getSession().getServletContext().getRealPath("resources/user/images/partner/");
 		Map<String, Object> partnerMap = new HashMap<>();
 		partnerMap.put("partner", partner);
 		partnerMap.put("mode", mode);
 		partnerMap.put("file", file);
 		partnerMap.put("filePath", filePath);
+		partnerMap.put("locale", locale);
 		settingService.partnerProcess(partnerMap);
-		return "redirect:/admin/setting/listPartner";
+		return "redirect:/admin/setting/listPartner?locale="+locale;
 	}
 
 	@RequestMapping(value="listPartner")
 	public String listPartner(Model model, HttpServletRequest request ,
 							  @RequestParam(defaultValue = "1") int cPage,
-							  @RequestParam(value = "searchKeyword", required = false) String searchKeyword) throws Exception{
+							  @RequestParam(value = "searchKeyword", required = false) String searchKeyword,
+							  @RequestParam(value = "locale", defaultValue = "ko") String locale) throws Exception{
 		//게시글 리스트 수 limit 10으로
 		int limit = 10;
 		int offset = (cPage - 1) * limit;
@@ -120,6 +127,7 @@ public class SettingController {
 		map.put("searchKeyword", searchKeyword);
 		map.put("limit", limit);
 		map.put("offset", offset);
+		map.put("locale", locale);
 
 		Map<String, Object> resultMap = settingService.adminPartnerList(map);
 		model.addAttribute("list", resultMap.get("list"));
@@ -131,6 +139,7 @@ public class SettingController {
 		
 		model.addAttribute("pagebar", pagebar);
 		model.addAttribute("searchKeyword", searchKeyword);
+		model.addAttribute("locale", locale);
 		
 		return "admin/setting/partnerList";
 	}

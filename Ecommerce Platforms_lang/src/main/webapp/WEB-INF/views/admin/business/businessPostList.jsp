@@ -177,32 +177,7 @@
 	    <div class="row">
 	        <div class="col-xs-12">
 	            <div class="box">
-	                <div class="box-body">
-	                    <label style="margin-top:5px;">총  건</label>
-	                    <div class="btn-group pull-right">
-      						<button type="button" name="locale" id="ko" onclick="" class="btn btn-primary"><i class="fa fa-globe" aria-hidden="true"></i> 한국어</button>   
-      						<button type="button" name="locale" id="en" onclick="" class="btn btn-default"><i class="fa fa-globe" aria-hidden="true"></i> ENG</button>                    
-      					</div>	                    
-	                    <form name="searchForm" method="post" action="/admin/board/postList?${_csrf.parameterName}=${_csrf.token}">
-		                    <div class="box-tools pull-right" style="margin-bottom:5px;">
-		                    	<input type="hidden" class="businessNo" value="${business.businessNo}">
-		                    	<input type="hidden" name="cPage">
-		                        <div class="has-feedback">
-			                        <span>
-			                      	  <input type="text" name="searchKeyword" id="searchKeyword" class="form-control input-sm" placeholder="검색" value=""/>
-			                      	  <span class="glyphicon glyphicon-search form-control-feedback"></span>
-			                        </span>
-		                        </div>
-		                    </div>
-		                    <div class="box-tools pull-right" style="margin-bottom:5px;">
-		                        <div class="has-feedback">
-			                        <select name="searchType" class="form-control input-sm" style="float:left; width:130px;">
-			      						<option value="1">제목</option>      
-			      						<option value="2">작성자</option>                        
-			      					</select>
-		                        </div>
-		                    </div>
-	                    </form>
+	                <div class="box-body">                               
 	                    <table class="table table-bordered table-hover">
 		                    <form name="form_list" method="post">
 			                    <thead>

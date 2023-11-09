@@ -17,28 +17,32 @@
 		(PARTNER_NAME, 
 		 IN_DTM, 
 		 PARTNER_IMAGE,
-		 PARTNER_ASC)
+		 PARTNER_ASC,
+		 LOCALE)
 		VALUES
 		(#{partnerName}, 
 		 sysdate(), 
 		 #{partnerImage},
-		 (SELECT IFNULL(MAX(PARTNER_ASC) + 1, 1) FROM partner p)
+		 (SELECT IFNULL(MAX(PARTNER_ASC) + 1, 1) FROM partner p),
+		 #{locale}
 		 )	
 	</insert>
 	
-	<select id="selectHistoryList" resultType="history">
+	<select id="selectHistoryList" resultType="history" parameterType="map">
 		select h.*
 		 from (select @ROWNUM := @ROWNUM +1 AS ROWNUM,
 					  H.*
 				 from history H,(SELECT @ROWNUM := 0) TMP
+				 where locale like #{locale}
 			    order by history_date DESC ) h
 		LIMIT #{limit} OFFSET #{offset}
 	</select>
 	
-	<select id="selectAwardList" resultType="Award">
+	<select id="selectAwardList" resultType="Award" parameterType="map">
 		select @ROWNUM := @ROWNUM +1 AS ROWNUM,
 		A.*
 		from award A,(SELECT @ROWNUM := 0) TMP
+		where locale like #{locale}
 		order by award_date DESC
 	</select>
 	
@@ -69,6 +73,7 @@
 	  		date_format(tb1.in_dtm, '%Y-%m-%d') in_dtm
 	  		FROM partner tb1, (select @rownum:=0) row_reset
 	  		WHERE 1=1
+	  		AND locale like #{locale}
 	  		<if test="searchKeyword != null">
 	  			AND tb1.partner_name like concat ('%',#{searchKeyword},'%')
 	  		</if>
@@ -86,6 +91,7 @@
 	  		date_format(tb1.in_dtm, '%Y-%m-%d') in_dtm
 	  		FROM partner tb1, (select @rownum:=0) row_reset
 	  		WHERE 1=1
+	  		 AND locale like #{locale}
 	  		<if test="searchKeyword != null">
 	  			AND tb1.partner_name like concat ('%',#{searchKeyword},'%')
 	  		</if>

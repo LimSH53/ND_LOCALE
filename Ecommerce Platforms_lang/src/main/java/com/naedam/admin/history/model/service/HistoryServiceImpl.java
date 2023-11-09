@@ -55,6 +55,7 @@ public class HistoryServiceImpl implements HistoryService {
 			Date date = resultDate;
 			history.setHistoryDate(date);
 			history.setLocale((String)map.get("locale"));
+			System.out.println("setLocale==========" + history.getLocale());
 			if("insert".equals(map.get("mode"))) {
 				historyDao.insertHistory(history);
 				resultMap.put("msg", "연혁 정보가 등록되었습니다.");
@@ -93,15 +94,15 @@ public class HistoryServiceImpl implements HistoryService {
 	}
 	
 	@Override
-	public Map<String, Object> selectHistoryList() throws Exception {
+	public Map<String, Object> selectHistoryList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		Map<String, Object> resultMap = new HashMap<String, Object>();
 		/* 연혁 정보 */
-		resultMap.put("history", historyDao.selectHistoryList());
+		resultMap.put("history", historyDao.selectHistoryList(map));
 		/* 기재 년도 조회 */
-		resultMap.put("years", historyDao.selectYearList());
+		resultMap.put("years", historyDao.selectYearList(map));
 		/* 기재 월 조회 */
-		resultMap.put("months", historyDao.selectMonthList());
+		resultMap.put("months", historyDao.selectMonthList(map));
 		
 		System.out.println("selectHistoryList Service resultMap>>>>" + resultMap);
 		return resultMap;

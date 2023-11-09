@@ -56,7 +56,7 @@ public class HistoryController {
 								  @RequestParam(value="historyImage", required = false) MultipartFile historyImage,
 								  @RequestParam(value = "locale", defaultValue = "ko") String locale) throws Exception {
 		
-		System.out.println(">>>>>history_process");
+		System.out.println(">>>>>history_process" + locale);
 		Map<String, Object> map = new HashMap<>();
 		map.put("history", history);
 		map.put("mode", request.getParameter("mode"));

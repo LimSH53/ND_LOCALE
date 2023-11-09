@@ -26,6 +26,7 @@ public class Business implements Serializable {
 	private String businessTitle; 		//게시판 제목
 	private Member businessMemberNo;	//회원 데이터
 	private Date inDtm;
+	private String locale;
 	private int count;
 	
 	

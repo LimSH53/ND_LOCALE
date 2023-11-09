@@ -142,8 +142,8 @@ public class BusinessServiceImpl implements BusinessService {
 	}
 
 	@Override
-	public List<BusinessPost> getBusinessPostAllList() throws Exception {
-		return businessDao.getBusinessPostAllList();
+	public List<BusinessPost> getBusinessPostAllList(Map<String, Object> map) throws Exception {
+		return businessDao.getBusinessPostAllList(map);
 	}
 	
 	@Override

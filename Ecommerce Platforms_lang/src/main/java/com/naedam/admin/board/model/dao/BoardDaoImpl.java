@@ -122,7 +122,6 @@ public class BoardDaoImpl implements BoardDao {
 	//게시글 이전 이후 데이터
 	@Override
 	public Post getPrevPost(Post post) throws Exception {
-		System.out.println("데이터 체크 === "+post);
 		return sqlSession.selectOne("board.getPrevPost", post);
 	}
 	
@@ -140,8 +139,8 @@ public class BoardDaoImpl implements BoardDao {
 	
 	//header의 게시판 제목
 	@Override
-	public List<Board> getBoardTitle() {
-		return sqlSession.selectList("board.getBoardTitle");
+	public List<Board> getBoardTitle(Map<String, Object> map) {
+		return sqlSession.selectList("board.getBoardTitle", map);
 	}
 	
 	//게시판의 데이터

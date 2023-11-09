@@ -185,6 +185,9 @@
 			<li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
 			<li>Dashboard</li>
 		</ol>
+		<form>
+			<input type="hidden" name="locale" value="${locale }">
+		</form>
 	</section>
 
 	<section class="content">

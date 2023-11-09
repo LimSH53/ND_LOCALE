@@ -12,6 +12,7 @@ public interface RecruitDao {
 
 	// 게시글 목록
 	public List<recruitDTO> getRecruitList(String search, int offset, int limit, String locale) throws Exception;
+	public List<recruitDTO> getRecruitList(String search, int offset, int limit) throws Exception;
 
 	// 게시글 총 갯수
 	public Object getTotalCount(String search, String locale);

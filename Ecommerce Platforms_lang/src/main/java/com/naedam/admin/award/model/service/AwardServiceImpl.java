@@ -109,12 +109,12 @@ public class AwardServiceImpl implements AwardService {
 	}
 
 	@Override
-	public Map<String, Object> selectAwardList() throws Exception {
+	public Map<String, Object> selectAwardList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		Map<String, Object> awardmap = new HashMap<String, Object>();
-		awardmap.put("award", awardDao.selectAwardList());
-		awardmap.put("awardYears", awardDao.SelectYear());
-		awardmap.put("awardMonths", awardDao.SelectMonth());
+		awardmap.put("award", awardDao.selectAwardList(map));
+		awardmap.put("awardYears", awardDao.SelectYear(map));
+		awardmap.put("awardMonths", awardDao.SelectMonth(map));
 		
 		return awardmap;
 	}
